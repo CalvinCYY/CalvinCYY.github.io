@@ -411,13 +411,51 @@ ul {
     z-index: 1;
 }
 
+#graph-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: auto;
+}
+
+#graph-background svg {
+    display: block;
+}
+
+.node {
+    cursor: grab;
+    stroke: rgba(255, 255, 255, 0.5);
+    stroke-width: 1.5px;
+    transition: r 0.3s ease, stroke-width 0.3s ease;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+.node:hover {
+    stroke-width: 3px;
+    stroke: var(--secondary-color);
+}
+
+.node:active {
+    cursor: grabbing;
+}
+
+.link {
+    stroke: rgba(255, 255, 255, 0.25);
+    stroke-width: 1.5px;
+    stroke-opacity: 0.7;
+    transition: stroke 0.3s ease, stroke-width 0.3s ease;
+}
+
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(13, 71, 161, 0.9), rgba(0, 121, 107, 0.9));
+    background: linear-gradient(135deg, rgba(13, 71, 161, 0.8), rgba(0, 121, 107, 0.8));
     z-index: 2;
 }
 
@@ -484,7 +522,7 @@ ul {
 
 .hero-content {
     position: relative;
-    z-index: 3;
+    z-index: 4;
     width: 100%;
     padding: 0 20px;
 }
@@ -1399,4 +1437,14 @@ h2.section-title::before {
     background: var(--primary-color);
     color: var(--white-color);
     transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #graph-background {
+        opacity: 0.5;
+    }
+    
+    .node, .link {
+        transition: none;
+    }
 }

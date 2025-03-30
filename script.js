@@ -11,6 +11,308 @@ document.addEventListener('DOMContentLoaded', function() {
     const skillCards = document.querySelectorAll('.skill-card');
     const projectCards = document.querySelectorAll('.project-card');
 
+    // --- Interactive Graph Visualization ---
+    function createGraphVisualization() {
+        console.log("Initializing graph visualization");
+        const graphContainer = document.getElementById('graph-background');
+        if (!graphContainer) {
+            console.error("Graph container not found");
+            return;
+        }
+
+        // Clear any existing content
+        graphContainer.innerHTML = '';
+        
+        try {
+            // Get the container dimensions
+            const width = graphContainer.clientWidth;
+            const height = graphContainer.clientHeight;
+            
+            console.log(`Creating graph with dimensions: ${width}x${height}`);
+
+            if (width === 0 || height === 0) {
+                console.error("Container has zero dimensions");
+                // Try again in a moment
+                setTimeout(createGraphVisualization, 500);
+                return;
+            }
+            
+            // Create SVG element with a border for debugging
+            const svg = d3.select('#graph-background')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .style('border', '1px solid rgba(255,255,255,0.1)'); // Subtle border for debugging
+
+            // Generate more thematic nodes and links to represent a molecular graph
+            const numNodes = Math.min(Math.floor(width / 30), 60); // More nodes, scaled to screen
+            
+            // Generate nodes with different types to represent atoms
+            const nodeTypes = [
+                { type: 'carbon', color: '#64B5F6', radius: 6 },
+                { type: 'oxygen', color: '#EF5350', radius: 7 },
+                { type: 'nitrogen', color: '#7E57C2', radius: 6.5 },
+                { type: 'hydrogen', color: '#EEEEEE', radius: 4 }
+            ];
+            
+            const nodes = Array.from({ length: numNodes }, (_, i) => {
+                const typeIndex = Math.floor(Math.random() * nodeTypes.length);
+                return {
+                    id: i,
+                    type: nodeTypes[typeIndex].type,
+                    radius: nodeTypes[typeIndex].radius + (Math.random() * 2 - 1),
+                    color: nodeTypes[typeIndex].color,
+                    x: Math.random() * width,
+                    y: Math.random() * height
+                };
+            });
+
+            // Create links to represent chemical bonds
+            const links = [];
+            // Create more realistic molecular-like connections
+            nodes.forEach((node, i) => {
+                // Connect to 1-4 nearest nodes based on type
+                const maxConnections = node.type === 'carbon' ? 4 : 
+                                       node.type === 'oxygen' ? 2 : 
+                                       node.type === 'nitrogen' ? 3 : 1;
+                
+                // Find closest nodes
+                const otherNodes = [...nodes];
+                otherNodes.splice(i, 1); // Remove current node
+                
+                otherNodes.sort((a, b) => {
+                    const distA = Math.hypot(node.x - a.x, node.y - a.y);
+                    const distB = Math.hypot(node.x - b.x, node.y - b.y);
+                    return distA - distB;
+                });
+                
+                // Connect to closest nodes up to maxConnections
+                const connections = Math.floor(Math.random() * maxConnections) + 1;
+                for (let j = 0; j < Math.min(connections, otherNodes.length); j++) {
+                    // Avoid duplicate links
+                    if (!links.some(link => 
+                        (link.source === i && link.target === otherNodes[j].id) || 
+                        (link.source === otherNodes[j].id && link.target === i))
+                    ) {
+                        links.push({ 
+                            source: i, 
+                            target: otherNodes[j].id,
+                            strength: Math.random() * 0.5 + 0.5 // Variable bond strength
+                        });
+                    }
+                }
+            });
+
+            // Add enhanced glow effect
+            const defs = svg.append('defs');
+            const filter = defs.append('filter')
+                .attr('id', 'glow');
+
+            filter.append('feGaussianBlur')
+                .attr('stdDeviation', '3.5')
+                .attr('result', 'coloredBlur');
+
+            const feMerge = filter.append('feMerge');
+            feMerge.append('feMergeNode')
+                .attr('in', 'coloredBlur');
+            feMerge.append('feMergeNode')
+                .attr('in', 'SourceGraphic');
+
+            node.style('filter', 'url(#glow)');
+
+            // Create the force simulation with improved physics
+            const simulation = d3.forceSimulation(nodes)
+                .force('link', d3.forceLink(links)
+                    .id(d => d.id)
+                    .distance(d => 50 + d.strength * 40) // Increased distance for visibility
+                    .strength(d => d.strength * 0.8))
+                .force('charge', d3.forceManyBody()
+                    .strength(d => -70 - d.radius * 8)) // Stronger repulsion
+                .force('center', d3.forceCenter(width / 2, height / 2))
+                .force('collision', d3.forceCollide().radius(d => d.radius * 3.5))
+                .force('x', d3.forceX(width / 2).strength(0.015))
+                .force('y', d3.forceY(height / 2).strength(0.015));
+
+            // Add links
+            const link = svg.append('g')
+                .selectAll('line')
+                .data(links)
+                .enter()
+                .append('line')
+                .attr('class', 'link')
+                .style('stroke-opacity', d => 0.3 + d.strength * 0.4); // Stronger bonds are more visible
+
+            // Add nodes
+            const node = svg.append('g')
+                .selectAll('circle')
+                .data(nodes)
+                .enter()
+                .append('circle')
+                .attr('class', 'node')
+                .attr('r', d => d.radius)
+                .attr('fill', d => d.color)
+                .attr('opacity', 0.8)
+                .call(d3.drag()
+                    .on('start', dragStarted)
+                    .on('drag', dragging)
+                    .on('end', dragEnded));
+            
+            // Interactive node behavior
+            node.on('mouseover', function(event, d) {
+                // Highlight connected nodes
+                const connectedNodes = links.filter(l => 
+                    l.source.id === d.id || l.target.id === d.id
+                ).map(l => 
+                    l.source.id === d.id ? l.target.id : l.source.id
+                );
+                
+                node.attr('opacity', n => 
+                    n.id === d.id || connectedNodes.includes(n.id) ? 1 : 0.3
+                );
+                
+                // Highlight connected links
+                link.style('stroke-opacity', l => 
+                    l.source.id === d.id || l.target.id === d.id ? 
+                    0.8 : 0.2
+                ).style('stroke-width', l => 
+                    l.source.id === d.id || l.target.id === d.id ? 
+                    1.5 : 1
+                );
+                
+                // Increase size of hovered node
+                d3.select(this).attr('r', d.radius * 1.5);
+            })
+            .on('mouseout', function(event, d) {
+                // Restore normal appearance
+                node.attr('opacity', 0.8);
+                link.style('stroke-opacity', d => 0.3 + d.strength * 0.4)
+                    .style('stroke-width', 1);
+                d3.select(this).attr('r', d.radius);
+            });
+
+            // Subtle animation of nodes
+            function jiggleNodes() {
+                node.transition()
+                    .duration(1500)
+                    .attr('r', d => d.radius + Math.random() * 0.5)
+                    .on('end', jiggleNodes);
+            }
+            
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                jiggleNodes();
+            }
+
+            // Update positions on simulation tick
+            simulation.on('tick', () => {
+                link
+                    .attr('x1', d => d.source.x)
+                    .attr('y1', d => d.source.y)
+                    .attr('x2', d => d.target.x)
+                    .attr('y2', d => d.target.y);
+
+                node
+                    .attr('cx', d => d.x)
+                    .attr('cy', d => d.y);
+            });
+
+            // Drag functions with elastic "ping back"
+            function dragStarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+                
+                // Highlight connected nodes and links when dragging
+                const connectedNodes = links.filter(l => 
+                    l.source.id === d.id || l.target.id === d.id
+                ).map(l => 
+                    l.source.id === d.id ? l.target.id : l.source.id
+                );
+                
+                node.attr('opacity', n => 
+                    n.id === d.id || connectedNodes.includes(n.id) ? 1 : 0.3
+                );
+                
+                link.style('stroke-opacity', l => 
+                    l.source.id === d.id || l.target.id === d.id ? 
+                    0.8 : 0.2
+                ).style('stroke-width', l => 
+                    l.source.id === d.id || l.target.id === d.id ? 
+                    2 : 1
+                );
+            }
+
+            function dragging(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+
+            function dragEnded(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                
+                // Restore normal appearance
+                node.attr('opacity', 0.8);
+                link.style('stroke-opacity', d => 0.3 + d.strength * 0.4)
+                    .style('stroke-width', 1);
+                    
+                // Elastic "ping back" effect with physics
+                const currentX = d.x;
+                const currentY = d.y;
+                
+                d3.select(this)
+                    .transition()
+                    .duration(1000)
+                    .ease(d3.easeBounce)
+                    .tween('elasticRelease', function() {
+                        const startX = d.fx;
+                        const startY = d.fy;
+                        return function(t) {
+                            if (t < 1) {
+                                // During animation, maintain fixed position
+                                d.fx = startX;
+                                d.fy = startY;
+                            } else {
+                                // After animation completes, release the node
+                                d.fx = null;
+                                d.fy = null;
+                                
+                                // Add a small impulse to make it bounce naturally
+                                d.vx = (currentX - startX) * 0.1;
+                                d.vy = (currentY - startY) * 0.1;
+                            }
+                        };
+                    });
+            }
+
+            // Resize handler
+            function resizeGraph() {
+                const newWidth = graphContainer.clientWidth;
+                const newHeight = graphContainer.clientHeight;
+                
+                svg.attr('width', newWidth)
+                   .attr('height', newHeight);
+                
+                simulation.force('center', d3.forceCenter(newWidth / 2, newHeight / 2))
+                          .force('x', d3.forceX(newWidth / 2).strength(0.01))
+                          .force('y', d3.forceY(newHeight / 2).strength(0.01));
+                simulation.alpha(0.3).restart();
+            }
+
+            // Add resize listener
+            window.addEventListener('resize', resizeGraph);
+
+            // Store resize handler for cleanup
+            graphContainer._resizeHandler = resizeGraph;
+
+            // Initial animation
+            simulation.alpha(1).restart();
+        } catch (error) {
+            console.error("Error creating graph:", error);
+        }
+    }
+
+    // Initialize graph visualization
+    createGraphVisualization();
+
     // --- Update Copyright Year ---
     if (currentYearSpan) {
         currentYearSpan.textContent = new Date().getFullYear();
