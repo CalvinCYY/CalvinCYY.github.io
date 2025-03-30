@@ -50,87 +50,133 @@ document.addEventListener('DOMContentLoaded', function() {
                 .attr('height', height)
                 .style('border', '1px solid rgba(255,255,255,0.1)'); // Subtle border for debugging
 
+            // Set up empty arrays for nodes and links
+            const nodes = [];
+            const links = [];
+            
             // Generate more thematic nodes and links to represent a molecular graph
-            const numNodes = Math.min(Math.floor(width / 60), 40); // Fewer nodes
+            const numNodes = Math.min(Math.floor(width / 40), 80); // More nodes
             
             // Generate nodes with different types to represent atoms
             const nodeTypes = [
-                { type: 'carbon', color: '#64B5F6', radius: 4 },  // Smaller
-                { type: 'oxygen', color: '#EF5350', radius: 5 },  // Smaller
-                { type: 'nitrogen', color: '#7E57C2', radius: 4.5 }, // Smaller
-                { type: 'hydrogen', color: '#EEEEEE', radius: 3 }  // Smaller
+                { type: 'carbon', color: '#64B5F6', radius: 4 },
+                { type: 'oxygen', color: '#EF5350', radius: 5 },
+                { type: 'nitrogen', color: '#7E57C2', radius: 4.5 },
+                { type: 'hydrogen', color: '#EEEEEE', radius: 3 },
+                { type: 'phosphorus', color: '#FFA726', radius: 5.5 }, // Added new atom type
+                { type: 'sulfur', color: '#FFEE58', radius: 5 }        // Added new atom type
             ];
             
-            // Add a semi-transparent layer where atoms are more concentrated in top and bottom areas
-            const totalNodes = numNodes;
-            
-            // Bias node positions to be more at the edges, less in the center where text is
-            const nodes = Array.from({ length: totalNodes }, (_, i) => {
-                const typeIndex = Math.floor(Math.random() * nodeTypes.length);
+            // Add different molecular structures
+            const createMolecularCluster = (centerX, centerY, clusterSize, clusterRadius) => {
+                const startIndex = nodes.length;
+                const centerType = Math.floor(Math.random() * nodeTypes.length);
                 
-                // Position nodes more toward edges, less in center
-                let x, y;
-                const centerAvoidance = Math.random() < 0.7; // 70% chance to avoid center
+                // Create central node
+                nodes.push({
+                    id: startIndex,
+                    type: nodeTypes[centerType].type,
+                    radius: nodeTypes[centerType].radius * 1.2,
+                    color: nodeTypes[centerType].color,
+                    x: centerX + (Math.random() * 20 - 10),
+                    y: centerY + (Math.random() * 20 - 10)
+                });
                 
-                if (centerAvoidance) {
-                    // Position in top or bottom third
-                    if (Math.random() < 0.5) {
-                        y = Math.random() * (height * 0.3); // Top third
-                    } else {
-                        y = height * 0.7 + Math.random() * (height * 0.3); // Bottom third
+                // Create surrounding nodes
+                for (let i = 1; i < clusterSize; i++) {
+                    const angle = (Math.PI * 2 * i) / (clusterSize - 1);
+                    const nodeX = centerX + Math.cos(angle) * clusterRadius * (0.8 + Math.random() * 0.4);
+                    const nodeY = centerY + Math.sin(angle) * clusterRadius * (0.8 + Math.random() * 0.4);
+                    const typeIndex = Math.floor(Math.random() * nodeTypes.length);
+                    
+                    nodes.push({
+                        id: startIndex + i,
+                        type: nodeTypes[typeIndex].type,
+                        radius: nodeTypes[typeIndex].radius,
+                        color: nodeTypes[typeIndex].color,
+                        x: nodeX,
+                        y: nodeY
+                    });
+                    
+                    // Connect to center
+                    links.push({
+                        source: startIndex,
+                        target: startIndex + i,
+                        strength: 0.7 + Math.random() * 0.3
+                    });
+                    
+                    // Connect to neighbors with some probability
+                    if (i > 1 && Math.random() < 0.6) {
+                        links.push({
+                            source: startIndex + i,
+                            target: startIndex + i - 1,
+                            strength: 0.5 + Math.random() * 0.3
+                        });
                     }
-                    x = Math.random() * width;
+                }
+                
+                return clusterSize;
+            };
+            
+            // Create several molecular clusters
+            const clusters = [
+                // Create organic compounds in different parts of the screen
+                // Top left
+                createMolecularCluster(width * 0.2, height * 0.2, 6, 40),
+                // Bottom right
+                createMolecularCluster(width * 0.8, height * 0.8, 7, 50),
+                // Top right
+                createMolecularCluster(width * 0.8, height * 0.2, 5, 35),
+                // Bottom left
+                createMolecularCluster(width * 0.2, height * 0.8, 4, 30),
+                // Center top
+                createMolecularCluster(width * 0.5, height * 0.15, 5, 40),
+                // Center bottom
+                createMolecularCluster(width * 0.5, height * 0.85, 6, 45)
+            ];
+            
+            // Add some random individual nodes spread around
+            for (let i = 0; i < numNodes * 0.3; i++) {
+                const typeIndex = Math.floor(Math.random() * nodeTypes.length);
+                const isBorderNode = Math.random() < 0.7; // 70% chance for border placement
+                
+                let x, y;
+                if (isBorderNode) {
+                    // Position along screen edges
+                    if (Math.random() < 0.5) {
+                        // Horizontal edges
+                        x = Math.random() * width;
+                        y = Math.random() < 0.5 ? height * 0.05 : height * 0.95;
+                    } else {
+                        // Vertical edges
+                        x = Math.random() < 0.5 ? width * 0.05 : width * 0.95;
+                        y = Math.random() * height;
+                    }
                 } else {
-                    // Random position
+                    // Random position avoiding centers of clusters
                     x = Math.random() * width;
                     y = Math.random() * height;
                 }
                 
-                return {
-                    id: i,
+                nodes.push({
+                    id: nodes.length,
                     type: nodeTypes[typeIndex].type,
-                    radius: nodeTypes[typeIndex].radius + (Math.random() * 1.5 - 0.75),
+                    radius: nodeTypes[typeIndex].radius * (0.8 + Math.random() * 0.4),
                     color: nodeTypes[typeIndex].color,
                     x: x,
                     y: y
-                };
-            });
-
-            // Create links to represent chemical bonds
-            const links = [];
-            // Create more realistic molecular-like connections
-            nodes.forEach((node, i) => {
-                // Connect to 1-4 nearest nodes based on type
-                const maxConnections = node.type === 'carbon' ? 4 : 
-                                       node.type === 'oxygen' ? 2 : 
-                                       node.type === 'nitrogen' ? 3 : 1;
-                
-                // Find closest nodes
-                const otherNodes = [...nodes];
-                otherNodes.splice(i, 1); // Remove current node
-                
-                otherNodes.sort((a, b) => {
-                    const distA = Math.hypot(node.x - a.x, node.y - a.y);
-                    const distB = Math.hypot(node.x - b.x, node.y - b.y);
-                    return distA - distB;
                 });
                 
-                // Connect to closest nodes up to maxConnections
-                const connections = Math.floor(Math.random() * maxConnections) + 1;
-                for (let j = 0; j < Math.min(connections, otherNodes.length); j++) {
-                    // Avoid duplicate links
-                    if (!links.some(link => 
-                        (link.source === i && link.target === otherNodes[j].id) || 
-                        (link.source === otherNodes[j].id && link.target === i))
-                    ) {
-                        links.push({ 
-                            source: i, 
-                            target: otherNodes[j].id,
-                            strength: Math.random() * 0.5 + 0.5 // Variable bond strength
-                        });
-                    }
+                // Connect to some existing nodes with low probability
+                if (Math.random() < 0.3 && nodes.length > 1) {
+                    const targetIndex = Math.floor(Math.random() * (nodes.length - 1));
+                    links.push({
+                        source: nodes.length - 1,
+                        target: targetIndex,
+                        strength: 0.3 + Math.random() * 0.3
+                    });
                 }
-            });
+            }
 
             // Add enhanced glow effect
             const defs = svg.append('defs');
