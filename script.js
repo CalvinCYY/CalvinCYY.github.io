@@ -7,16 +7,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menu-toggle');
     const backToTopButton = document.getElementById('back-to-top');
     const currentYearSpan = document.getElementById('current-year');
-    const heroContent = document.querySelector('.hero-content'); // For initial load animation
-
-    // --- Initial Hero Animation ---
-    if (heroContent) {
-        // No extra JS needed if using pure CSS animation on load
-    }
+    const heroContent = document.querySelector('.hero-content');
+    const skillCards = document.querySelectorAll('.skill-card');
+    const projectCards = document.querySelectorAll('.project-card');
 
     // --- Update Copyright Year ---
     if (currentYearSpan) {
         currentYearSpan.textContent = new Date().getFullYear();
+    }
+
+    // --- Add animation classes to hero elements ---
+    if (heroContent) {
+        // Animate hero content on load
+        setTimeout(() => {
+            heroContent.classList.add('visible');
+        }, 300);
     }
 
     // --- Header Style Change on Scroll (Throttled) ---
@@ -130,26 +135,39 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-     // --- Animate Elements on Scroll (Using Intersection Observer) ---
-     const revealElements = document.querySelectorAll('.reveal-on-scroll');
-     const revealObserverOptions = {
-         root: null,
-         rootMargin: '0px',
-         threshold: 0.1 // Trigger when 10% is visible
-     };
+    // --- Enhanced Animate Elements on Scroll (Using Intersection Observer) ---
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    const revealObserverOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15 // Trigger when 15% is visible
+    };
 
-     const revealObserver = new IntersectionObserver((entries, observer) => {
-         entries.forEach(entry => {
-             if (entry.isIntersecting) {
-                 entry.target.classList.add('visible');
-                 observer.unobserve(entry.target); // Animate only once
-             }
-         });
-     }, revealObserverOptions);
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add a small delay before adding the class for smoother animation
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, 100);
+                observer.unobserve(entry.target); // Animate only once
+            }
+        });
+    }, revealObserverOptions);
 
-     revealElements.forEach(el => {
-         revealObserver.observe(el);
-     });
+    revealElements.forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    // --- Enhanced Animation for Skill Cards ---
+    skillCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+    });
+
+    // --- Enhanced Animation for Project Cards ---
+    projectCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.15}s`;
+    });
 
     // --- Back to Top Button Click ---
     if (backToTopButton) {
