@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calvin Yiu | Cheminformatics & AI Specialist</title>
+    <!-- Google Fonts (Example: Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons (Get your own kit or use CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="container">
+            <a href="#home" class="logo">Calvin Yiu</a>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section 1: Hero -->
+        <section id="home" class="hero content-section">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content animate-on-load">
+                <h1>Dr. Calvin Yiu</h1>
+                <p class="subtitle">Cheminformatics & AI Researcher</p>
+                <p class="tagline">Leveraging Graph Neural Networks and Software Development to advance Molecular
+                    Science and commercialise innovations like <strong>IMPRESSION</strong>.</p>
+                <a href="#projects" class="cta-button">View My Portfolio <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <!-- Section 2: About -->
+        <section id="about" class="content-section">
+            <div class="container reveal-on-scroll">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-flex-container">
+                    <div class="about-image">
+                        <img src="images/headshot.jpeg" alt="Calvin Yiu - Professional Photo" class="profile-photo">
+                    </div>
+                    <div class="about-text">
+                        <p>Driven by the intersection of chemistry, data science, and AI, I focus on developing
+                            predictive models using graph-based deep learning to decode complex molecular data.</p>
+                        <p>As a Postdoctoral Research Associate in the Butts Research Group at the University of Bristol, I'm spearheading the
+                            commercialisation of <strong>IMPRESSION</strong>, my PhD project predicting NMR parameters
+                            via 3D Graph Transformer networks. This involves refining the AI model, building robust software (APIs,
+                            containerisation with Docker), and bridging the gap between academic research and practical
+                            application.</p>
+                        <p>My PhD at the University of Bristol focused on the continual refinement of <strong>IMPRESSION</strong> and the development of a 3D Graph Transformer network, grounded in my
+                            background in computational chemistry.</p>
+                        <p class="placeholder">[Placeholder: Describe career aspirations/interests: Industry R&D, tech
+                            bio, drug discovery, materials science?]</p>
+                        <a href="#contact" class="link-styled">Get In Touch →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Skills -->
+        <section id="skills" class="content-section alt-bg">
+            <div class="container reveal-on-scroll">
+                <h2 class="section-title">Core Competencies</h2>
+                <div class="skills-grid">
+                    <div class="skill-card reveal-on-scroll">
+                        <div class="skill-icon"><i class="fas fa-atom"></i></div>
+                        <h3>Cheminformatics</h3>
+                        <ul>
+                            <li>Molecular Representation & Featurisation</li>
+                            <li>RDKit, Open Babel</li>
+                            <li>Structure-Property Relationships</li>
+                            <li>NMR Spectroscopy Analysis</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card reveal-on-scroll">
+                        <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                        <h3>AI & Machine Learning</h3>
+                        <ul>
+                            <li>PyTorch, Scikit-learn</li>
+                            <li>Graph Neural Networks (GNNs)</li>
+                            <li>Variational Autoencoders (VAEs)</li>
+                            <li>Data Visualisation</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card reveal-on-scroll">
+                        <div class="skill-icon"><i class="fas fa-code"></i></div>
+                        <h3>Software Development</h3>
+                        <ul>
+                            <li>Python (Proficient)</li>
+                            <li>API Development (FastAPI)</li>
+                            <li>Full Stack Development (React, Django)</li>
+                            <li>Docker, Git/GitHub</li>
+                            <li>CI/CD Pipeline</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card reveal-on-scroll">
+                        <div class="skill-icon"><i class="fas fa-cogs"></i></div>
+                        <h3>Commercialization</h3>
+                        <ul>
+                            <li>Research Translation</li>
+                            <li>Software Packaging</li>
+                            <li>Project Management</li>
+                            <li>Scientific Communication</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Projects -->
+        <section id="projects" class="content-section">
+            <div class="container reveal-on-scroll">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <!-- Project 1: IMPRESSION -->
+                    <article class="project-card reveal-on-scroll">
+                        <!-- <img src="images/impression-thumb.jpg" alt="IMPRESSION Project Thumbnail" class="project-thumbnail"> -->
+                        <div class="project-content">
+                            <h3><i class="fas fa-project-diagram icon-left"></i>IMPRESSION: 3D Graph Transformer Network for simultaneous multi NMR Parameter Prediction</h3>
+                            <p>Developing a 3D graph transformer network for accurate NMR parameter prediction to
+                                aid chemical structure elucidation.</p>
+                            <p><strong>Role:</strong> Lead Researcher & Developer</p>
+                            <div class="project-tags">
+                                <span>GNN</span><span>PyTorch</span><span>RDKit</span><span>Docker</span><span>API</span><span>Commercialization</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="[Link to Publication]" target="_blank" title="Publication"><i
+                                        class="fas fa-book-open"></i></a>
+                                <a href="[Link to GitHub]" target="_blank" title="GitHub Repository"><i
+                                        class="fab fa-github"></i></a>
+                                <a href="[Link to Demo]" target="_blank" title="Demo/Video"><i
+                                        class="fas fa-external-link-alt"></i></a>
+                                <span class="placeholder">[Add/Remove Links]</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2: Placeholder -->
+                    <article class="project-card reveal-on-scroll">
+                        <!-- <img src="images/project2-thumb.jpg" alt="Project 2 Thumbnail" class="project-thumbnail"> -->
+                        <div class="project-content">
+                            <h3><i class="fas fa-flask icon-left"></i>Web-IMPRESSION: Commercialisation and deployment of research software for academic and industrial use</h3>
+                            <p>Deployment of IMPRESSION as a web application for academic and industrial use.</p>
+                            <p><strong>Role:</strong> Full Stack Developer</p>
+                            <div class="project-tags">
+                                <span>Commercialisation</span><span>React</span><span>Django</span><span>Docker</span><span>API</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank" title="Paper/Code"><i class="fas fa-link"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Add more project articles as needed -->
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Publications -->
+        <section id="publications" class="content-section alt-bg">
+            <div class="container reveal-on-scroll">
+                <h2 class="section-title">Publications & Presentations</h2>
+                <ul class="publications-list">
+                    <li class="reveal-on-scroll">
+                        <i class="fas fa-scroll icon-list"></i>
+                        <span class="pub-authors"><strong>Calvin Yiu</strong>, et al.</span>
+                        <span class="pub-year">(2025).</span>
+                        <span class="pub-title">IMPRESSION: A GNN-based NMR Parameter Prediction Tool.</span>
+                        <em class="pub-journal">Chemical Science</em>
+                        <a href="https://doi.org/10.1039/D5SC00001A" target="_blank" class="pub-link">DOI: 10.1039/D5SC00001A</a>
+                    </li>
+                    <li class="reveal-on-scroll placeholder">
+                        <i class="fas fa-file-alt icon-list"></i>
+                        <span class="pub-authors placeholder">[Author List].</span>
+                        <span class="pub-year placeholder">(Year).</span>
+                        <span class="pub-title placeholder">Title of Paper 2.</span>
+                        <em class="pub-journal placeholder">Journal Name, Vol(Iss), Pages.</em>
+                        <a href="[Link]" target="_blank" class="pub-link">[Link]</a>
+                    </li>
+                    <li class="reveal-on-scroll placeholder">
+                        <i class="fas fa-chalkboard-teacher icon-list"></i>
+                        <span class="pub-title placeholder">[Presentation Title].</span>
+                        <span class="pub-conference placeholder">Conference Name, Location, Date.</span>
+                        <a href="[Link]" target="_blank" class="pub-link">[Slides/Poster]</a>
+                    </li>
+                    <!-- Add more list items -->
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 6: Contact -->
+        <section id="contact" class="content-section">
+            <div class="container reveal-on-scroll">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="contact-intro">Interested in collaborating or discussing opportunities? Feel free to reach
+                    out!</p>
+                <div class="contact-methods">
+                    <div class="contact-card reveal-on-scroll">
+                        <a href="mailto:calvin.yiu@bristol.ac.uk">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <h3>Email</h3>
+                            <p>calvin.yiu@bristol.ac.uk</p>
+                        </a>
+                    </div>
+                    <div class="contact-card reveal-on-scroll">
+                        <a href="https://www.linkedin.com/in/calvin-yiu/" target="_blank">
+                            <i class="fab fa-linkedin contact-icon"></i>
+                            <h3>LinkedIn</h3>
+                            <p>linkedin.com/in/calvin-yiu</p>
+                        </a>
+                    </div>
+                    <div class="contact-card reveal-on-scroll">
+                        <a href="https://github.com/CalvinCYY" target="_blank">
+                            <i class="fab fa-github contact-icon"></i>
+                            <h3>GitHub</h3>
+                            <p>github.com/CalvinCYY</p>
+                        </a>
+                    </div>
+                    <!-- Optional: Add more cards (e.g., Location, Scholar) -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <div class="container">
+            <p>© <span id="current-year"></span> Calvin Yiu. All Rights Reserved.</p>
+            <!-- Optional: Social Links in Footer -->
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/calvin-yiu/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/CalvinCYY" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:calvin.yiu@bristol.ac.uk" aria-label="Email"><i
+                        class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
