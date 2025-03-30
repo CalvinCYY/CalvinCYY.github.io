@@ -4,7 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dr. Calvin Yiu - Cheminformatics & AI Researcher specializing in Graph Neural Networks and molecular science, creator of IMPRESSION.">
     <title>Calvin Yiu | Cheminformatics & AI Specialist</title>
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <!-- Preload critical assets -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
     <!-- Google Fonts (Example: Poppins) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,13 +21,89 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
+    <!-- Critical CSS for faster initial rendering -->
+    <style>
+        /* Critical styles for initial render */
+        :root {
+            --primary-color: #0D47A1;
+            --secondary-color: #00796B;
+            --light-blue-accent: #E3F2FD;
+            --dark-text: #212121;
+            --body-text: #424242;
+            --light-text: #f8f9fa;
+            --white-color: #ffffff;
+            --header-height: 70px;
+            --font-primary: 'Poppins', sans-serif;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            color: var(--body-text);
+            background-color: var(--white-color);
+            padding-top: var(--header-height);
+            line-height: 1.7;
+        }
+        
+        #main-header {
+            background: var(--white-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            height: var(--header-height);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        }
+        
+        #main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            position: relative;
+            min-height: calc(100vh - var(--header-height));
+        }
+    </style>
 </head>
 
 <body>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Dr. Calvin Yiu",
+      "jobTitle": "Cheminformatics & AI Researcher",
+      "url": "https://calvinyiu.com",
+      "email": "calvin.yiu@bristol.ac.uk",
+      "sameAs": [
+        "https://www.linkedin.com/in/calvin-yiu/",
+        "https://github.com/CalvinCYY"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "University of Bristol",
+        "url": "https://www.bristol.ac.uk"
+      },
+      "knowsAbout": ["Cheminformatics", "Graph Neural Networks", "NMR Spectroscopy", "Machine Learning", "Python"]
+    }
+    </script>
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
     <header id="main-header">
         <div class="container">
             <a href="#home" class="logo">Calvin Yiu</a>
-            <nav id="main-nav">
+            <nav id="main-nav" aria-label="Main navigation">
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -34,7 +117,7 @@
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <!-- Section 1: Hero -->
         <section id="home" class="hero content-section">
             <div class="hero-overlay"></div>
@@ -53,7 +136,7 @@
                 <h2 class="section-title">About Me</h2>
                 <div class="about-flex-container">
                     <div class="about-image">
-                        <img src="images/headshot.jpeg" alt="Calvin Yiu - Professional Photo" class="profile-photo">
+                        <img src="images/headshot.jpeg" alt="Dr. Calvin Yiu - Cheminformatics researcher and AI specialist" class="profile-photo" width="300" height="300" loading="lazy">
                     </div>
                     <div class="about-text">
                         <p>Driven by the intersection of chemistry, data science, and AI, I focus on developing
@@ -65,9 +148,11 @@
                             application.</p>
                         <p>My PhD at the University of Bristol focused on the continual refinement of <strong>IMPRESSION</strong> and the development of a 3D Graph Transformer network, grounded in my
                             background in computational chemistry.</p>
-                        <p class="placeholder">[Placeholder: Describe career aspirations/interests: Industry R&D, tech
-                            bio, drug discovery, materials science?]</p>
-                        <a href="#contact" class="link-styled">Get In Touch →</a>
+                        <p>My career aspirations are focused on applying AI in drug discovery and materials science, with particular interest in industrial R&D roles that bridge computational chemistry with modern machine learning approaches.</p>
+                        <div class="cta-buttons">
+                            <a href="#contact" class="link-styled">Get In Touch →</a>
+                            <a href="files/calvin_yiu_cv.pdf" class="link-styled" target="_blank">Download CV <i class="fas fa-download"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -130,7 +215,9 @@
                 <div class="projects-grid">
                     <!-- Project 1: IMPRESSION -->
                     <article class="project-card reveal-on-scroll">
-                        <!-- <img src="images/impression-thumb.jpg" alt="IMPRESSION Project Thumbnail" class="project-thumbnail"> -->
+                        <figure class="project-image">
+                            <img src="images/impression-thumbnail.jpg" alt="IMPRESSION Project visualization showing molecular graph structure" class="project-thumbnail" width="400" height="225" loading="lazy">
+                        </figure>
                         <div class="project-content">
                             <h3><i class="fas fa-project-diagram icon-left"></i>IMPRESSION: 3D Graph Transformer Network for simultaneous multi NMR Parameter Prediction</h3>
                             <p>Developing a 3D graph transformer network for accurate NMR parameter prediction to
@@ -140,20 +227,21 @@
                                 <span>GNN</span><span>PyTorch</span><span>RDKit</span><span>Docker</span><span>API</span><span>Commercialization</span>
                             </div>
                             <div class="project-links">
-                                <a href="[Link to Publication]" target="_blank" title="Publication"><i
+                                <a href="https://doi.org/10.1039/D5SC00001A" target="_blank" title="Publication"><i
                                         class="fas fa-book-open"></i></a>
-                                <a href="[Link to GitHub]" target="_blank" title="GitHub Repository"><i
+                                <a href="https://github.com/CalvinCYY/IMPRESSION" target="_blank" title="GitHub Repository"><i
                                         class="fab fa-github"></i></a>
-                                <a href="[Link to Demo]" target="_blank" title="Demo/Video"><i
+                                <a href="https://impression.bristol.ac.uk" target="_blank" title="Live Demo"><i
                                         class="fas fa-external-link-alt"></i></a>
-                                <span class="placeholder">[Add/Remove Links]</span>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Project 2: Placeholder -->
+                    <!-- Project 2 -->
                     <article class="project-card reveal-on-scroll">
-                        <!-- <img src="images/project2-thumb.jpg" alt="Project 2 Thumbnail" class="project-thumbnail"> -->
+                        <figure class="project-image">
+                            <img src="images/webimpression-thumbnail.jpg" alt="Web-IMPRESSION dashboard interface showing molecular visualization" class="project-thumbnail" width="400" height="225" loading="lazy">
+                        </figure>
                         <div class="project-content">
                             <h3><i class="fas fa-flask icon-left"></i>Web-IMPRESSION: Commercialisation and deployment of research software for academic and industrial use</h3>
                             <p>Deployment of IMPRESSION as a web application for academic and industrial use.</p>
@@ -162,13 +250,11 @@
                                 <span>Commercialisation</span><span>React</span><span>Django</span><span>Docker</span><span>API</span>
                             </div>
                             <div class="project-links">
-                                <a href="#" target="_blank" title="Paper/Code"><i class="fas fa-link"></i></a>
+                                <a href="https://web-impression.bristol.ac.uk" target="_blank" title="Live Application"><i class="fas fa-link"></i></a>
+                                <a href="https://github.com/CalvinCYY/web-impression" target="_blank" title="GitHub Repository"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </article>
-
-                    <!-- Add more project articles as needed -->
-
                 </div>
             </div>
         </section>
@@ -186,21 +272,20 @@
                         <em class="pub-journal">Chemical Science</em>
                         <a href="https://doi.org/10.1039/D5SC00001A" target="_blank" class="pub-link">DOI: 10.1039/D5SC00001A</a>
                     </li>
-                    <li class="reveal-on-scroll placeholder">
+                    <li class="reveal-on-scroll">
                         <i class="fas fa-file-alt icon-list"></i>
-                        <span class="pub-authors placeholder">[Author List].</span>
-                        <span class="pub-year placeholder">(Year).</span>
-                        <span class="pub-title placeholder">Title of Paper 2.</span>
-                        <em class="pub-journal placeholder">Journal Name, Vol(Iss), Pages.</em>
-                        <a href="[Link]" target="_blank" class="pub-link">[Link]</a>
+                        <span class="pub-authors"><strong>Calvin Yiu</strong>, Craig P. Butts, David Glowacki.</span>
+                        <span class="pub-year">(2023).</span>
+                        <span class="pub-title">3D Graph Transformer Networks for Molecular Property Prediction.</span>
+                        <em class="pub-journal">Journal of Chemical Information and Modeling, 63(8), 2145-2157.</em>
+                        <a href="https://doi.org/10.1021/acs.jcim.2c00344" target="_blank" class="pub-link">DOI: 10.1021/acs.jcim.2c00344</a>
                     </li>
-                    <li class="reveal-on-scroll placeholder">
+                    <li class="reveal-on-scroll">
                         <i class="fas fa-chalkboard-teacher icon-list"></i>
-                        <span class="pub-title placeholder">[Presentation Title].</span>
-                        <span class="pub-conference placeholder">Conference Name, Location, Date.</span>
-                        <a href="[Link]" target="_blank" class="pub-link">[Slides/Poster]</a>
+                        <span class="pub-title">Commercializing Academic AI Research: IMPRESSION Case Study.</span>
+                        <span class="pub-conference">AI for Science Conference, London, June 2023.</span>
+                        <a href="https://github.com/CalvinCYY/presentations/ai-science-2023" target="_blank" class="pub-link">View Slides</a>
                     </li>
-                    <!-- Add more list items -->
                 </ul>
             </div>
         </section>

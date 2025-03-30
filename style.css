@@ -17,6 +17,7 @@
     --header-height: 70px;
     --font-primary: 'Poppins', sans-serif;
     --transition-main: all 0.3s ease-in-out;
+    --focus-outline: 3px solid #2979FF;
 }
 
 * {
@@ -41,6 +42,46 @@ body {
     -webkit-font-smoothing: antialiased;
     /* Smoother fonts */
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Focus Styles for Accessibility --- */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+    outline: var(--focus-outline);
+    outline-offset: 2px;
+}
+
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible) {
+    outline: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: 2px;
+}
+
+/* Skip to content link for keyboard users */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    z-index: 9999;
+    transition: top 0.3s;
+}
+
+.skip-to-content:focus {
+    top: 0;
 }
 
 /* --- Layout & Container --- */

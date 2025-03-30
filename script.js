@@ -19,22 +19,37 @@ document.addEventListener('DOMContentLoaded', function() {
         currentYearSpan.textContent = new Date().getFullYear();
     }
 
-    // --- Header Style Change on Scroll ---
-    function handleScroll() {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+    // --- Header Style Change on Scroll (Throttled) ---
+    let lastScrollPosition = 0;
+    let ticking = false;
 
-        // Back to Top Button Visibility (using scrollY)
-        if (window.scrollY > 300) {
-            backToTopButton.classList.add('visible');
-        } else {
-            backToTopButton.classList.remove('visible');
+    function handleScroll() {
+        lastScrollPosition = window.scrollY;
+        
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                if (lastScrollPosition > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+        
+                // Back to Top Button Visibility
+                if (lastScrollPosition > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+                
+                ticking = false;
+            });
+            
+            ticking = true;
         }
     }
-    window.addEventListener('scroll', handleScroll);
+    
+    // Use passive event listener for better scroll performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check in case page loads scrolled
 
     // --- Mobile Menu Toggle ---
@@ -62,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', closeMobileMenu);
     });
 
-    // Close menu if clicking outside of it (optional but good UX)
+    // Close menu if clicking outside of it
     document.addEventListener('click', function(event) {
         const isClickInsideNav = nav.contains(event.target);
         const isClickOnToggle = menuToggle.contains(event.target);
@@ -71,6 +86,20 @@ document.addEventListener('DOMContentLoaded', function() {
             closeMobileMenu();
         }
     });
+
+    // --- Lazy load images ---
+    if ('loading' in HTMLImageElement.prototype) {
+        // Browser supports native lazy loading
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        images.forEach(img => {
+            img.src = img.dataset.src;
+        });
+    } else {
+        // Fallback for browsers that don't support lazy loading
+        const lazyLoadScript = document.createElement('script');
+        lazyLoadScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+        document.body.appendChild(lazyLoadScript);
+    }
 
     // --- Active Link Highlighting on Scroll (Using Intersection Observer) ---
     const observerOptions = {
