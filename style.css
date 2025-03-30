@@ -376,12 +376,13 @@ ul {
 }
 
 .profile-photo {
-    width: 250px;
-    height: 250px;
+    width: 300px; /* Match the width in HTML */
+    height: 300px; /* Match the height in HTML */
     border-radius: 50%;
     object-fit: cover;
     border: 6px solid var(--white-color);
     box-shadow: 0 5px 20px var(--shadow-medium);
+    display: block; /* Ensure proper display */
 }
 
 .about-text {
