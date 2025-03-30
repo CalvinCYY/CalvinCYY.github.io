@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Debug test to verify D3 is loaded
+    console.log("D3 loaded:", typeof d3 !== 'undefined');
+    if (typeof d3 === 'undefined') {
+        console.error("D3.js is not loaded!");
+    }
+
     const header = document.getElementById('main-header');
     const nav = document.getElementById('main-nav');
     const navLinks = nav.querySelectorAll('a');
@@ -45,25 +51,48 @@ document.addEventListener('DOMContentLoaded', function() {
                 .style('border', '1px solid rgba(255,255,255,0.1)'); // Subtle border for debugging
 
             // Generate more thematic nodes and links to represent a molecular graph
-            const numNodes = Math.min(Math.floor(width / 30), 60); // More nodes, scaled to screen
+            const numNodes = Math.min(Math.floor(width / 60), 40); // Fewer nodes
             
             // Generate nodes with different types to represent atoms
             const nodeTypes = [
-                { type: 'carbon', color: '#64B5F6', radius: 6 },
-                { type: 'oxygen', color: '#EF5350', radius: 7 },
-                { type: 'nitrogen', color: '#7E57C2', radius: 6.5 },
-                { type: 'hydrogen', color: '#EEEEEE', radius: 4 }
+                { type: 'carbon', color: '#64B5F6', radius: 4 },  // Smaller
+                { type: 'oxygen', color: '#EF5350', radius: 5 },  // Smaller
+                { type: 'nitrogen', color: '#7E57C2', radius: 4.5 }, // Smaller
+                { type: 'hydrogen', color: '#EEEEEE', radius: 3 }  // Smaller
             ];
             
-            const nodes = Array.from({ length: numNodes }, (_, i) => {
+            // Add a semi-transparent layer where atoms are more concentrated in top and bottom areas
+            const totalNodes = numNodes;
+            
+            // Bias node positions to be more at the edges, less in the center where text is
+            const nodes = Array.from({ length: totalNodes }, (_, i) => {
                 const typeIndex = Math.floor(Math.random() * nodeTypes.length);
+                
+                // Position nodes more toward edges, less in center
+                let x, y;
+                const centerAvoidance = Math.random() < 0.7; // 70% chance to avoid center
+                
+                if (centerAvoidance) {
+                    // Position in top or bottom third
+                    if (Math.random() < 0.5) {
+                        y = Math.random() * (height * 0.3); // Top third
+                    } else {
+                        y = height * 0.7 + Math.random() * (height * 0.3); // Bottom third
+                    }
+                    x = Math.random() * width;
+                } else {
+                    // Random position
+                    x = Math.random() * width;
+                    y = Math.random() * height;
+                }
+                
                 return {
                     id: i,
                     type: nodeTypes[typeIndex].type,
-                    radius: nodeTypes[typeIndex].radius + (Math.random() * 2 - 1),
+                    radius: nodeTypes[typeIndex].radius + (Math.random() * 1.5 - 0.75),
                     color: nodeTypes[typeIndex].color,
-                    x: Math.random() * width,
-                    y: Math.random() * height
+                    x: x,
+                    y: y
                 };
             });
 
@@ -118,20 +147,17 @@ document.addEventListener('DOMContentLoaded', function() {
             feMerge.append('feMergeNode')
                 .attr('in', 'SourceGraphic');
 
-            node.style('filter', 'url(#glow)');
-
             // Create the force simulation with improved physics
             const simulation = d3.forceSimulation(nodes)
                 .force('link', d3.forceLink(links)
                     .id(d => d.id)
-                    .distance(d => 50 + d.strength * 40) // Increased distance for visibility
-                    .strength(d => d.strength * 0.8))
+                    .distance(d => 60 + d.strength * 30)
+                    .strength(d => d.strength * 0.5))
                 .force('charge', d3.forceManyBody()
-                    .strength(d => -70 - d.radius * 8)) // Stronger repulsion
-                .force('center', d3.forceCenter(width / 2, height / 2))
-                .force('collision', d3.forceCollide().radius(d => d.radius * 3.5))
-                .force('x', d3.forceX(width / 2).strength(0.015))
-                .force('y', d3.forceY(height / 2).strength(0.015));
+                    .strength(d => -50 - d.radius * 5))
+                .force('collision', d3.forceCollide().radius(d => d.radius * 4))
+                .force('x', d3.forceX(width / 2).strength(0.01))
+                .force('y', d3.forceY(height / 2).strength(0.01));
 
             // Add links
             const link = svg.append('g')
@@ -157,6 +183,37 @@ document.addEventListener('DOMContentLoaded', function() {
                     .on('drag', dragging)
                     .on('end', dragEnded));
             
+            // Apply the glow effect to nodes after they're created
+            node.style('filter', 'url(#glow)');
+
+            // Add cursor movement effect - nodes move away from cursor
+            svg.on('mousemove', function(event) {
+                if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    const [mouseX, mouseY] = d3.pointer(event);
+                    const radius = 60; // Influence radius
+                    const strength = 10; // Force strength
+                    
+                    // Apply subtle force to nodes near the cursor
+                    nodes.forEach(node => {
+                        const dx = node.x - mouseX;
+                        const dy = node.y - mouseY;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < radius) {
+                            // Calculate force based on distance (closer = stronger)
+                            const force = (1 - distance / radius) * strength;
+                            
+                            // Apply force direction away from cursor
+                            node.vx += (dx / distance) * force;
+                            node.vy += (dy / distance) * force;
+                            
+                            // Heat simulation slightly to allow movement
+                            simulation.alpha(0.1).restart();
+                        }
+                    });
+                }
+            });
+
             // Interactive node behavior
             node.on('mouseover', function(event, d) {
                 // Highlight connected nodes
@@ -190,11 +247,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 d3.select(this).attr('r', d.radius);
             });
 
-            // Subtle animation of nodes
+            // Subtle animation of nodes - slower and less pronounced
             function jiggleNodes() {
                 node.transition()
-                    .duration(1500)
-                    .attr('r', d => d.radius + Math.random() * 0.5)
+                    .duration(3000)  // Slower
+                    .attr('r', d => d.radius + Math.random() * 0.3)  // Less movement
                     .on('end', jiggleNodes);
             }
             
@@ -217,6 +274,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Drag functions with elastic "ping back"
             function dragStarted(event, d) {
+                event.sourceEvent.stopPropagation(); // Prevent parent elements from receiving the event
                 if (!event.active) simulation.alphaTarget(0.3).restart();
                 d.fx = d.x;
                 d.fy = d.y;

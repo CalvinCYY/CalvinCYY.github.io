@@ -417,8 +417,9 @@ ul {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 3;
+    z-index: 5; /* Between overlay and content */
     pointer-events: auto;
+    opacity: 0.6; /* Make less prominent */
 }
 
 #graph-background svg {
@@ -427,10 +428,10 @@ ul {
 
 .node {
     cursor: grab;
-    stroke: rgba(255, 255, 255, 0.5);
-    stroke-width: 1.5px;
+    stroke: rgba(255, 255, 255, 0.4);
+    stroke-width: 1px;
     transition: r 0.3s ease, stroke-width 0.3s ease;
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
 }
 
 .node:hover {
@@ -443,9 +444,9 @@ ul {
 }
 
 .link {
-    stroke: rgba(255, 255, 255, 0.25);
-    stroke-width: 1.5px;
-    stroke-opacity: 0.7;
+    stroke: rgba(255, 255, 255, 0.15);
+    stroke-width: 1px;
+    stroke-opacity: 0.5;
     transition: stroke 0.3s ease, stroke-width 0.3s ease;
 }
 
@@ -455,8 +456,8 @@ ul {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(13, 71, 161, 0.8), rgba(0, 121, 107, 0.8));
-    z-index: 2;
+    background: linear-gradient(135deg, rgba(13, 71, 161, 0.7), rgba(0, 121, 107, 0.7)); /* Slightly darker */
+    z-index: 4; /* Above background, below graph */
 }
 
 .hero-background {
@@ -522,47 +523,73 @@ ul {
 
 .hero-content {
     position: relative;
-    z-index: 4;
+    z-index: 20;
     width: 100%;
     padding: 0 20px;
 }
 
 .hero-text {
-    max-width: 700px;
+    max-width: 750px;
     margin: 0 auto;
     text-align: center;
+    position: relative;
+    z-index: 25; /* Ensure text is above all other elements */
+}
+
+.hero-text::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 70%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 70%);
+    filter: blur(20px);
+    z-index: -1;
+    pointer-events: none;
 }
 
 .hero h1 {
-    font-size: 4rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
+    font-size: 4.5rem;
+    font-weight: 800;
+    margin-bottom: 0.7rem;
     background: linear-gradient(to right, #ffffff, #e3f2fd);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
     animation: fadeInDown 1s ease-out;
 }
 
 .hero .subtitle {
     font-size: 1.8rem;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 1.5rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.01em;
     animation: fadeInDown 1s ease-out 0.2s both;
 }
 
 .hero .tagline {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     line-height: 1.6;
-    margin-bottom: 2rem;
-    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2.5rem;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
     animation: fadeInUp 1s ease-out 0.4s both;
 }
 
 .hero-buttons {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
     animation: fadeInUp 1s ease-out 0.6s both;
@@ -570,18 +597,19 @@ ul {
 
 .outline-button {
     display: inline-block;
-    padding: 12px 28px;
+    padding: 13px 30px;
     color: var(--white-color);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 6px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     transition: all 0.3s ease;
     background: transparent;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .outline-button:hover {
@@ -1227,18 +1255,18 @@ ul {
 /* Buttons */
 .cta-button {
     display: inline-block;
-    padding: 12px 28px;
+    padding: 14px 32px;
     background: linear-gradient(135deg, var(--primary-color), #1565C0);
     color: var(--white-color);
-    border-radius: 4px;
+    border-radius: 6px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(13, 71, 161, 0.2);
+    box-shadow: 0 4px 15px rgba(13, 71, 161, 0.25);
     border: none;
     cursor: pointer;
 }
@@ -1446,5 +1474,41 @@ h2.section-title::before {
     
     .node, .link {
         transition: none;
+    }
+}
+
+/* Improve text highlight on hover */
+.hero h1:hover {
+    background: linear-gradient(to right, #ffffff, #90caf9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    transition: all 0.5s ease;
+}
+
+/* Additional animation for tagline */
+.hero .tagline strong {
+    position: relative;
+    color: #90caf9;
+    font-weight: 700;
+}
+
+.hero .tagline strong::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
     }
 }
