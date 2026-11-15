@@ -1,585 +1,200 @@
-document.addEventListener('DOMContentLoaded', function() {
+(() => {
+  "use strict";
 
-    // Debug test to verify D3 is loaded
-    console.log("D3 loaded:", typeof d3 !== 'undefined');
-    if (typeof d3 === 'undefined') {
-        console.error("D3.js is not loaded!");
-    }
+  /* ---------- Year ---------- */
+  const year = document.getElementById("year");
+  if (year) year.textContent = String(new Date().getFullYear());
 
-    const header = document.getElementById('main-header');
-    const nav = document.getElementById('main-nav');
-    const navLinks = nav.querySelectorAll('a');
-    const sections = document.querySelectorAll('.content-section');
-    const menuToggle = document.getElementById('menu-toggle');
-    const backToTopButton = document.getElementById('back-to-top');
-    const currentYearSpan = document.getElementById('current-year');
-    const heroContent = document.querySelector('.hero-content');
-    const skillCards = document.querySelectorAll('.skill-card');
-    const projectCards = document.querySelectorAll('.project-card');
-
-    // --- Interactive Graph Visualization ---
-    function createGraphVisualization() {
-        console.log("Initializing graph visualization");
-        const graphContainer = document.getElementById('graph-background');
-        if (!graphContainer) {
-            console.error("Graph container not found");
-            return;
-        }
-
-        // Clear any existing content
-        graphContainer.innerHTML = '';
-        
-        try {
-            // Get the container dimensions
-            const width = graphContainer.clientWidth;
-            const height = graphContainer.clientHeight;
-            
-            console.log(`Creating graph with dimensions: ${width}x${height}`);
-
-            if (width === 0 || height === 0) {
-                console.error("Container has zero dimensions");
-                // Try again in a moment
-                setTimeout(createGraphVisualization, 500);
-                return;
-            }
-            
-            // Create SVG element with a border for debugging
-            const svg = d3.select('#graph-background')
-                .append('svg')
-                .attr('width', width)
-                .attr('height', height)
-                .style('border', '1px solid rgba(255,255,255,0.1)'); // Subtle border for debugging
-
-            // Set up empty arrays for nodes and links
-            const nodes = [];
-            const links = [];
-            
-            // Generate more thematic nodes and links to represent a molecular graph
-            const numNodes = Math.min(Math.floor(width / 40), 80); // More nodes
-            
-            // Generate nodes with different types to represent atoms
-            const nodeTypes = [
-                { type: 'carbon', color: '#64B5F6', radius: 4 },
-                { type: 'oxygen', color: '#EF5350', radius: 5 },
-                { type: 'nitrogen', color: '#7E57C2', radius: 4.5 },
-                { type: 'hydrogen', color: '#EEEEEE', radius: 3 },
-                { type: 'phosphorus', color: '#FFA726', radius: 5.5 }, // Added new atom type
-                { type: 'sulfur', color: '#FFEE58', radius: 5 }        // Added new atom type
-            ];
-            
-            // Add different molecular structures
-            const createMolecularCluster = (centerX, centerY, clusterSize, clusterRadius) => {
-                const startIndex = nodes.length;
-                const centerType = Math.floor(Math.random() * nodeTypes.length);
-                
-                // Create central node
-                nodes.push({
-                    id: startIndex,
-                    type: nodeTypes[centerType].type,
-                    radius: nodeTypes[centerType].radius * 1.2,
-                    color: nodeTypes[centerType].color,
-                    x: centerX + (Math.random() * 20 - 10),
-                    y: centerY + (Math.random() * 20 - 10)
-                });
-                
-                // Create surrounding nodes
-                for (let i = 1; i < clusterSize; i++) {
-                    const angle = (Math.PI * 2 * i) / (clusterSize - 1);
-                    const nodeX = centerX + Math.cos(angle) * clusterRadius * (0.8 + Math.random() * 0.4);
-                    const nodeY = centerY + Math.sin(angle) * clusterRadius * (0.8 + Math.random() * 0.4);
-                    const typeIndex = Math.floor(Math.random() * nodeTypes.length);
-                    
-                    nodes.push({
-                        id: startIndex + i,
-                        type: nodeTypes[typeIndex].type,
-                        radius: nodeTypes[typeIndex].radius,
-                        color: nodeTypes[typeIndex].color,
-                        x: nodeX,
-                        y: nodeY
-                    });
-                    
-                    // Connect to center
-                    links.push({
-                        source: startIndex,
-                        target: startIndex + i,
-                        strength: 0.7 + Math.random() * 0.3
-                    });
-                    
-                    // Connect to neighbors with some probability
-                    if (i > 1 && Math.random() < 0.6) {
-                        links.push({
-                            source: startIndex + i,
-                            target: startIndex + i - 1,
-                            strength: 0.5 + Math.random() * 0.3
-                        });
-                    }
-                }
-                
-                return clusterSize;
-            };
-            
-            // Create several molecular clusters
-            const clusters = [
-                // Create organic compounds in different parts of the screen
-                // Top left
-                createMolecularCluster(width * 0.2, height * 0.2, 6, 40),
-                // Bottom right
-                createMolecularCluster(width * 0.8, height * 0.8, 7, 50),
-                // Top right
-                createMolecularCluster(width * 0.8, height * 0.2, 5, 35),
-                // Bottom left
-                createMolecularCluster(width * 0.2, height * 0.8, 4, 30),
-                // Center top
-                createMolecularCluster(width * 0.5, height * 0.15, 5, 40),
-                // Center bottom
-                createMolecularCluster(width * 0.5, height * 0.85, 6, 45)
-            ];
-            
-            // Add some random individual nodes spread around
-            for (let i = 0; i < numNodes * 0.3; i++) {
-                const typeIndex = Math.floor(Math.random() * nodeTypes.length);
-                const isBorderNode = Math.random() < 0.7; // 70% chance for border placement
-                
-                let x, y;
-                if (isBorderNode) {
-                    // Position along screen edges
-                    if (Math.random() < 0.5) {
-                        // Horizontal edges
-                        x = Math.random() * width;
-                        y = Math.random() < 0.5 ? height * 0.05 : height * 0.95;
-                    } else {
-                        // Vertical edges
-                        x = Math.random() < 0.5 ? width * 0.05 : width * 0.95;
-                        y = Math.random() * height;
-                    }
-                } else {
-                    // Random position avoiding centers of clusters
-                    x = Math.random() * width;
-                    y = Math.random() * height;
-                }
-                
-                nodes.push({
-                    id: nodes.length,
-                    type: nodeTypes[typeIndex].type,
-                    radius: nodeTypes[typeIndex].radius * (0.8 + Math.random() * 0.4),
-                    color: nodeTypes[typeIndex].color,
-                    x: x,
-                    y: y
-                });
-                
-                // Connect to some existing nodes with low probability
-                if (Math.random() < 0.3 && nodes.length > 1) {
-                    const targetIndex = Math.floor(Math.random() * (nodes.length - 1));
-                    links.push({
-                        source: nodes.length - 1,
-                        target: targetIndex,
-                        strength: 0.3 + Math.random() * 0.3
-                    });
-                }
-            }
-
-            // Add enhanced glow effect
-            const defs = svg.append('defs');
-            const filter = defs.append('filter')
-                .attr('id', 'glow');
-
-            filter.append('feGaussianBlur')
-                .attr('stdDeviation', '3.5')
-                .attr('result', 'coloredBlur');
-
-            const feMerge = filter.append('feMerge');
-            feMerge.append('feMergeNode')
-                .attr('in', 'coloredBlur');
-            feMerge.append('feMergeNode')
-                .attr('in', 'SourceGraphic');
-
-            // Create the force simulation with improved physics
-            const simulation = d3.forceSimulation(nodes)
-                .force('link', d3.forceLink(links)
-                    .id(d => d.id)
-                    .distance(d => 60 + d.strength * 30)
-                    .strength(d => d.strength * 0.5))
-                .force('charge', d3.forceManyBody()
-                    .strength(d => -50 - d.radius * 5))
-                .force('collision', d3.forceCollide().radius(d => d.radius * 4))
-                .force('x', d3.forceX(width / 2).strength(0.01))
-                .force('y', d3.forceY(height / 2).strength(0.01));
-
-            // Add links
-            const link = svg.append('g')
-                .selectAll('line')
-                .data(links)
-                .enter()
-                .append('line')
-                .attr('class', 'link')
-                .style('stroke-opacity', d => 0.3 + d.strength * 0.4); // Stronger bonds are more visible
-
-            // Add nodes
-            const node = svg.append('g')
-                .selectAll('circle')
-                .data(nodes)
-                .enter()
-                .append('circle')
-                .attr('class', 'node')
-                .attr('r', d => d.radius)
-                .attr('fill', d => d.color)
-                .attr('opacity', 0.8)
-                .call(d3.drag()
-                    .on('start', dragStarted)
-                    .on('drag', dragging)
-                    .on('end', dragEnded));
-            
-            // Apply the glow effect to nodes after they're created
-            node.style('filter', 'url(#glow)');
-
-            // Add cursor movement effect - nodes move away from cursor
-            svg.on('mousemove', function(event) {
-                if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                    const [mouseX, mouseY] = d3.pointer(event);
-                    const radius = 60; // Influence radius
-                    const strength = 10; // Force strength
-                    
-                    // Apply subtle force to nodes near the cursor
-                    nodes.forEach(node => {
-                        const dx = node.x - mouseX;
-                        const dy = node.y - mouseY;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        
-                        if (distance < radius) {
-                            // Calculate force based on distance (closer = stronger)
-                            const force = (1 - distance / radius) * strength;
-                            
-                            // Apply force direction away from cursor
-                            node.vx += (dx / distance) * force;
-                            node.vy += (dy / distance) * force;
-                            
-                            // Heat simulation slightly to allow movement
-                            simulation.alpha(0.1).restart();
-                        }
-                    });
-                }
-            });
-
-            // Interactive node behavior
-            node.on('mouseover', function(event, d) {
-                // Highlight connected nodes
-                const connectedNodes = links.filter(l => 
-                    l.source.id === d.id || l.target.id === d.id
-                ).map(l => 
-                    l.source.id === d.id ? l.target.id : l.source.id
-                );
-                
-                node.attr('opacity', n => 
-                    n.id === d.id || connectedNodes.includes(n.id) ? 1 : 0.3
-                );
-                
-                // Highlight connected links
-                link.style('stroke-opacity', l => 
-                    l.source.id === d.id || l.target.id === d.id ? 
-                    0.8 : 0.2
-                ).style('stroke-width', l => 
-                    l.source.id === d.id || l.target.id === d.id ? 
-                    1.5 : 1
-                );
-                
-                // Increase size of hovered node
-                d3.select(this).attr('r', d.radius * 1.5);
-            })
-            .on('mouseout', function(event, d) {
-                // Restore normal appearance
-                node.attr('opacity', 0.8);
-                link.style('stroke-opacity', d => 0.3 + d.strength * 0.4)
-                    .style('stroke-width', 1);
-                d3.select(this).attr('r', d.radius);
-            });
-
-            // Subtle animation of nodes - slower and less pronounced
-            function jiggleNodes() {
-                node.transition()
-                    .duration(3000)  // Slower
-                    .attr('r', d => d.radius + Math.random() * 0.3)  // Less movement
-                    .on('end', jiggleNodes);
-            }
-            
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                jiggleNodes();
-            }
-
-            // Update positions on simulation tick
-            simulation.on('tick', () => {
-                link
-                    .attr('x1', d => d.source.x)
-                    .attr('y1', d => d.source.y)
-                    .attr('x2', d => d.target.x)
-                    .attr('y2', d => d.target.y);
-
-                node
-                    .attr('cx', d => d.x)
-                    .attr('cy', d => d.y);
-            });
-
-            // Drag functions with elastic "ping back"
-            function dragStarted(event, d) {
-                event.sourceEvent.stopPropagation(); // Prevent parent elements from receiving the event
-                if (!event.active) simulation.alphaTarget(0.3).restart();
-                d.fx = d.x;
-                d.fy = d.y;
-                
-                // Highlight connected nodes and links when dragging
-                const connectedNodes = links.filter(l => 
-                    l.source.id === d.id || l.target.id === d.id
-                ).map(l => 
-                    l.source.id === d.id ? l.target.id : l.source.id
-                );
-                
-                node.attr('opacity', n => 
-                    n.id === d.id || connectedNodes.includes(n.id) ? 1 : 0.3
-                );
-                
-                link.style('stroke-opacity', l => 
-                    l.source.id === d.id || l.target.id === d.id ? 
-                    0.8 : 0.2
-                ).style('stroke-width', l => 
-                    l.source.id === d.id || l.target.id === d.id ? 
-                    2 : 1
-                );
-            }
-
-            function dragging(event, d) {
-                d.fx = event.x;
-                d.fy = event.y;
-            }
-
-            function dragEnded(event, d) {
-                if (!event.active) simulation.alphaTarget(0);
-                
-                // Restore normal appearance
-                node.attr('opacity', 0.8);
-                link.style('stroke-opacity', d => 0.3 + d.strength * 0.4)
-                    .style('stroke-width', 1);
-                    
-                // Elastic "ping back" effect with physics
-                const currentX = d.x;
-                const currentY = d.y;
-                
-                d3.select(this)
-                    .transition()
-                    .duration(1000)
-                    .ease(d3.easeBounce)
-                    .tween('elasticRelease', function() {
-                        const startX = d.fx;
-                        const startY = d.fy;
-                        return function(t) {
-                            if (t < 1) {
-                                // During animation, maintain fixed position
-                                d.fx = startX;
-                                d.fy = startY;
-                            } else {
-                                // After animation completes, release the node
-                                d.fx = null;
-                                d.fy = null;
-                                
-                                // Add a small impulse to make it bounce naturally
-                                d.vx = (currentX - startX) * 0.1;
-                                d.vy = (currentY - startY) * 0.1;
-                            }
-                        };
-                    });
-            }
-
-            // Resize handler
-            function resizeGraph() {
-                const newWidth = graphContainer.clientWidth;
-                const newHeight = graphContainer.clientHeight;
-                
-                svg.attr('width', newWidth)
-                   .attr('height', newHeight);
-                
-                simulation.force('center', d3.forceCenter(newWidth / 2, newHeight / 2))
-                          .force('x', d3.forceX(newWidth / 2).strength(0.01))
-                          .force('y', d3.forceY(newHeight / 2).strength(0.01));
-                simulation.alpha(0.3).restart();
-            }
-
-            // Add resize listener
-            window.addEventListener('resize', resizeGraph);
-
-            // Store resize handler for cleanup
-            graphContainer._resizeHandler = resizeGraph;
-
-            // Initial animation
-            simulation.alpha(1).restart();
-        } catch (error) {
-            console.error("Error creating graph:", error);
-        }
-    }
-
-    // Initialize graph visualization
-    createGraphVisualization();
-
-    // --- Update Copyright Year ---
-    if (currentYearSpan) {
-        currentYearSpan.textContent = new Date().getFullYear();
-    }
-
-    // --- Add animation classes to hero elements ---
-    if (heroContent) {
-        // Animate hero content on load
-        setTimeout(() => {
-            heroContent.classList.add('visible');
-        }, 300);
-    }
-
-    // --- Header Style Change on Scroll (Throttled) ---
-    let lastScrollPosition = 0;
-    let ticking = false;
-
-    function handleScroll() {
-        lastScrollPosition = window.scrollY;
-        
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                if (lastScrollPosition > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-        
-                // Back to Top Button Visibility
-                if (lastScrollPosition > 300) {
-                    backToTopButton.classList.add('visible');
-                } else {
-                    backToTopButton.classList.remove('visible');
-                }
-                
-                ticking = false;
-            });
-            
-            ticking = true;
-        }
-    }
-    
-    // Use passive event listener for better scroll performance
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial check in case page loads scrolled
-
-    // --- Mobile Menu Toggle ---
-    if (menuToggle && nav) {
-        menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            menuToggle.querySelector('i').classList.toggle('fa-bars');
-            menuToggle.querySelector('i').classList.toggle('fa-times');
-            // Optional: Prevent body scroll when menu is open
-            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
-        });
-    }
-
-    // --- Close Mobile Menu on Link Click or Outside Click ---
-    function closeMobileMenu() {
-        if (nav.classList.contains('active')) {
-            nav.classList.remove('active');
-            menuToggle.querySelector('i').classList.remove('fa-times');
-            menuToggle.querySelector('i').classList.add('fa-bars');
-            document.body.style.overflow = '';
-        }
-    }
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
-
-    // Close menu if clicking outside of it
-    document.addEventListener('click', function(event) {
-        const isClickInsideNav = nav.contains(event.target);
-        const isClickOnToggle = menuToggle.contains(event.target);
-
-        if (!isClickInsideNav && !isClickOnToggle && nav.classList.contains('active')) {
-            closeMobileMenu();
-        }
-    });
-
-    // --- Lazy load images ---
-    if ('loading' in HTMLImageElement.prototype) {
-        // Browser supports native lazy loading
-        const images = document.querySelectorAll('img[loading="lazy"][data-src]');
-        images.forEach(img => {
-            if (img.dataset.src) {
-                img.src = img.dataset.src;
-            }
-        });
-    } else {
-        // Fallback for browsers that don't support lazy loading
-        const lazyLoadScript = document.createElement('script');
-        lazyLoadScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
-        document.body.appendChild(lazyLoadScript);
-    }
-
-    // --- Active Link Highlighting on Scroll (Using Intersection Observer) ---
-    const observerOptions = {
-        root: null,
-        rootMargin: `-${header.offsetHeight}px 0px -50% 0px`, // Adjust trigger point
-        threshold: 0
+  /* ---------- Mobile menu ---------- */
+  const bar = document.querySelector(".bar");
+  const menuBtn = document.querySelector(".bar__menu");
+  if (bar && menuBtn) {
+    const setOpen = (open) => {
+      bar.toggleAttribute("data-open", open);
+      menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.querySelector(".bar__menu-label").textContent = open ? "Close" : "Menu";
+      document.body.style.overflow = open ? "hidden" : "";
     };
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${id}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
-    }, observerOptions);
-
-    sections.forEach(section => {
-        if (section.id) { // Only observe sections with IDs
-            sectionObserver.observe(section);
-        }
+    menuBtn.addEventListener("click", () => setOpen(!bar.hasAttribute("data-open")));
+    bar.querySelectorAll(".bar__nav a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && bar.hasAttribute("data-open")) { setOpen(false); menuBtn.focus(); }
     });
+    window.matchMedia("(min-width: 861px)").addEventListener("change", (e) => { if (e.matches) setOpen(false); });
+  }
 
-    // --- Enhanced Animate Elements on Scroll (Using Intersection Observer) ---
-    const revealElements = document.querySelectorAll('.reveal-on-scroll');
-    const revealObserverOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15 // Trigger when 15% is visible
-    };
+  /* ---------- Aspirin: skeletal structure with illustrative 13C shifts ---------- */
+  const svg = document.querySelector("svg.mol");
+  if (!svg) return;
 
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Add a small delay before adding the class for smoother animation
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, 100);
-                observer.unobserve(entry.target); // Animate only once
-            }
-        });
-    }, revealObserverOptions);
+  const NS = "http://www.w3.org/2000/svg";
+  const el = (name, attrs = {}, parent) => {
+    const node = document.createElementNS(NS, name);
+    for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+    if (parent) parent.appendChild(node);
+    return node;
+  };
 
-    revealElements.forEach(el => {
-        revealObserver.observe(el);
-    });
+  // Coordinates in a 600 x 340 space (viewBox cropped in HTML). Carbon shifts are illustrative literature-range values.
+  // note: [dx, dy, anchor] places the pinned annotation relative to the atom.
+  const atoms = {
+    C1: { x: 392, y: 150, el: "C", shift: 122.3, note: [62, -14, "start"] },
+    C2: { x: 331.4, y: 185, el: "C", shift: 151.2, note: [-41, -84, "end"] },
+    C3: { x: 331.4, y: 255, el: "C", shift: 124.0, note: [-56, 56, "end"] },
+    C4: { x: 392, y: 290, el: "C", shift: 134.9, note: [0, 44, "middle"] },
+    C5: { x: 452.6, y: 255, el: "C", shift: 126.2, note: [40, 40, "start"] },
+    C6: { x: 452.6, y: 185, el: "C", shift: 132.5, note: [48, -6, "start"] },
+    C7: { x: 392, y: 80, el: "C", shift: 170.2, note: [56, 18, "start"] },
+    O1: { x: 331.4, y: 45, el: "O" },
+    O2: { x: 452.6, y: 45, el: "OH" },
+    O3: { x: 270.8, y: 150, el: "O" },
+    C8: { x: 210.2, y: 185, el: "C", shift: 169.7, note: [-44, 40, "end"] },
+    O4: { x: 210.2, y: 255, el: "O" },
+    C9: { x: 149.6, y: 150, el: "C", shift: 21.0, note: [-20, -44, "end"] },
+  };
 
-    // --- Enhanced Animation for Skill Cards ---
-    skillCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-    });
+  // [a, b, order, inner?] inner = draw the second line inside the ring
+  const bonds = [
+    ["C1", "C2", 2, true], ["C2", "C3", 1], ["C3", "C4", 2, true],
+    ["C4", "C5", 1], ["C5", "C6", 2, true], ["C6", "C1", 1],
+    ["C1", "C7", 1], ["C7", "O1", 2], ["C7", "O2", 1],
+    ["C2", "O3", 1], ["O3", "C8", 1], ["C8", "O4", 2], ["C8", "C9", 1],
+  ];
+  const ring = { x: 392, y: 220 };
 
-    // --- Enhanced Animation for Project Cards ---
-    projectCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.15}s`;
-    });
+  const gBonds = el("g", { "aria-hidden": "true" }, svg);
+  const gHet = el("g", { "aria-hidden": "true" }, svg);
+  const gNote = el("g", { "aria-hidden": "true" }, svg);
+  const gAtoms = el("g", {}, svg);
 
-    // --- Back to Top Button Click ---
-    if (backToTopButton) {
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+  const shorten = (a, b, ta, tb) => {
+    const dx = b.x - a.x, dy = b.y - a.y, len = Math.hypot(dx, dy);
+    const ux = dx / len, uy = dy / len;
+    return [a.x + ux * ta, a.y + uy * ta, b.x - ux * tb, b.y - uy * tb];
+  };
+  const trim = (id) => (atoms[id].el === "C" ? 0 : atoms[id].el === "OH" ? 15 : 13);
+
+  const adj = {};
+  Object.keys(atoms).forEach((k) => (adj[k] = []));
+  const bondEls = [];
+
+  bonds.forEach(([a, b, order, inner]) => {
+    adj[a].push(b); adj[b].push(a);
+    const A = atoms[a], B = atoms[b];
+    const parts = [];
+    const [x1, y1, x2, y2] = shorten(A, B, trim(a), trim(b));
+    parts.push(el("line", { x1, y1, x2, y2, class: "bond" }, gBonds));
+    if (order === 2) {
+      const dx = x2 - x1, dy = y2 - y1, len = Math.hypot(dx, dy);
+      let nx = -dy / len, ny = dx / len;
+      if (inner) {
+        // offset toward ring centre, shortened at both ends
+        const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+        if ((ring.x - mx) * nx + (ring.y - my) * ny < 0) { nx = -nx; ny = -ny; }
+        const off = 9, cut = 0.16;
+        parts.push(el("line", {
+          x1: x1 + dx * cut + nx * off, y1: y1 + dy * cut + ny * off,
+          x2: x2 - dx * cut + nx * off, y2: y2 - dy * cut + ny * off, class: "bond",
+        }, gBonds));
+      } else {
+        const off = 7;
+        parts[0].setAttribute("x1", x1 - nx * off / 2); parts[0].setAttribute("y1", y1 - ny * off / 2);
+        parts[0].setAttribute("x2", x2 - nx * off / 2); parts[0].setAttribute("y2", y2 - ny * off / 2);
+        parts.push(el("line", {
+          x1: x1 + nx * off / 2, y1: y1 + ny * off / 2, x2: x2 + nx * off / 2, y2: y2 + ny * off / 2, class: "bond",
+        }, gBonds));
+      }
     }
+    bondEls.push({ a, b, parts });
+  });
 
-}); // End DOMContentLoaded
+  // Heteroatom labels
+  Object.entries(atoms).forEach(([, A]) => {
+    if (A.el === "C") return;
+    const t = el("text", { x: A.x, y: A.y + 8.5, "text-anchor": "middle", class: "het" }, gHet);
+    t.textContent = A.el;
+  });
+
+  const formula = el("text", { x: 548, y: 332, "text-anchor": "end", class: "formula", "aria-hidden": "true" }, svg);
+  [["Aspirin · C"], ["9", 1], ["H"], ["8", 1], ["O"], ["4", 1]].forEach(([t, sub], i, arr) => {
+    const prevSub = i > 0 && arr[i - 1][1];
+    const span = el("tspan", sub ? { dy: 4, "font-size": 10 } : prevSub ? { dy: -4 } : {}, formula);
+    span.textContent = t;
+  });
+
+  // Annotation (one, pinned to the active atom)
+  const leader = el("path", { class: "leader" }, gNote);
+  const noteId = el("text", { class: "note-id" }, gNote);
+  const noteVal = el("text", { class: "note-val" }, gNote);
+
+  // Carbon hit targets
+  const atomEls = {};
+  const carbons = Object.keys(atoms).filter((k) => atoms[k].el === "C");
+  carbons.forEach((id) => {
+    const A = atoms[id];
+    const g = el("g", {
+      class: "atom", tabindex: "0", role: "button",
+      "aria-label": `Carbon ${id.slice(1)}, illustrative shift ${A.shift.toFixed(1)} ppm`,
+      "data-id": id,
+    }, gAtoms);
+    el("circle", { cx: A.x, cy: A.y, r: 22, class: "hit" }, g);
+    el("circle", { cx: A.x, cy: A.y, r: 15, class: "ring" }, g);
+    el("circle", { cx: A.x, cy: A.y, class: "dot" }, g);
+    atomEls[id] = g;
+  });
+
+  const hops = (start) => {
+    const dist = { [start]: 0 };
+    const q = [start];
+    while (q.length) {
+      const cur = q.shift();
+      if (dist[cur] >= 2) continue;
+      adj[cur].forEach((n) => { if (!(n in dist)) { dist[n] = dist[cur] + 1; q.push(n); } });
+    }
+    return dist;
+  };
+
+  let active = null;
+  const activate = (id) => {
+    if (active === id) return;
+    active = id;
+    const A = atoms[id];
+    carbons.forEach((c) => {
+      atomEls[c].classList.toggle("is-active", c === id);
+      atomEls[c].setAttribute("aria-pressed", String(c === id));
+    });
+
+    // message passing: 1-hop bonds strong, 2-hop faint
+    const d = hops(id);
+    bondEls.forEach(({ a, b, parts }) => {
+      const near = Math.min(d[a] ?? 9, d[b] ?? 9);
+      const far = Math.max(d[a] ?? 9, d[b] ?? 9);
+      const h1 = near === 0;
+      const h2 = !h1 && near === 1 && far === 2;
+      parts.forEach((p) => { p.classList.toggle("hop1", h1); p.classList.toggle("hop2", h2); });
+    });
+
+    const [dx, dy, anchor] = A.note;
+    const tx = A.x + dx, ty = A.y + dy;
+    const ex = anchor === "start" ? tx - 6 : anchor === "end" ? tx + 6 : tx;
+    const ey = anchor === "middle" ? ty - 18 : ty - 5;
+    leader.setAttribute("d", `M${A.x} ${A.y} L${ex} ${ey}`);
+    [noteId, noteVal].forEach((t) => t.setAttribute("text-anchor", anchor));
+    noteId.setAttribute("x", tx); noteId.setAttribute("y", ty);
+    noteVal.setAttribute("x", tx); noteVal.setAttribute("y", ty + 19);
+    noteId.textContent = `C${id.slice(1)}`;
+    noteVal.textContent = `δ ${A.shift.toFixed(1)}`;
+  };
+
+  carbons.forEach((id) => {
+    const g = atomEls[id];
+    g.addEventListener("pointerenter", () => activate(id));
+    g.addEventListener("focus", () => activate(id));
+    g.addEventListener("click", () => activate(id));
+    g.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(id); }
+    });
+  });
+
+  activate("C2");
+})();

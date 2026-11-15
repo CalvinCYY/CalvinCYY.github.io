@@ -1,0 +1,472 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-15T22:57:26+00:00",
+  "title": "Design System: Calvin Yiu, PhD",
+  "extensions": {
+    "colorMeta": {
+      "band-cobalt": {
+        "role": "primary",
+        "displayName": "Label Cobalt",
+        "canonical": "#1f4fd1",
+        "tonalRamp": [
+          "#161f37",
+          "#1f3161",
+          "#234090",
+          "#2252d3",
+          "#567adc",
+          "#91a6df",
+          "#c4cee8",
+          "#eef0f7"
+        ]
+      },
+      "band-cobalt-ink": {
+        "role": "primary",
+        "displayName": "Deep Cobalt Ink",
+        "canonical": "#163a9e",
+        "tonalRamp": [
+          "#151e37",
+          "#1e3061",
+          "#223f91",
+          "#2050d5",
+          "#5579dd",
+          "#90a5df",
+          "#c4cee8",
+          "#eef0f7"
+        ]
+      },
+      "label-stock": {
+        "role": "neutral",
+        "displayName": "Label Stock",
+        "canonical": "#fbfbf7",
+        "tonalRamp": [
+          "#2e2e1f",
+          "#4f4f31",
+          "#727241",
+          "#a2a253",
+          "#b7b77b",
+          "#c9c9a6",
+          "#dedece",
+          "#f4f4f0"
+        ]
+      },
+      "label-shade": {
+        "role": "neutral",
+        "displayName": "Shaded Stock",
+        "canonical": "#f1f0ea",
+        "tonalRamp": [
+          "#2b2922",
+          "#494637",
+          "#68644b",
+          "#928b63",
+          "#aba687",
+          "#c2bfad",
+          "#dbdad1",
+          "#f3f3f1"
+        ]
+      },
+      "label-lit": {
+        "role": "neutral",
+        "displayName": "Lit Stock",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#7a7a7a",
+          "#999999",
+          "#b8b8b8",
+          "#d6d6d6",
+          "#f2f2f2"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#121211",
+        "tonalRamp": [
+          "#272726",
+          "#41413e",
+          "#5b5b57",
+          "#7e7e77",
+          "#9c9c96",
+          "#b9b9b6",
+          "#d7d7d6",
+          "#f2f2f2"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#45443f",
+        "tonalRamp": [
+          "#272725",
+          "#42413e",
+          "#5d5b56",
+          "#807e75",
+          "#9d9c95",
+          "#bab9b5",
+          "#d7d7d5",
+          "#f3f2f2"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#c9c7bd",
+        "tonalRamp": [
+          "#282824",
+          "#44433b",
+          "#615e52",
+          "#86826e",
+          "#a29f90",
+          "#bdbbb2",
+          "#d9d8d4",
+          "#f3f3f2"
+        ]
+      },
+      "glass-deep": {
+        "role": "neutral",
+        "displayName": "Glass Deep",
+        "canonical": "#241105",
+        "tonalRamp": [
+          "#372215",
+          "#61381e",
+          "#914d22",
+          "#d56620",
+          "#dd8a55",
+          "#dfaf90",
+          "#e8d2c4",
+          "#f7f1ee"
+        ]
+      },
+      "glass-body": {
+        "role": "neutral",
+        "displayName": "Glass Body",
+        "canonical": "#4a230a",
+        "tonalRamp": [
+          "#372315",
+          "#62381e",
+          "#914d21",
+          "#d5661f",
+          "#dd8a55",
+          "#e0af90",
+          "#e9d2c4",
+          "#f7f1ee"
+        ]
+      },
+      "glass-warm": {
+        "role": "neutral",
+        "displayName": "Glass Warm",
+        "canonical": "#6e3810",
+        "tonalRamp": [
+          "#372416",
+          "#613b1e",
+          "#905123",
+          "#d46d21",
+          "#dc8f56",
+          "#dfb290",
+          "#e8d4c4",
+          "#f7f2ee"
+        ]
+      },
+      "glass-highlight": {
+        "role": "neutral",
+        "displayName": "Glass Highlight",
+        "canonical": "#82461a",
+        "tonalRamp": [
+          "#352417",
+          "#5e3b22",
+          "#8a5228",
+          "#ca6e2b",
+          "#d5905d",
+          "#dbb295",
+          "#e6d4c6",
+          "#f6f2ee"
+        ]
+      },
+      "on-glass": {
+        "role": "neutral",
+        "displayName": "On-Glass Amber",
+        "canonical": "#f4dcbc",
+        "tonalRamp": [
+          "#362916",
+          "#604420",
+          "#8e6125",
+          "#d08725",
+          "#d9a259",
+          "#ddbd92",
+          "#e8d9c5",
+          "#f6f3ee"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero name and contact title only; condensed heavy caps."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles in the label head; condensed caps."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Entry names; sentence case, condensed."
+      },
+      "subhead": {
+        "displayName": "Subhead",
+        "purpose": "Column heads inside a label, ruled 2px beneath; caps."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text and ledes."
+      },
+      "body-small": {
+        "displayName": "Body small",
+        "purpose": "Spec values, certificate cells, references, talks."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Spec and slot terms, table headers, prize tag; condensed caps +0.04em."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Dates, DOIs, URLs, stack lists, label metadata, annotations."
+      },
+      "catalogue-number": {
+        "displayName": "Catalogue number",
+        "purpose": "Right-aligned, deep-linkable entry numbers in cobalt ink."
+      }
+    },
+    "shadows": [
+      {
+        "name": "label-lift",
+        "value": "0 1px 0 rgba(0,0,0,0.25), 0 28px 56px -24px rgba(0,0,0,0.6)",
+        "purpose": "Every label panel at rest: paper lifted off glass."
+      },
+      {
+        "name": "button-hover",
+        "value": "0 8px 18px -10px rgba(0,0,0,0.55)",
+        "purpose": "Buttons on hover, paired with translateY(-2px)."
+      },
+      {
+        "name": "route-hover",
+        "value": "0 14px 28px -16px rgba(0,0,0,0.5)",
+        "purpose": "Contact routes on hover, paired with translateY(-2px)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-house",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The only easing curve, for every transition."
+      },
+      {
+        "name": "duration-fill",
+        "value": "160ms",
+        "purpose": "Background and colour fills."
+      },
+      {
+        "name": "duration-lift",
+        "value": "180ms",
+        "purpose": "Button lift; contact routes use 200ms."
+      },
+      {
+        "name": "duration-press",
+        "value": "60ms",
+        "purpose": "Button active press."
+      },
+      {
+        "name": "duration-molecule",
+        "value": "220ms",
+        "purpose": "Atom dot growth and bond highlight; 2-hop bonds delayed 110ms."
+      },
+      {
+        "name": "duration-underline",
+        "value": "260ms",
+        "purpose": "Underlines drawing in or thickening."
+      },
+      {
+        "name": "duration-image",
+        "value": "500ms",
+        "purpose": "Linked image zoom to 1.03."
+      },
+      {
+        "name": "duration-menu",
+        "value": "200ms",
+        "purpose": "Mobile menu sheet fade."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack-wide",
+        "value": "1100px"
+      },
+      {
+        "name": "nav-collapse",
+        "value": "860px"
+      },
+      {
+        "name": "strip-trim",
+        "value": "600px"
+      },
+      {
+        "name": "narrow",
+        "value": "560px"
+      }
+    ],
+    "focus": {
+      "value": "outline: 3px solid #1f4fd1; outline-offset: 3px",
+      "purpose": "Global focus-visible ring; atoms use a 2px cobalt ring at 15px radius."
+    },
+    "groundGradient": {
+      "value": "linear-gradient(90deg, #241105 0%, #4a230a 20%, #6e3810 44%, #82461a 51%, #6e3810 58%, #4a230a 80%, #241105 100%) fixed",
+      "purpose": "Amber-glass page ground with one soft vertical highlight."
+    }
+  },
+  "components": [
+    {
+      "name": "Label",
+      "kind": "card",
+      "refersTo": "label-panel",
+      "description": "The unit of every section: label stock, 18px cobalt band, headline with mono metadata over a 2px ink rule, label-lift shadow.",
+      "html": "<section class=\"ds-label\"><div class=\"ds-label__head\"><h2>Industry work</h2><p class=\"ds-mono\">AstraZeneca · 2025–present</p></div><p class=\"ds-lede\">Data science for pharmaceutical development and manufacturing.</p></section>",
+      "css": ":host{--glass-0:#241105;--glass-1:#4a230a;--glass-2:#6e3810;--glass-3:#82461a;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} .ds-label{background:var(--label);color:var(--ink);border-top:18px solid var(--band);padding:32px;border-radius:0;font-family:var(--sans);box-shadow:0 1px 0 rgba(0,0,0,0.25),0 28px 56px -24px rgba(0,0,0,0.6);}.ds-label__head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:24px;}.ds-label__head h2{margin:0;font-size:3rem;line-height:0.92;font-weight:800;font-stretch:68%;text-transform:uppercase;letter-spacing:-0.005em;}.ds-mono{margin:0;font-family:var(--mono);font-size:0.875rem;color:var(--ink-2);}.ds-lede{margin:0;color:var(--ink-2);max-width:68ch;}"
+    },
+    {
+      "name": "Spec Table",
+      "kind": "custom",
+      "refersTo": "spec-row",
+      "description": "Term/value rows ruled 1px ink; terms in the condensed caps label voice.",
+      "html": "<dl class=\"ds-spec\"><div><dt>Composition</dt><dd>Graph neural networks · LLM agents · cheminformatics</dd></div><div><dt>Origin</dt><dd>PhD and postdoc, University of Bristol</dd></div><div class=\"ds-hint\"><dt>Structure</dt><dd>Hover or tab to an atom.</dd></div></dl>",
+      "css": ":host{--glass-0:#241105;--glass-1:#4a230a;--glass-2:#6e3810;--glass-3:#82461a;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} .ds-spec{margin:0;border-bottom:1px solid var(--ink);font-family:var(--sans);color:var(--ink);background:var(--label);}.ds-spec>div{display:grid;grid-template-columns:9.5rem minmax(0,1fr);gap:16px;border-top:1px solid var(--ink);padding:10px 0;font-size:0.9375rem;}.ds-spec dt{font-size:0.875rem;font-weight:750;font-stretch:72%;text-transform:uppercase;letter-spacing:0.04em;padding-top:1px;}.ds-spec dd{margin:0;}.ds-hint dd{color:var(--ink-2);}"
+    },
+    {
+      "name": "Catalogue Entry",
+      "kind": "card",
+      "refersTo": "entry-slot",
+      "description": "Fixed-slot work entry: title with right-aligned linkable catalogue number, prose, hairline-ruled Role/Stack slots.",
+      "html": "<article class=\"ds-entry\" id=\"az-01\"><div class=\"ds-entry__head\"><h3>Method robustness web application</h3><a class=\"ds-no\" href=\"#az-01\">AZ-01</a></div><p>Replaced spreadsheet workflows with one web application.</p><dl class=\"ds-slots\"><div><dt>Role</dt><dd>Lead developer</dd></div><div><dt>Stack</dt><dd class=\"ds-m\">Python · web app · DoE</dd></div></dl></article>",
+      "css": ":host{--glass-0:#241105;--glass-1:#4a230a;--glass-2:#6e3810;--glass-3:#82461a;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} .ds-entry{border-top:2px solid var(--ink);padding:14px 0 18px;font-family:var(--sans);color:var(--ink);background:var(--label);}.ds-entry p{margin:0;font-size:0.96875rem;max-width:64ch;}.ds-entry__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:6px 0 10px;}.ds-entry h3{margin:0;font-size:1.5rem;line-height:1.08;font-weight:750;font-stretch:78%;}.ds-no{flex:none;font-family:var(--mono);font-size:0.8125rem;font-weight:700;letter-spacing:0.04em;color:var(--band-ink);text-decoration:none;}.ds-no:hover{text-decoration:underline;text-underline-offset:3px;}.ds-no:focus-visible{outline:3px solid var(--band);outline-offset:3px;}.ds-slots{margin:14px 0 0;border-bottom:1px solid var(--hair);}.ds-slots>div{display:grid;grid-template-columns:5.5rem minmax(0,1fr);gap:12px;border-top:1px solid var(--hair);padding:7px 0;font-size:0.875rem;}.ds-slots dt{font-size:0.8125rem;font-weight:750;font-stretch:72%;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-2);}.ds-slots dd{margin:0;}.ds-m{font-family:var(--mono);font-size:0.8125rem;}"
+    },
+    {
+      "name": "Certificate Table",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Experience as a certificate of analysis: mono period, role in title voice, organisation with subline.",
+      "html": "<table class=\"ds-cert\"><thead><tr><th>Period</th><th>Role</th><th>Organisation</th></tr></thead><tbody><tr><td class=\"ds-m\">2025–</td><td><strong>Senior Data Scientist</strong><span>LLM fine-tuning, RAG and AI agents.</span></td><td>AstraZeneca<span>Operations Data Science &amp; AI</span></td></tr></tbody></table>",
+      "css": ":host{--glass-0:#241105;--glass-1:#4a230a;--glass-2:#6e3810;--glass-3:#82461a;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} .ds-cert{width:100%;border-collapse:collapse;font-family:var(--sans);color:var(--ink);background:var(--label);}.ds-cert th{text-align:left;font-size:0.8125rem;font-weight:750;font-stretch:72%;text-transform:uppercase;letter-spacing:0.04em;border-bottom:2px solid var(--ink);padding:0 16px 8px 0;}.ds-cert td{vertical-align:top;border-bottom:1px solid var(--ink);padding:16px 16px 18px 0;font-size:0.9375rem;}.ds-cert td:first-child{width:7.5rem;font-size:0.875rem;padding-top:19px;}.ds-cert td:last-child{width:30%;padding-right:0;font-weight:600;}.ds-cert strong{display:block;font-size:1.25rem;font-weight:750;font-stretch:80%;line-height:1.15;margin-bottom:6px;}.ds-cert span{display:block;font-weight:400;color:var(--ink-2);}.ds-cert td:last-child span{margin-top:4px;font-size:0.875rem;}.ds-m{font-family:var(--mono);}"
+    },
+    {
+      "name": "Solid Button",
+      "kind": "button",
+      "refersTo": "button-solid",
+      "description": "Primary action: black label block, square, lifts 2px on hover.",
+      "html": "<a class=\"ds-btn ds-btn--solid\" href=\"#\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95V21H9z\"/></svg>Contact on LinkedIn</a>",
+      "css": ":host{--glass-0:#241105;--glass-1:#4a230a;--glass-2:#6e3810;--glass-3:#82461a;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} .ds-btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 20px;font-family:var(--sans);font-weight:650;font-stretch:90%;font-size:1rem;text-decoration:none;border:2px solid var(--ink);border-radius:0;transition:transform 180ms var(--ease),box-shadow 180ms var(--ease),background-color 160ms;}.ds-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px -10px rgba(0,0,0,0.55);}.ds-btn:active{transform:translateY(1px);box-shadow:none;transition-duration:60ms;}.ds-btn:focus-visible{outline:3px solid var(--band);outline-offset:3px;}.ds-btn--solid{background:var(--ink);color:var(--label);}.ds-btn--solid:hover{background:#000;}"
+    },
+    {
+      "name": "Line Button",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Secondary action: 2px ink outline on label stock, shaded fill on hover.",
+      "html": "<a class=\"ds-btn ds-btn--line\" href=\"#\">See code on GitHub</a>",
+      "css": ":host{--glass-0:#241105;--glass-1:#4a230a;--glass-2:#6e3810;--glass-3:#82461a;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} .ds-btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 20px;font-family:var(--sans);font-weight:650;font-stretch:90%;font-size:1rem;text-decoration:none;border:2px solid var(--ink);border-radius:0;transition:transform 180ms var(--ease),box-shadow 180ms var(--ease),background-color 160ms;}.ds-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px -10px rgba(0,0,0,0.55);}.ds-btn:active{transform:translateY(1px);box-shadow:none;transition-duration:60ms;}.ds-btn:focus-visible{outline:3px solid var(--band);outline-offset:3px;}.ds-btn--line{background:transparent;color:var(--ink);}.ds-btn--line:hover{background:var(--label-2);}"
+    },
+    {
+      "name": "Prize Tag",
+      "kind": "chip",
+      "refersTo": "prize-tag",
+      "description": "The only filled tag: cobalt, white condensed caps, square.",
+      "html": "<span class=\"ds-prize\">Best talk prize</span>",
+      "css": ":host{--glass-0:#241105;--glass-1:#4a230a;--glass-2:#6e3810;--glass-3:#82461a;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} .ds-prize{display:inline-block;font-family:var(--sans);font-size:0.8125rem;font-weight:750;font-stretch:72%;text-transform:uppercase;letter-spacing:0.04em;color:#fff;background:var(--band);padding:3px 7px 2px;border-radius:0;}"
+    },
+    {
+      "name": "Contact Route",
+      "kind": "card",
+      "refersTo": "contact-route",
+      "description": "Bordered channel block; lifts, brightens and draws its call-to-action underline on hover.",
+      "html": "<a class=\"ds-route\" href=\"#\"><svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z\"/></svg><span class=\"ds-route__name\">GitHub</span><span class=\"ds-route__addr\">github.com/CalvinCYY</span><span class=\"ds-route__go\">Browse the code</span></a>",
+      "css": ":host{--glass-0:#241105;--glass-1:#4a230a;--glass-2:#6e3810;--glass-3:#82461a;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} .ds-route{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:18px;row-gap:4px;align-items:center;padding:24px;border:2px solid var(--ink);border-radius:0;text-decoration:none;color:var(--ink);background:var(--label);font-family:var(--sans);transition:transform 200ms var(--ease),box-shadow 200ms var(--ease),background-color 160ms;}.ds-route svg{grid-row:span 2;}.ds-route__name{font-size:1.75rem;font-weight:800;font-stretch:72%;text-transform:uppercase;line-height:1;}.ds-route__addr{font-family:var(--mono);font-size:0.875rem;color:var(--ink-2);}.ds-route__go{grid-column:1/-1;margin-top:16px;font-weight:650;justify-self:start;background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:0 100%;background-size:0 2px;transition:background-size 260ms var(--ease);}.ds-route:hover{transform:translateY(-2px);box-shadow:0 14px 28px -16px rgba(0,0,0,0.5);background:#fff;}.ds-route:hover .ds-route__go{background-size:100% 2px;}.ds-route:active{transform:translateY(0);box-shadow:none;}.ds-route:focus-visible{outline:3px solid var(--band);outline-offset:3px;}"
+    },
+    {
+      "name": "Top Bar",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "56px glass-deep strip; condensed caps name, amber links whose underline draws in on hover.",
+      "html": "<header class=\"ds-bar\"><a class=\"ds-bar__name\" href=\"#\">Calvin Yiu</a><nav class=\"ds-bar__nav\"><a href=\"#\">Research software</a><a href=\"#\">Industry work</a><a href=\"#\">Contact</a></nav></header>",
+      "css": ":host{--glass-0:#241105;--glass-1:#4a230a;--glass-2:#6e3810;--glass-3:#82461a;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} .ds-bar{height:56px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 24px;background:var(--glass-0);border-bottom:1px solid rgba(244,220,188,0.12);color:var(--on-glass);font-family:var(--sans);}.ds-bar a{color:inherit;}.ds-bar__name{font-weight:800;font-stretch:75%;text-transform:uppercase;letter-spacing:0.02em;font-size:1.125rem;text-decoration:none;}.ds-bar__nav{display:flex;gap:24px;font-size:0.9375rem;font-weight:500;}.ds-bar__nav a{text-decoration:none;background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:0 100%;background-size:0 1px;padding-bottom:1px;transition:background-size 260ms var(--ease),color 160ms;}.ds-bar__nav a:hover{background-size:100% 1px;color:#fff;}.ds-bar a:focus-visible{outline:3px solid var(--band);outline-offset:3px;}"
+    },
+    {
+      "name": "Molecule Annotation",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Signature: focusing a carbon pins a cobalt leader line and mono shift value; adjacent bonds turn cobalt.",
+      "html": "<svg class=\"ds-mol\" viewBox=\"0 0 260 150\" role=\"group\" aria-label=\"Annotated atom\"><line class=\"ds-bond ds-hop1\" x1=\"60\" y1=\"110\" x2=\"110\" y2=\"80\"/><line class=\"ds-bond ds-hop1\" x1=\"110\" y1=\"80\" x2=\"160\" y2=\"110\"/><line class=\"ds-bond ds-hop2\" x1=\"160\" y1=\"110\" x2=\"210\" y2=\"80\"/><line class=\"ds-bond\" x1=\"210\" y1=\"80\" x2=\"240\" y2=\"98\"/><g class=\"ds-atom\" tabindex=\"0\" role=\"button\" aria-pressed=\"true\"><circle class=\"ds-ring\" cx=\"110\" cy=\"80\" r=\"15\"/><circle class=\"ds-dot\" cx=\"110\" cy=\"80\" r=\"9\"/></g><path class=\"ds-leader\" d=\"M110 80 L146 36\"/><text class=\"ds-id\" x=\"152\" y=\"40\">C2</text><text class=\"ds-val\" x=\"152\" y=\"59\">δ 151.2</text></svg>",
+      "css": ":host{--glass-0:#241105;--glass-1:#4a230a;--glass-2:#6e3810;--glass-3:#82461a;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} .ds-mol{width:100%;max-width:360px;background:var(--label);overflow:visible;}.ds-bond{stroke:var(--ink);stroke-width:3.2;stroke-linecap:round;transition:stroke 220ms var(--ease),stroke-width 220ms var(--ease);}.ds-hop1{stroke:var(--band);stroke-width:4.4;}.ds-hop2{stroke:var(--band);stroke-width:3.6;stroke-opacity:0.45;transition-delay:110ms;}.ds-atom{cursor:pointer;outline:none;}.ds-dot{fill:var(--band);}.ds-ring{fill:none;stroke:var(--band);stroke-width:2;opacity:0;}.ds-atom:focus-visible .ds-ring{opacity:1;}.ds-leader{stroke:var(--band);stroke-width:1.5;fill:none;}.ds-id{font-family:var(--mono);font-size:16px;font-weight:700;fill:var(--band-ink);}.ds-val{font-family:var(--mono);font-size:16px;fill:var(--ink);}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Reagent Label",
+    "overview": "Every section of the CV is a paper label stuck to a bottle of amber glass. The page ground is the glass: a deep amber-brown with one soft vertical highlight running down the middle of the viewport, fixed while the labels scroll past. On it sit near-white label panels, each opened by a cobalt band and divided by black rules into the grids a supplier catalogue uses: specification rows, slotted entries, a certificate-of-analysis table, a reference list.\n\nThe type is industrial and compressed. Names and section titles are a heavy condensed grotesk in capitals; running text is the same family at normal width; monospace appears only where a catalogue would print a number, a value or a date. Corners are square everywhere. Depth is a single soft drop under each label, as if it were lifted a millimetre off the glass, and nothing else floats.\n\nThe one live element is the molecule on the hero label: a skeletal aspirin whose carbons, on hover or focus, pin a cobalt leader line and an illustrative shift value, while the bonds one and two hops away light up in cobalt. It shows the IMPRESSION mechanism in place rather than describing it.",
+    "keyCharacteristics": [
+      "Amber-glass ground, white label stock, black rules, one cobalt band colour.",
+      "Condensed heavy capitals for names; mono only for numbers, values and dates.",
+      "Fixed-slot entries with right-aligned, deep-linkable catalogue numbers.",
+      "Square corners and 2px / 1px rule hierarchy instead of cards and fills.",
+      "One signature interaction: atom annotation with message-passing bond highlight."
+    ],
+    "rules": [
+      {
+        "name": "The One Ink Rule",
+        "body": "Cobalt is the only chromatic colour printed on a label. Everything else on label stock is ink, soft ink or hairline. A second accent would make the label a poster.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Materials Rule",
+        "body": "Text either sits on label stock (ink family) or on glass (on-glass amber). Never set ink on glass or amber text on a label.",
+        "section": "colors"
+      },
+      {
+        "name": "The Width-Is-Rank Rule",
+        "body": "Hierarchy is carried by width and weight of one family, not by adding families. Narrower and heavier means more of a name; 100% width means prose.",
+        "section": "typography"
+      },
+      {
+        "name": "The Printer Rule",
+        "body": "Mono is for what a catalogue would print from a database: numbers, codes, dates, identifiers, stack lists. Never for headings or descriptive sentences.",
+        "section": "typography"
+      },
+      {
+        "name": "The Equal Edge Rule",
+        "body": "Every label sits inside the same edge on left and right at every width; nothing bleeds to the viewport edge except the glass and the bar.",
+        "section": "layout"
+      },
+      {
+        "name": "The Paper On Glass Rule",
+        "body": "The label is the only thing that floats at rest. Everything inside it is printed flat; lift appears only as a response to pointer hover.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Rule Hierarchy Rule",
+        "body": "2px ink closes a group, 1px ink separates peers, 1px hairline separates attributes inside one entry. Never use a fill or a radius to do a rule's job.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** open every section with a label: cobalt band, headline and mono metadata over a 2px ink rule.",
+      "**Do** give every new piece of work an entry with the fixed slots and a unique, linkable catalogue number right-aligned on the title baseline.",
+      "**Do** separate content with the 2px / 1px / hairline rule hierarchy rather than boxes or fills.",
+      "**Do** keep cobalt to the band, focus, the active atom, catalogue numbers, link hover and the prize tag.",
+      "**Do** keep corners square (0px) on every element, including images and buttons.",
+      "**Do** use the single house ease and keep hover lifts at 2px with a soft shadow."
+    ],
+    "donts": [
+      "**Don't** round corners or turn entries into floating cards with their own shadows; only the label floats.",
+      "**Don't** add a second accent colour or set ink on glass.",
+      "**Don't** set headings or descriptive sentences in mono.",
+      "**Don't** add hard offset shadows or glows.",
+      "**Don't** put a small caps line above a section headline; the label head's metadata sits beside the headline, on its baseline."
+    ]
+  }
+}

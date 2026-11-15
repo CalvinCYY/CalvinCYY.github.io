@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-15T22:42:57.984Z",
+        "reason": "agent: .label and .hero__text are padded by var(--pad)=clamp(20px,3.3vw,48px) on children; inset verified in 1440/390 screenshots; detector reads the zero-padding hero__label wrapper"
+      }
+    ]
+  }
+}
