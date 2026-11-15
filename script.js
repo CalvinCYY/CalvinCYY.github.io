@@ -23,6 +23,26 @@
     window.matchMedia("(min-width: 861px)").addEventListener("change", (e) => { if (e.matches) setOpen(false); });
   }
 
+  /* ---------- Nav: mark the section being read ---------- */
+  const navLinks = [...document.querySelectorAll('.bar__nav a[href^="#"]')];
+  if (navLinks.length && "IntersectionObserver" in window) {
+    const byId = new Map(navLinks.map((a) => [a.getAttribute("href").slice(1), a]));
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        navLinks.forEach((a) => a.removeAttribute("aria-current"));
+        const link = byId.get(en.target.id);
+        if (link) link.setAttribute("aria-current", "true");
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    document.querySelectorAll("main > section").forEach((sec) => spy.observe(sec));
+  }
+
+  const root = document.documentElement;
+  const printing = root.classList.contains("print");
+  if (printing) setTimeout(() => root.classList.remove("print"), 2600);
+  const calm = window.matchMedia("(prefers-reduced-motion: reduce)");
+
   /* ---------- Aspirin: skeletal structure with illustrative 13C shifts ---------- */
   const svg = document.querySelector("svg.mol");
   if (!svg) return;
@@ -109,10 +129,12 @@
   });
 
   // Heteroatom labels
-  Object.entries(atoms).forEach(([, A]) => {
+  const hetEls = {};
+  Object.entries(atoms).forEach(([id, A]) => {
     if (A.el === "C") return;
     const t = el("text", { x: A.x, y: A.y + 8.5, "text-anchor": "middle", class: "het" }, gHet);
     t.textContent = A.el;
+    hetEls[id] = t;
   });
 
   const formula = el("text", { x: 548, y: 332, "text-anchor": "end", class: "formula", "aria-hidden": "true" }, svg);
@@ -139,6 +161,7 @@
     }, gAtoms);
     el("circle", { cx: A.x, cy: A.y, r: 22, class: "hit" }, g);
     el("circle", { cx: A.x, cy: A.y, r: 15, class: "ring" }, g);
+    el("circle", { cx: A.x, cy: A.y, r: 10, class: "ping", style: "transform-box: fill-box; transform-origin: center" }, g);
     el("circle", { cx: A.x, cy: A.y, class: "dot" }, g);
     atomEls[id] = g;
   });
@@ -154,10 +177,32 @@
     return dist;
   };
 
+  // Pulse: messages leave the atom, strongest on its own bonds, then one hop out
+  const pulse = (id) => {
+    if (calm.matches || !Element.prototype.animate) return;
+    const ping = atomEls[id].querySelector(".ping");
+    ping.animate(
+      [{ transform: "scale(1)", opacity: 0.9 }, { transform: "scale(3.2)", opacity: 0 }],
+      { duration: 620, easing: "cubic-bezier(0.16, 1, 0.3, 1)" }
+    );
+    const d = hops(id);
+    bondEls.forEach(({ a, b, parts }) => {
+      const near = Math.min(d[a] ?? 9, d[b] ?? 9);
+      if (near > 1) return;
+      parts.forEach((p) => p.animate(
+        near === 0
+          ? [{ strokeWidth: 8, strokeOpacity: 1 }, { strokeWidth: 5, strokeOpacity: 1 }]
+          : [{ strokeWidth: 6, strokeOpacity: 1 }, { strokeWidth: 3.8, strokeOpacity: 0.85 }],
+        { duration: 460, delay: near * 120, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "backwards" }
+      ));
+    });
+  };
+
   let active = null;
-  const activate = (id) => {
+  const activate = (id, quiet) => {
     if (active === id) return;
     active = id;
+    if (!quiet) pulse(id);
     const A = atoms[id];
     carbons.forEach((c) => {
       atomEls[c].classList.toggle("is-active", c === id);
@@ -196,5 +241,40 @@
     });
   });
 
-  activate("C2");
+  activate("C2", true);
+
+  // Signature load: bonds draw outward from C2 in message-passing order, then the note pins
+  if (printing && Element.prototype.animate) {
+    const start = 700, step = 120, draw = 380;
+    const d0 = {};
+    (function bfs() {
+      d0.C2 = 0; const q = ["C2"];
+      while (q.length) { const c = q.shift(); adj[c].forEach((n) => { if (!(n in d0)) { d0[n] = d0[c] + 1; q.push(n); } }); }
+    })();
+    let last = 0;
+    bondEls.forEach(({ a, b, parts }) => {
+      const near = Math.min(d0[a], d0[b]);
+      const fromA = d0[a] <= d0[b];
+      const delay = start + near * step;
+      last = Math.max(last, delay);
+      parts.forEach((p) => {
+        const len = Math.hypot(p.x2.baseVal.value - p.x1.baseVal.value, p.y2.baseVal.value - p.y1.baseVal.value);
+        p.style.strokeDasharray = `${len}`;
+        const anim = p.animate(
+          [{ strokeDashoffset: fromA ? len : -len }, { strokeDashoffset: 0 }],
+          { duration: draw, delay, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "backwards" }
+        );
+        anim.onfinish = () => { p.style.strokeDasharray = ""; };
+      });
+    });
+    Object.entries(hetEls).forEach(([id, t]) => {
+      t.animate([{ opacity: 0 }, { opacity: 1 }],
+        { duration: 300, delay: start + (d0[id] - 1) * step + draw * 0.6, fill: "backwards" });
+    });
+    const pinAt = last + draw;
+    [leader, noteId, noteVal, formula].forEach((n, i) => n.animate(
+      [{ opacity: 0 }, { opacity: 1 }], { duration: 360, delay: pinAt + i * 60, fill: "backwards" }
+    ));
+    setTimeout(() => { if (active === "C2") pulse("C2"); }, pinAt);
+  }
 })();
