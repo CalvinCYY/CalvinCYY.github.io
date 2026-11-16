@@ -153,7 +153,16 @@
     };
     document.addEventListener("click", (e) => {
       const a = e.target.closest('a[href^="#"]');
-      if (!a || !root.classList.contains("stack")) return;
+      if (!a) return;
+      if (!root.classList.contains("stack")) {
+        // paper stack off: native jump, then move focus to the target
+        const t = document.getElementById(a.getAttribute("href").slice(1));
+        if (t && !t.closest(".bar")) {
+          if (!t.matches("a[href], button, input, select, textarea, [tabindex]")) t.setAttribute("tabindex", "-1");
+          setTimeout(() => t.focus({ preventScroll: true }), 0);
+        }
+        return;
+      }
       const id = a.getAttribute("href").slice(1);
       const target = id ? document.getElementById(id) : null;
       if (!target || target.closest(".bar")) return;
@@ -161,6 +170,9 @@
       quietUntilInput = true;
       history.pushState(null, "", `#${id}`);
       window.scrollTo({ top: Math.max(0, flowTop(target)), behavior: stillMotion.matches ? "auto" : "smooth" });
+      // keyboard and screen-reader users continue from the target, not from the link they pressed
+      if (!target.matches("a[href], button, input, select, textarea, [tabindex]")) target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
     });
     // deep link on arrival (e.g. /#az-02)
     window.addEventListener("load", () => {
@@ -426,6 +438,8 @@
   });
 
   activate("C2", true);
+  const hint = document.querySelector(".mol__hint");
+  if (hint) hint.hidden = false; // only promise interaction once the molecule exists
 
   /* ---------- Contact: the same aspirin as a graph model reads it, atoms as nodes ---------- */
   const graph = document.querySelector("svg.graph");

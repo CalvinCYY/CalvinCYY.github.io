@@ -204,12 +204,14 @@ sup { font-size: 0.68em; line-height: 0; }
   .hero__strip span:last-child { display: none; }
 }
 .hero__text {
+  container-type: inline-size;
   padding: var(--pad);
   border-right: 2px solid var(--ink);
   display: flex; flex-direction: column; justify-content: center;
 }
 .hero__name {
-  font-size: clamp(3.25rem, 7.6vw, 6rem);
+  /* sized from its own column so the name holds one line wherever the column allows (it needs ~6.1em) */
+  font-size: clamp(3.25rem, 15.8cqi, 6rem);
   line-height: 0.88;
   font-weight: 850;
   font-stretch: 66%;
@@ -246,7 +248,6 @@ sup { font-size: 0.68em; line-height: 0; }
   font-size: 0.875rem; font-weight: 750; font-stretch: 72%;
   text-transform: uppercase; letter-spacing: 0.04em; padding-top: 1px;
 }
-.spec__row--hint dd { color: var(--ink-2); }
 
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(20px, 2.4vw, 32px); }
 .btn {
@@ -302,8 +303,9 @@ sup { font-size: 0.68em; line-height: 0; }
 .nmr .peak.on { stroke-opacity: 1; stroke-width: 3; }
 .nmr .mark { fill: var(--on-band); transition: transform 260ms var(--ease); }
 .nmr .hit { fill: transparent; cursor: crosshair; }
+.mol__hint[hidden] { display: none; }
 .mol__hint {
-  align-self: stretch; margin: 0;
+  align-self: stretch; margin: 0; text-wrap: balance;
   font-size: 0.8125rem; color: var(--on-band-2); text-align: right;
 }
 .mol__hint--touch { display: none; }
@@ -548,6 +550,7 @@ sup { font-size: 0.68em; line-height: 0; }
   border-top: 2px solid var(--ink);
   padding: 14px 0 18px;
 }
+.catalogue .slots { align-self: start; }
 .catalogue .entry > p:not(.entry__no) { font-size: 0.9375rem; color: var(--ink); max-width: 64ch; }
 .catalogue .entry:target { background: var(--label-2); box-shadow: -12px 0 0 var(--label-2), 12px 0 0 var(--label-2); }
 
@@ -756,6 +759,19 @@ sup { font-size: 0.68em; line-height: 0; }
 }
 
 /* ---------- Responsive ---------- */
+/* short laptop screens: the whole hero label, actions included, stays on the first screen */
+@media (min-width: 821px) and (max-height: 820px) {
+  .hero { padding-block: 20px; }
+  .hero__text { padding-block: 24px; }
+  .hero__tagline { margin-top: 12px; }
+  .hero__role { margin-bottom: 16px; }
+  .spec__row { padding: 8px 0; }
+  .actions { margin-top: 18px; }
+}
+
+/* focus that lands on a section or main after a jump needs no ring of its own */
+main:focus, main > section:focus { outline: none; }
+
 @media (max-width: 1100px) {
   /* talks: the venue moves under the event so the title keeps the column */
   .talks tr { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); column-gap: 12px; border-bottom: 1px solid var(--ink); padding: 14px 0; }
@@ -768,13 +784,21 @@ sup { font-size: 0.68em; line-height: 0; }
   .research .entry--side { grid-template-columns: clamp(160px, 24vw, 240px) minmax(0, 1fr); column-gap: var(--gap); align-items: start; }
   .research .frame--logo { height: auto; min-height: 0; aspect-ratio: 1; }
   .research .frame--logo img { padding: 7%; }
+  .cert { grid-template-columns: 1fr; }
+  .cert__side { border-left: 0; padding-left: 0; }
+}
+
+@media (max-width: 820px) {
   .hero__label { grid-template-columns: 1fr; }
   .hero__text { border-right: 0; border-bottom: 2px solid var(--ink); }
   .hero__structure { padding-block: clamp(16px, 3vw, 32px); }
   .mol, .nmr, .mol__hint { max-width: 640px; }
   .mol__hint { align-self: center; width: 100%; }
-  .cert { grid-template-columns: 1fr; }
-  .cert__side { border-left: 0; padding-left: 0; }
+}
+
+/* research feature on phones: say what it is before the tall figure */
+@media (max-width: 700px) {
+  .research .entry--feature .entry__media { order: 2; }
 }
 
 @media (max-width: 860px) {

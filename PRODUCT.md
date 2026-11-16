@@ -42,6 +42,10 @@ Write these as CV entries: the kind of problem, the approach and the outcome. Ne
 3. A structure-elucidation assistant: an AI agent that combines analytical-chemistry models to turn spectral signals into ranked candidate molecules.
 4. ML governance: a model and code-standards framework covering code review, model cards and risk tiers.
 
+Outcomes (confirmed by Calvin, Nov 2026): 1 one centralised tool that saves 3 FTEs of SME time and enables digitisation and future data-lake integration; 3 analytical teams use it to go from spectra to a ranked shortlist of candidate structures; 4 pilot project teams work to one shared definition of done. No outcome line for 2 yet.
+
+Calvin is open to roles as well as conversations and research collaborations (Nov 2026).
+
 Status of each (confirmed by Calvin, Nov 2026): 1 in production (lead developer); 2 in development (data scientist); 3 in use by analytical teams (originator and developer); 4 piloted with project teams (author and lead).
 
 Calvin has NOT worked on agentic document extraction, manufacturing knowledge graphs, knowledge-grounded retrieval over documents (beyond item 2), process digital-twin surrogates, or manufacturability prediction. Do not list them.

@@ -13,7 +13,7 @@
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=22">
+  <link rel="stylesheet" href="style.css?v=25">
   <script>if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("print");</script>
   <script type="application/ld+json">
   {
@@ -54,7 +54,7 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
 
     <!-- Hero label -->
     <section class="screen hero" aria-labelledby="hero-title">
@@ -70,10 +70,9 @@
           <p class="hero__role">I build graph machine learning, language models and AI agent solutions for molecules and medicines.</p>
 
           <dl class="spec">
-            <div class="spec__row"><dt>Composition</dt><dd>Graph neural networks · LLM agents · cheminformatics</dd></div>
+            <div class="spec__row"><dt>Methods</dt><dd>Graph neural networks · LLM agents · cheminformatics</dd></div>
             <div class="spec__row"><dt>Origin</dt><dd>PhD and postdoc, University of Bristol</dd></div>
             <div class="spec__row"><dt>Known for</dt><dd><a class="ln" href="#research">IMPRESSION</a>, NMR parameter prediction in place of DFT, <span class="nowrap">Chemical Science 2025</span></dd></div>
-            <div class="spec__row spec__row--hint"><dt>Structure</dt><dd>Aspirin with illustrative <sup>13</sup>C shifts in ppm.</dd></div>
           </dl>
 
           <div class="actions">
@@ -89,7 +88,7 @@
         <figure class="hero__structure" id="molecule" aria-label="Aspirin skeletal structure with illustrative predicted carbon-13 shifts">
           <svg class="mol" viewBox="96 18 452 318" role="group" aria-label="Interactive aspirin structure: use the arrow keys to move between carbons"></svg>
           <svg class="nmr" viewBox="0 0 452 112" aria-hidden="true"></svg>
-          <p class="mol__hint"><span class="mol__hint--fine">Hover an atom or a peak, or tab in and use the arrow keys</span><span class="mol__hint--touch">Tap an atom or a peak</span></p>
+          <p class="mol__hint" hidden>Illustrative <sup>13</sup>C shifts in ppm. <span class="mol__hint--fine">Hover an atom or a peak, or tab in and use the arrow keys.</span><span class="mol__hint--touch">Tap an atom or a peak.</span></p>
           <noscript><p class="mol__fallback">Aspirin, C<sub>9</sub>H<sub>8</sub>O<sub>4</sub></p></noscript>
         </figure>
       </div>
@@ -126,6 +125,7 @@
             <div class="entry__head"><h3>Method robustness web application</h3><p class="entry__no mono"><a href="#az-01" aria-label="Permalink AZ-01">AZ-01</a></p><p class="entry__status"><span class="entry__role">Lead developer</span><span class="stock stock--live">In production</span></p></div>
             <p>Replaced a family of spreadsheet workflows for analytical-method robustness and ruggedness studies with one web application: factor classification, risk assessment and automatic design-of-experiments generation.</p>
             <dl class="slots">
+              <div><dt>Outcome</dt><dd>One centralised tool: saves 3&nbsp;FTEs of SME time and enables digitisation and future <span class="nowrap">data-lake</span> integration.</dd></div>
               <div><dt>Stack</dt><dd class="mono">Python · web app · DoE</dd></div>
             </dl>
           </article>
@@ -171,6 +171,7 @@
             <div class="entry__head"><h3>Structure elucidation assistant</h3><p class="entry__no mono"><a href="#az-03" aria-label="Permalink AZ-03">AZ-03</a></p><p class="entry__status"><span class="entry__role">Originator and developer</span><span class="stock stock--live">In use by analytical teams</span></p></div>
             <p>An AI agent that combines analytical-chemistry models across spectroscopic techniques to turn spectral signals into a ranked list of candidate molecules, using forward prediction to check each candidate.</p>
             <dl class="slots">
+              <div><dt>Outcome</dt><dd>Analytical teams use it to go from spectra to a ranked shortlist of candidate structures.</dd></div>
               <div><dt>Stack</dt><dd class="mono">Agents · NMR · MS · GNNs</dd></div>
             </dl>
           </article>
@@ -190,8 +191,9 @@
               <path class="sig" pathLength="100" d="M8 66H56C72 66 72 32 92 32H128C148 32 148 66 164 66H200M212 62H240M338 62H366M394 64H448"/>
             </svg>
             <div class="entry__head"><h3>ML standards and governance</h3><p class="entry__no mono"><a href="#az-04" aria-label="Permalink AZ-04">AZ-04</a></p><p class="entry__status"><span class="entry__role">Author and lead</span><span class="stock stock--dev">Piloted with project teams</span></p></div>
-            <p>A living framework for model and code quality across a data science team: code-review policy, model cards, risk tiers and a shared definition of done.</p>
+            <p>A living framework for model and code quality across a data science team, covering code-review policy, model cards and risk tiers.</p>
             <dl class="slots">
+              <div><dt>Outcome</dt><dd>Pilot project teams work to one shared definition of done.</dd></div>
               <div><dt>Stack</dt><dd class="mono">GitHub · CI · model cards</dd></div>
             </dl>
           </article>
@@ -312,7 +314,7 @@
           </div>
 
           <aside class="cert__side" aria-labelledby="composition-title">
-            <h3 id="composition-title">Composition</h3>
+            <h3 id="composition-title">Skills</h3>
             <dl class="comp">
               <div><dt>Machine learning</dt><dd>PyTorch, DGL, scikit-learn; GNNs, graph transformers, VAEs</dd></div>
               <div><dt>LLMs &amp; agents</dt><dd>Fine-tuning, retrieval-augmented generation, evaluation sets, LangSmith, AI agents</dd></div>
@@ -404,7 +406,7 @@
         <div class="contact__top">
           <div>
             <h2 id="contact-title" class="contact__title">Get in touch</h2>
-            <p class="contact__lede">Open to conversations about graph ML, AI for chemistry and drug development, and research collaborations.</p>
+            <p class="contact__lede">Open to roles and conversations in graph ML and AI for chemistry and drug development, and to research collaborations.</p>
           </div>
           <svg class="graph" viewBox="120 10 362 312" aria-hidden="true"></svg>
         </div>
@@ -412,7 +414,7 @@
           <a class="route" href="https://www.linkedin.com/in/calvin-yiu/" target="_blank" rel="noopener">
             <img src="images/icons/linkedin.svg" alt="" width="40" height="40" loading="lazy">
             <span class="route__name">LinkedIn</span>
-            <span class="route__addr mono">linkedin.com/in/calvin-yiu</span>
+            <span class="route__addr mono">linkedin.com/in/<span class="nowrap">calvin-yiu</span></span>
             <span class="route__go">Send a message</span>
           <span class="sr"> (opens in a new tab)</span></a>
           <a class="route" href="https://github.com/CalvinCYY" target="_blank" rel="noopener">
@@ -431,6 +433,6 @@
     <p><a class="ln" href="#top">Back to top</a></p>
   </footer>
 
-  <script src="script.js?v=12" defer></script>
+  <script src="script.js?v=13" defer></script>
 </body>
 </html>
