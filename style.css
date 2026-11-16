@@ -166,20 +166,19 @@ sup { font-size: 0.68em; line-height: 0; }
   display: flex; align-items: baseline; justify-content: space-between; gap: 8px 24px;
   flex-wrap: wrap;
   margin: calc(var(--pad) * -1) calc(var(--pad) * -1) clamp(24px, 2.8vw, 40px);
-  padding: clamp(14px, 1.6vw, 22px) var(--pad) clamp(18px, 2vw, 28px);
-  background: var(--band);
-  color: var(--on-band);
+  padding: clamp(18px, 2vw, 28px) var(--pad) clamp(14px, 1.6vw, 20px);
+  color: var(--ink);
   border-bottom: 2px solid var(--ink);
 }
 .label__head h2 {
-  font-size: clamp(2.75rem, 6vw, 5.25rem);
+  font-size: clamp(2.25rem, 4.6vw, 4rem);
   line-height: 0.92;
   font-weight: 800;
   font-stretch: 68%;
   text-transform: uppercase;
   letter-spacing: -0.005em;
 }
-.label__meta { font-size: 0.875rem; color: var(--on-band-2); }
+.label__meta { font-size: 0.875rem; color: var(--ink-2); }
 .label__lede { max-width: 68ch; color: var(--ink-2); margin: -8px 0 clamp(20px, 2.4vw, 32px); font-size: 1.0625rem; }
 
 /* ---------- Hero ---------- */

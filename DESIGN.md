@@ -37,7 +37,7 @@ typography:
     fontVariation: "'wdth' 66"
   headline:
     fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(2.75rem, 6vw, 5.25rem)"
+    fontSize: "clamp(2.25rem, 4.6vw, 4rem)"
     fontWeight: 800
     lineHeight: 0.92
     letterSpacing: "-0.005em"
@@ -207,8 +207,8 @@ components:
     rounded: "{rounded.none}"
     padding: "{spacing.pad}"
   label-head:
-    backgroundColor: "{colors.band-cobalt}"
-    textColor: "{colors.on-band}"
+    backgroundColor: "{colors.label-stock}"
+    textColor: "{colors.ink}"
     typography: "{typography.headline}"
     rounded: "{rounded.none}"
     padding: "clamp(14px, 1.6vw, 22px) clamp(20px, 3.3vw, 48px) clamp(18px, 2vw, 28px)"
@@ -321,7 +321,7 @@ components:
 
 Every section of the CV is a paper label laid on a lab bench. The page ground is the bench: a pale warm grey with one soft vertical highlight down the middle of the viewport, fixed while the labels scroll past. The labels stack like sheets of paper: each section sticks in place and the next slides up over it, the covered label sinking slightly and dimming as it is buried. On the bench sit near-white label panels divided by black rules into the grids a supplier catalogue uses: specification rows, slotted entries, a certificate-of-analysis table, a reference list.
 
-Cobalt is printed boldly, as a supplier prints its house colour. Each label opens with a solid cobalt slab, the 18px band fused with the head, carrying the section headline in white. The hero lot strip, the molecule plate, catalogue numbers, the prize-winning talk and the whole contact label are cobalt; everything else on the label stays ink on stock. The type is industrial and compressed: names and section titles in a heavy condensed grotesk in capitals, running text in the same family at normal width, mono only where a catalogue would print a number, value or date. Corners are square everywhere. Depth is a single soft drop under each label, as if lifted a millimetre off the bench, plus a short upward shadow where an incoming sheet overlaps the one beneath.
+Cobalt is printed boldly, as a supplier prints its house colour. Each label opens with the 18px cobalt band; under it the section headline is printed in ink on stock and ruled off in 2px ink, so the middle of the page reads quieter. Only the hero and the contact label carry cobalt as whole fields. The hero lot strip, the molecule plate, catalogue numbers, the prize-winning talk and the whole contact label are cobalt; everything else on the label stays ink on stock. The type is industrial and compressed: names and section titles in a heavy condensed grotesk in capitals, running text in the same family at normal width, mono only where a catalogue would print a number, value or date. Corners are square everywhere. Depth is a single soft drop under each label, as if lifted a millimetre off the bench, plus a short upward shadow where an incoming sheet overlaps the one beneath.
 
 The live element is the molecule on the hero's cobalt plate: a white skeletal aspirin whose carbons, on hover or focus, pin a leader-line annotation with an illustrative shift, while bonds one and two hops away brighten and pulse outward like message passing. Beneath it a ¹³C spectrum prints the same shifts as Lorentzian lines on a 200 → 0 ppm axis; the active carbon's line brightens, and pointing at a line activates its carbon.
 
@@ -339,7 +339,7 @@ Every catalogue entry and paper carries a structure drawing, as a supplier catal
 Two materials and one printed colour: a pale warm-grey bench behind, near-white paper in front, cobalt as the only ink with a hue. Everything that is not cobalt is a neutral, and every translucent value is plain black at a fixed alpha.
 
 ### Primary
-- **Label Cobalt** (band-cobalt): the printed house colour. Fills every label head slab (fused with the 18px top band), the hero lot strip, the molecule plate, catalogue number chips, the prize talk row, the prize tag, the whole contact label, the solid-button hover, the 6px catalogue hover rule, text selection and the global focus outline.
+- **Label Cobalt** (band-cobalt): the printed house colour. Fills the 18px top band of every label, the hero lot strip, the molecule plate, catalogue number chips, the prize talk row, the prize tag, the whole contact label, the solid-button hover, the 6px catalogue hover rule, text selection and the global focus outline.
 - **Deep Cobalt Ink** (band-cobalt-ink): cobalt at text weight on white. The hero tagline (role and employer), the hover colour of inline links on label stock, nav and footer link hover, the current-section link in the nav, and the text of the inverted prize tag (about 9.8:1 on white).
 
 ### Secondary
@@ -349,7 +349,7 @@ Two materials and one printed colour: a pale warm-grey bench behind, near-white 
 ### Neutral
 - **Label Stock** (label-stock): the ground of every label panel, the top bar, the mobile menu sheet, and the solid-button text.
 - **Shaded Stock** (label-shade): the highlight behind a deep-linked catalogue entry, bled 12px either side.
-- **Ink** (ink): all primary text on stock, every structural rule (including the 2px rule closing each cobalt slab), the solid button fill, the line-button hover fill and the catalogue chip hover.
+- **Ink** (ink): all primary text on stock, every structural rule (including the 2px rule under each label head and the lot strip), the solid button fill, the line-button hover fill and the catalogue chip hover.
 - **Soft Ink** (ink-soft): secondary text on stock: ledes, slot terms, organisation sublines, talk venues, hint rows (9.4:1 on label stock).
 - **Hairline** (hairline): 1px row rules inside entry slots and the composition list. A rule colour only, never text.
 - **Bench Shadow / Bench / Bench Light / Bench Highlight** (ground-0, ground-1, ground-2, ground-3): the page ground, a horizontal gradient 0 → 1 (20%) → 2 (44%) → 3 (51%) → 2 (58%) → 1 (80%) → 0, fixed to the viewport. In the paper stack every section repaints the same fixed gradient so it covers the sheet beneath without a seam. Bench 1 is the flat fallback; ground-3 over ground-0 also colours the scrollbar.
@@ -374,7 +374,7 @@ Two materials and one printed colour: a pale warm-grey bench behind, near-white 
 
 ### Hierarchy
 - **Display** (850, clamp 3.25–6rem, lh 0.88, 66% width, caps): the hero name; "PhD" drops to weight 500 at the same size. The contact title uses the same voice at clamp 3–6rem.
-- **Headline** (800, clamp 2.75–5.25rem, lh 0.92, 68% width, caps, white on cobalt): section titles in the label-head slab.
+- **Headline** (800, clamp 2.25–4rem, lh 0.92, 68% width, caps, ink on stock): section titles in the label head, under the cobalt band.
 - **Nav sheet** (800, 2rem, 70% width, caps): links in the mobile menu sheet.
 - **Route name** (800, 1.75rem, lh 1, 72% width, caps; 1.5rem under 560px): contact channel names.
 - **Subhead** (800, 1.5rem, 70% width, caps, ruled 2px beneath): column heads inside a label (Composition, Papers, Talks).
@@ -428,7 +428,7 @@ Depth is physical and singular: each label carries one soft shadow, a 1px dark l
 
 ## Shapes
 
-Square corners everywhere (0px). Form is built from rules and solid print, not containers: a 2px ink rule closes every cobalt slab (label heads, the lot strip), divides hero and certificate columns, opens each catalogue entry and underlines column heads and table headers; a 1px ink rule separates spec rows, certificate rows, references and talks; a 1px hairline separates slot rows and composition rows. Bordered blocks use a 2px outline: ink on stock (buttons), white on cobalt (contact routes). Image frames use 1px ink. On hover or focus a catalogue entry draws a 6px cobalt rule across its top edge from the left.
+Square corners everywhere (0px). Form is built from rules and solid print, not containers: a 2px ink rule closes every label head and the lot strip, divides hero and certificate columns, opens each catalogue entry and underlines column heads and table headers; a 1px ink rule separates spec rows, certificate rows, references and talks; a 1px hairline separates slot rows and composition rows. Bordered blocks use a 2px outline: ink on stock (buttons), white on cobalt (contact routes). Image frames use 1px ink. On hover or focus a catalogue entry draws a 6px cobalt rule across its top edge from the left.
 
 **The Rule Hierarchy Rule.** 2px ink closes a group, 1px ink separates peers, 1px hairline separates attributes inside one entry. Never use a radius or a tinted card to do a rule's job.
 
@@ -437,7 +437,7 @@ Square corners everywhere (0px). Form is built from rules and solid print, not c
 ## Components
 
 ### Label
-The unit of the page. Label stock ground, 18px cobalt top border, pad-step padding, label-lift shadow. Opens with a cobalt head slab fused to the band: the white headline on the left and on-band-mist mono metadata (scope and dates) on the right on its baseline, closed by a 2px ink rule. An optional lede follows in soft ink. Two variants: the hero label (zero padding, a cobalt lot strip of catalogue number, grade and lot, then the two-column body) and the contact label (the whole panel cobalt, title ruled in white).
+The unit of the page. Label stock ground, 18px cobalt top border, pad-step padding, label-lift shadow. Opens with a head under the band: the ink headline on the left and soft-ink mono metadata (scope and dates) on the right on its baseline, closed by a 2px ink rule. An optional lede follows in soft ink. Two variants: the hero label (zero padding, a cobalt lot strip of catalogue number, grade and lot, then the two-column body) and the contact label (the whole panel cobalt, title ruled in white).
 
 ### Spec Table
 A definition list of term/value rows: 9.5rem term column, fluid value column, 16px gap, 10px vertical padding, 1px ink rule above each row and below the table. Terms in the spec label voice; values in body small. A hint row sets its value in soft ink. At 560px, term stacks over value.
@@ -498,7 +498,7 @@ One ease for everything: `cubic-bezier(0.16, 1, 0.3, 1)`. State durations: 160ms
 
 **The label prints itself (hero, once per load).** A class set in the head before paint (skipped under reduced motion, removed after 2.6s) plays: the hero label clip-reveals from the top (700ms); the lot strip band scales in from the left (620ms at 120ms) and its fields set in at 420 / 500 / 580ms; the name presses up through a clip (640ms at 300ms); the tagline sets at 460ms and the role line at 540ms; spec rows draw left to right with 60ms stagger from 620ms; actions set at 880ms; the molecule plate reveals from the top at 200ms. The spectrum axis fades in at 700ms and its lines rise in from 200 ppm to 0 with 70ms stagger from 900ms. Bonds then draw by stroke-dashoffset outward from C2 in breadth-first order (700ms start, 120ms per hop, 380ms each), heteroatoms fade in behind them, the annotation pins at about 1.3s and C2 pulses.
 
-**The paper stack (scroll-linked).** The class that enables it is added by script after measuring, never under reduced motion, and toggles live if the preference changes. Cover values update once per animation frame on scroll and are re-measured on resize and load. It moves only transform and filter on whole labels. **Spring catches:** each sheet boundary is a catch point (the sheet settled under the bar, and for a sheet taller than the screen, its bottom meeting the screen's bottom). When a scroll comes to rest within min(140px, 15% of the viewport) of a catch, the page settles onto it with a critically damped spring (ω 16 rad/s, about 350ms, no overshoot). Rest is detected with scrollend, or a 160ms idle fallback. Wheel, key, pointer or touch input cancels a settle at once; in-page links and deep links skip catching until the next input. No wheel events are intercepted, and there is no CSS scroll-snap: proximity snapping's zone of about a third of the viewport trapped readers.
+**The paper stack (scroll-linked).** The class that enables it is added by script after measuring, never under reduced motion, and toggles live if the preference changes. Cover values update once per animation frame on scroll and are re-measured on resize and load. It moves only transform and filter on whole labels. **Spring catches:** each sheet boundary is a catch point (the sheet settled under the bar, and for a sheet taller than the screen, its bottom meeting the screen's bottom). When a scroll comes to rest within min(140px, 15% of the viewport) of a catch, the page settles onto it with a critically damped spring (ω 16 rad/s, about 350ms, no overshoot). Rest is detected with scrollend, or a 160ms idle fallback. Wheel, key, pointer or touch input cancels a settle at once, and there are no catches at all on coarse (touch) pointers, where native momentum scrolling is left alone; in-page links and deep links skip catching until the next input. No wheel events are intercepted, and there is no CSS scroll-snap: proximity snapping's zone of about a third of the viewport trapped readers.
 
 **The Once Rule.** Arrival motion happens once, on the hero, on load; it never replays on other sections.
 
@@ -509,7 +509,7 @@ Reduced motion: no print sequence, no pulse, no catalogue signal, no paper stack
 ## Do's and Don'ts
 
 ### Do:
-- **Do** open every section with a label whose head is a solid cobalt slab: white headline, mist mono metadata on its baseline, closed by a 2px ink rule.
+- **Do** open every middle section with a label whose head sits under the 18px cobalt band: ink headline, soft-ink mono metadata on its baseline, closed by a 2px ink rule. Keep whole cobalt fields for the hero plate and the contact label.
 - **Do** give every new piece of work an entry with the fixed slots and a unique, linkable cobalt catalogue chip right-aligned on the title baseline.
 - **Do** separate content with the 2px / 1px / hairline rule hierarchy rather than boxes or tinted fills.
 - **Do** print cobalt boldly as slabs, plates, chips and rows with white (on-band) text and mist (on-band-2) secondary text.

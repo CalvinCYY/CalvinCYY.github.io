@@ -74,6 +74,7 @@
       catches = catches.map((c) => Math.round(Math.min(max, Math.max(0, c))));
     };
     let springing = 0, quietUntilInput = false, touching = false;
+    const coarse = window.matchMedia("(pointer: coarse)");
     const stopSpring = () => { if (springing) { cancelAnimationFrame(springing); springing = 0; } };
     const userInput = () => { stopSpring(); quietUntilInput = false; };
     ["wheel", "keydown", "pointerdown"].forEach((t) => window.addEventListener(t, userInput, { passive: true }));
@@ -81,6 +82,7 @@
     window.addEventListener("touchend", () => { touching = false; }, { passive: true });
     const settle = () => {
       if (!root.classList.contains("stack") || springing || quietUntilInput || touching || !catches.length) return;
+      if (coarse.matches) return; // touch scrolling keeps its own momentum: no catches on coarse pointers
       const y0 = window.scrollY;
       const zone = Math.min(140, window.innerHeight * 0.15);
       let target = null, best = zone;
