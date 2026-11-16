@@ -169,6 +169,28 @@ typography:
     fontFamily: "JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace"
     fontSize: "13px"
     fontWeight: 400
+  spectrum-axis:
+    fontFamily: "JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace"
+    fontSize: "11px"
+    fontWeight: 400
+  drawing-term:
+    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "12px"
+    fontWeight: 750
+    letterSpacing: "0.04em"
+    fontVariation: "'wdth' 72"
+  drawing-chip:
+    fontFamily: "JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace"
+    fontSize: "13px"
+    fontWeight: 700
+  drawing-isotope:
+    fontFamily: "JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace"
+    fontSize: "11px"
+    fontWeight: 700
+  graph-node:
+    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "17px"
+    fontWeight: 700
 rounded:
   none: "0px"
 spacing:
@@ -301,7 +323,9 @@ Every section of the CV is a paper label laid on a lab bench. The page ground is
 
 Cobalt is printed boldly, as a supplier prints its house colour. Each label opens with a solid cobalt slab, the 18px band fused with the head, carrying the section headline in white. The hero lot strip, the molecule plate, catalogue numbers, the prize-winning talk and the whole contact label are cobalt; everything else on the label stays ink on stock. The type is industrial and compressed: names and section titles in a heavy condensed grotesk in capitals, running text in the same family at normal width, mono only where a catalogue would print a number, value or date. Corners are square everywhere. Depth is a single soft drop under each label, as if lifted a millimetre off the bench, plus a short upward shadow where an incoming sheet overlaps the one beneath.
 
-The live element is the molecule on the hero's cobalt plate: a white skeletal aspirin whose carbons, on hover or focus, pin a leader-line annotation with an illustrative shift, while bonds one and two hops away brighten and pulse outward like message passing. On first load the hero label prints itself once. The paper stack is the one deliberate scroll-linked motion; nothing else animates on arrival or on scroll.
+The live element is the molecule on the hero's cobalt plate: a white skeletal aspirin whose carbons, on hover or focus, pin a leader-line annotation with an illustrative shift, while bonds one and two hops away brighten and pulse outward like message passing. Beneath it a ¹³C spectrum prints the same shifts as Lorentzian lines on a 200 → 0 ppm axis; the active carbon's line brightens, and pointing at a line activates its carbon.
+
+Every catalogue entry and paper carries a structure drawing, as a supplier catalogue prints a structure beside each product: ink line diagrams on stock, one cobalt mark each. The contact label closes the page with the hero's aspirin redrawn as a graph model reads it, atoms as nodes. On first load the hero label prints itself once. The paper stack is the one deliberate scroll-linked motion; nothing else animates on arrival or on scroll.
 
 **Key Characteristics:**
 - Pale lab-bench ground, white label stock, black rules, one bold cobalt printed as solid slabs and chips.
@@ -365,6 +389,7 @@ Two materials and one printed colour: a pale warm-grey bench behind, near-white 
 - **Label** (750, 0.8125rem, 72% width, caps, +0.04em): slot terms, table headers, composition terms, the prize tag. Spec terms use the same voice at 0.875rem.
 - **Mono** (400–700, 0.8125rem): catalogue numbers (700, +0.04em), dates, DOIs, stack lists, metadata. The hero lot strip is mono 700 caps at 0.8125rem, +0.05em, dropping to 0.75rem under 600px.
 - **Molecule annotations** (SVG user units): heteroatoms in Archivo 650 at 24px, shift values in mono 700 at 18px, atom ids in mono 700 at 16px, formula in mono at 13px.
+- **Drawing type** (SVG user units, scales with the drawing): spectrum axis and unit in mist mono at 11px; drawing terms (factor letters, tool names, site names) in the label voice at 12px, 14px under 560px; text on a cobalt node in mono 700 at 13px; the ¹⁵N isotope mark in deep cobalt ink mono 700 at 11px; graph node elements in Archivo 700 at 17px.
 
 **The Width-Is-Rank Rule.** Hierarchy is carried by width and weight of one family, not by adding families. Narrower and heavier means more of a name; 100% width means prose.
 
@@ -451,10 +476,21 @@ On label stock, a 1px currentColor underline drawn as a background, thickening t
 ### Molecule Annotation (signature)
 A skeletal aspirin in SVG on the cobalt plate. Bonds are white with round caps: 3.2px at 50% opacity at rest; bonds touching the active atom 5px at full opacity; bonds one hop further 3.8px at 85%, delayed 110ms. Heteroatoms are white Archivo; the formula sits bottom right in mist mono. Each carbon is a focusable button with a 22px hit radius: hover grows a 6px white dot, the active atom holds 9px, keyboard focus adds a 2px white ring at 15px. Activating an atom (hover, focus, click, Enter, Space) pins one annotation, a 1.5px white leader to a mono id and δ value, and plays a pulse: a ping ring scales 1 → 3.2 while fading (620ms), touching bonds flash 8 → 5px and next-hop bonds 6 → 3.8px 120ms later (460ms). C2 is active on load.
 
+### Spectrum (hero)
+An SVG under the molecule on the same plate, viewBox 452 × 112. A 1.5px white baseline at 50%, mist ticks every 50 ppm (6px) and 10 ppm (3px), mist mono labels, the unit "¹³C · δ / ppm" top left. Each carbon is one Lorentzian line (half-width 1.4 user units) at its illustrative shift; height follows multiplicity (quaternary about 0.4, CH and CH₃ 0.8–0.96). Lines rest at 1.75px, 55% white; the active carbon's line goes to 3px full white, comes to the front, and a white triangle marker slides under it (260ms). Pointer movement over the trace activates the nearest carbon within 9 ppm, with the same pulse as the atom. Decorative to assistive tech; the atoms carry the keyboard path.
+
+### Structure Drawings
+Hand-authored inline SVG, one vocabulary throughout: 1.5px ink strokes with round caps and joins, 1.25px dashed soft-ink lines (3 / 4) for hidden or implied links (back cube edges, attention, assignments), 1.25px hairline for secondary rules, nodes as label-stock fills with 1.5px ink outlines, solid ink for chosen or filled states, and exactly one cobalt element per drawing class (a centre point, a model block, a merge commit, a tier). Arrows are a line plus a 6px chevron. All drawings are aria-hidden; the entry text carries the meaning.
+- **Catalogue figure:** viewBox 480 × 120, full column width to 480px, above the entry head (the entry subgrid spans four rows: figure, head, prose, slots). Each reads left to right as input → processor → output: AZ-01 factor risk bars → 2³ factorial cube with a cobalt centre point → design matrix; AZ-02 Site A documents → retrieval graph → cobalt LLM block → evaluated answers at Site B; AZ-03 spectrum → cobalt agent → NMR / MS / GNN lanes → ranked candidates; AZ-04 review branch and cobalt merge → model card → risk tiers. Hover or focus-within on the entry sends a 3.5px cobalt signal dash along the flow once (pathLength 100, 1400ms, ease-in-out), restarting on each hover.
+- **Paper mark:** 88px square (64px under 560px) in a 1px ink frame on white, left of the reference text: sparse peaks assigned to a ring (cobalt assigned atoms), a graph-transformer ring with dashed attention from one cobalt node, pyridine with its nitrogen as a cobalt node and the 15 isotope mark.
+
+### Molecular Graph (contact)
+The hero's aspirin coordinates re-rendered as a graph in the contact label's top row, right of the title and lede (clamp 220–340px wide; above them, up to 300px, from 860px down). White 2.5px edges, double bonds as two edges 8 units apart; carbon nodes are cobalt circles with a white outline and white element letter, heteroatom nodes are filled white with deep cobalt ink letters (r 16). Static. The title's white rule now closes the whole top row.
+
 ### Motion
 One ease for everything: `cubic-bezier(0.16, 1, 0.3, 1)`. State durations: 160ms colour fills, 180–200ms lifts, 220ms molecule state, 260ms underlines, 420ms catalogue rule, 500ms image zoom.
 
-**The label prints itself (hero, once per load).** A class set in the head before paint (skipped under reduced motion, removed after 2.6s) plays: the hero label clip-reveals from the top (700ms); the lot strip band scales in from the left (620ms at 120ms) and its fields set in at 420 / 500 / 580ms; the name presses up through a clip (640ms at 300ms); the role sets at 520ms; spec rows draw left to right with 60ms stagger from 620ms; actions set at 880ms; the molecule plate reveals from the top at 200ms. Bonds then draw by stroke-dashoffset outward from C2 in breadth-first order (700ms start, 120ms per hop, 380ms each), heteroatoms fade in behind them, the annotation pins at about 1.3s and C2 pulses.
+**The label prints itself (hero, once per load).** A class set in the head before paint (skipped under reduced motion, removed after 2.6s) plays: the hero label clip-reveals from the top (700ms); the lot strip band scales in from the left (620ms at 120ms) and its fields set in at 420 / 500 / 580ms; the name presses up through a clip (640ms at 300ms); the role sets at 520ms; spec rows draw left to right with 60ms stagger from 620ms; actions set at 880ms; the molecule plate reveals from the top at 200ms. The spectrum axis fades in at 700ms and its lines rise in from 200 ppm to 0 with 70ms stagger from 900ms. Bonds then draw by stroke-dashoffset outward from C2 in breadth-first order (700ms start, 120ms per hop, 380ms each), heteroatoms fade in behind them, the annotation pins at about 1.3s and C2 pulses.
 
 **The paper stack (scroll-linked).** The class that enables it is added by script after measuring, never under reduced motion, and toggles live if the preference changes. Cover values update once per animation frame on scroll and are re-measured on resize and load. It moves only transform and filter on whole labels.
 
@@ -462,7 +498,7 @@ One ease for everything: `cubic-bezier(0.16, 1, 0.3, 1)`. State durations: 160ms
 
 **The One Scroll Rule.** The paper stack is the only scroll-linked motion. No reveal-on-scroll, parallax or scroll-triggered entrances anywhere else; every other motion is a response to the visitor.
 
-Reduced motion: no print sequence, no pulse, no paper stack (sections flow normally), transitions collapse to near zero, smooth scrolling off.
+Reduced motion: no print sequence, no pulse, no catalogue signal, no paper stack (sections flow normally), transitions collapse to near zero, smooth scrolling off.
 
 ## Do's and Don'ts
 
@@ -475,6 +511,8 @@ Reduced motion: no print sequence, no pulse, no paper stack (sections flow norma
 - **Do** use the single house ease, keep hover lifts at 1–2px with a soft shadow, and keep arrival motion to the hero's one print sequence.
 - **Do** give any new section the paper-stack behaviour by making it a direct child section of main, with the bench gradient behind its label.
 - **Do** draw translucent rules and shadows in black at the four recorded alphas.
+
+- **Do** give any new catalogue entry or paper a structure drawing in the shared stroke vocabulary, with one cobalt element and nothing that reveals project detail.
 
 ### Don't:
 - **Don't** round corners or turn entries into floating cards with their own shadows; only the label floats.

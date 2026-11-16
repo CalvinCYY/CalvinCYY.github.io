@@ -267,6 +267,48 @@
     });
   };
 
+  /* ---------- 13C spectrum: each carbon as a Lorentzian line on a 200 to 0 ppm axis ---------- */
+  const nmr = document.querySelector("svg.nmr");
+  const peakEls = {};
+  let mark = null, gPeaks = null;
+  const X0 = 16, X1 = 436, BASE = 78, TOP = 62;
+  const xOf = (d) => X0 + ((200 - d) / 200) * (X1 - X0);
+  // quaternary carbons print weaker than CH and CH3, as they do on a real 13C spectrum
+  const height = { C1: 0.42, C2: 0.38, C3: 0.9, C4: 0.96, C5: 0.86, C6: 0.92, C7: 0.36, C8: 0.33, C9: 0.8 };
+  if (nmr) {
+    el("line", { x1: X0 - 8, y1: BASE, x2: X1 + 8, y2: BASE, class: "base" }, nmr);
+    [200, 150, 100, 50, 0].forEach((d) => {
+      el("line", { x1: xOf(d), y1: BASE + 6, x2: xOf(d), y2: BASE + 12, class: "tick" }, nmr);
+      el("text", { x: xOf(d), y: BASE + 27, "text-anchor": "middle", class: "ax" }, nmr).textContent = String(d);
+    });
+    for (let d = 190; d > 0; d -= 10) if (d % 50) el("line", { x1: xOf(d), y1: BASE + 6, x2: xOf(d), y2: BASE + 9, class: "tick" }, nmr);
+    const unit = el("text", { x: X0 - 8, y: 10, class: "ax" }, nmr);
+    unit.textContent = "¹³C · δ / ppm";
+    gPeaks = el("g", {}, nmr);
+    carbons.forEach((id) => {
+      const cx = xOf(atoms[id].shift), h = height[id] * TOP, g = 1.4;
+      let d = `M${(cx - 14).toFixed(1)} ${BASE}`;
+      for (let x = -14; x <= 14; x += 0.5) d += `L${(cx + x).toFixed(1)} ${(BASE - (h * g * g) / (x * x + g * g)).toFixed(2)}`;
+      peakEls[id] = el("path", { d, class: "peak" }, gPeaks);
+    });
+    mark = el("path", { d: "M0 0l-5 8h10z", class: "mark" }, nmr);
+    // pointer over the trace picks the nearest carbon line
+    const hit = el("rect", { x: X0 - 8, y: 0, width: X1 - X0 + 16, height: BASE + 10, class: "hit" }, nmr);
+    hit.addEventListener("pointermove", (e) => {
+      const pt = new DOMPoint(e.clientX, e.clientY).matrixTransform(nmr.getScreenCTM().inverse());
+      const d = 200 - ((pt.x - X0) / (X1 - X0)) * 200;
+      let best = null, gap = 9;
+      carbons.forEach((c) => { const g = Math.abs(atoms[c].shift - d); if (g < gap) { gap = g; best = c; } });
+      if (best) activate(best);
+    });
+  }
+  const showPeak = (id) => {
+    if (!nmr) return;
+    carbons.forEach((c) => peakEls[c].classList.toggle("on", c === id));
+    gPeaks.appendChild(peakEls[id]);
+    mark.style.transform = `translate(${xOf(atoms[id].shift)}px, ${BASE + 2}px)`;
+  };
+
   let active = null;
   const activate = (id, quiet) => {
     if (active === id) return;
@@ -277,6 +319,7 @@
       atomEls[c].classList.toggle("is-active", c === id);
       atomEls[c].setAttribute("aria-pressed", String(c === id));
     });
+    showPeak(id);
 
     // message passing: 1-hop bonds strong, 2-hop faint
     const d = hops(id);
@@ -312,6 +355,24 @@
 
   activate("C2", true);
 
+  /* ---------- Contact: the same aspirin as a graph model reads it, atoms as nodes ---------- */
+  const graph = document.querySelector("svg.graph");
+  if (graph) {
+    const gE = el("g", {}, graph), gN = el("g", {}, graph);
+    bonds.forEach(([a, b, order]) => {
+      const A = atoms[a], B = atoms[b];
+      const dx = B.x - A.x, dy = B.y - A.y, len = Math.hypot(dx, dy);
+      const nx = -dy / len, ny = dx / len;
+      const offs = order === 2 ? [-4, 4] : [0];
+      offs.forEach((o) => el("line", { x1: A.x + nx * o, y1: A.y + ny * o, x2: B.x + nx * o, y2: B.y + ny * o, class: "edge" }, gE));
+    });
+    Object.values(atoms).forEach((A) => {
+      const het = A.el !== "C";
+      el("circle", { cx: A.x, cy: A.y, r: 16, class: het ? "node het" : "node" }, gN);
+      el("text", { x: A.x, y: A.y + 5.5, "text-anchor": "middle", class: het ? "el het" : "el" }, gN).textContent = A.el[0];
+    });
+  }
+
   // Signature load: bonds draw outward from C2 in message-passing order, then the note pins
   if (printing && Element.prototype.animate) {
     const start = 700, step = 120, draw = 380;
@@ -345,5 +406,13 @@
       [{ opacity: 0 }, { opacity: 1 }], { duration: 360, delay: pinAt + i * 60, fill: "backwards" }
     ));
     setTimeout(() => { if (active === "C2") pulse("C2"); }, pinAt);
+    // the spectrum sweeps in from 200 ppm to 0 as the structure finishes
+    if (nmr) {
+      [...nmr.children].filter((n) => n !== gPeaks).forEach((n) => n.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 400, delay: start, fill: "backwards" }));
+      [...carbons].sort((a, b) => atoms[b].shift - atoms[a].shift).forEach((c, i) => peakEls[c].animate(
+        [{ opacity: 0, transform: `translateY(${TOP * 0.25}px)` }, { opacity: 1, transform: "none" }],
+        { duration: 340, delay: start + 200 + i * 70, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "backwards" }
+      ));
+    }
   }
 })();

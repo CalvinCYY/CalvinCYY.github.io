@@ -13,7 +13,7 @@
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
   <script>if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("print");</script>
   <script type="application/ld+json">
   {
@@ -73,7 +73,7 @@
             <div class="spec__row"><dt>Composition</dt><dd>Graph neural networks · LLM agents · cheminformatics</dd></div>
             <div class="spec__row"><dt>Origin</dt><dd>PhD and postdoc, University of Bristol</dd></div>
             <div class="spec__row"><dt>Known for</dt><dd><a class="ln" href="#research">IMPRESSION</a>, NMR parameter prediction in place of DFT, <span class="nowrap">Chemical Science 2025</span></dd></div>
-            <div class="spec__row spec__row--hint"><dt>Structure</dt><dd>Aspirin with illustrative <sup>13</sup>C shifts in ppm. Hover or tab to an atom.</dd></div>
+            <div class="spec__row spec__row--hint"><dt>Structure</dt><dd>Aspirin with illustrative <sup>13</sup>C shifts in ppm. Hover an atom or a peak, or tab to an atom.</dd></div>
           </dl>
 
           <div class="actions">
@@ -88,6 +88,7 @@
 
         <figure class="hero__structure" id="molecule" aria-label="Aspirin skeletal structure with illustrative predicted carbon-13 shifts">
           <svg class="mol" viewBox="96 18 452 318" role="group" aria-label="Interactive aspirin structure"></svg>
+          <svg class="nmr" viewBox="0 0 452 112" aria-hidden="true"></svg>
           <noscript><p class="mol__fallback">Aspirin, C<sub>9</sub>H<sub>8</sub>O<sub>4</sub></p></noscript>
         </figure>
       </div>
@@ -150,6 +151,23 @@
 
         <div class="catalogue">
           <article class="entry" id="az-01">
+            <svg class="fig" viewBox="0 0 480 120" aria-hidden="true">
+              <g class="t"><text x="8" y="34">A</text><text x="8" y="64">B</text><text x="8" y="94">C</text></g>
+              <rect class="h" x="26" y="26" width="98" height="8"/><rect class="f" x="26" y="26" width="72" height="8"/>
+              <rect class="h" x="26" y="56" width="98" height="8"/><rect class="f" x="26" y="56" width="34" height="8"/>
+              <rect class="h" x="26" y="86" width="98" height="8"/><rect class="f" x="26" y="86" width="88" height="8"/>
+              <path class="s" d="M140 62H178M172 56l6 6-6 6"/>
+              <path class="d" d="M224 84V16M224 84H292M224 84L196 108"/>
+              <path class="s" d="M196 40H264V108H196ZM224 16H292V84M196 40L224 16M264 40L292 16M264 108L292 84"/>
+              <g class="f"><circle cx="196" cy="40" r="4.5"/><circle cx="264" cy="40" r="4.5"/><circle cx="264" cy="108" r="4.5"/><circle cx="196" cy="108" r="4.5"/><circle cx="224" cy="16" r="4.5"/><circle cx="292" cy="16" r="4.5"/><circle cx="292" cy="84" r="4.5"/><circle cx="224" cy="84" r="4.5"/></g>
+              <circle class="b" cx="244" cy="62" r="6.5"/>
+              <path class="s" d="M308 62H346M340 56l6 6-6 6"/>
+              <g class="t"><text x="372" y="20" text-anchor="middle">A</text><text x="396" y="20" text-anchor="middle">B</text><text x="420" y="20" text-anchor="middle">C</text></g>
+              <g class="h"><rect x="364" y="28" width="16" height="12"/><rect x="388" y="28" width="16" height="12"/><rect x="412" y="28" width="16" height="12"/><rect x="364" y="46" width="16" height="12"/><rect x="388" y="46" width="16" height="12"/><rect x="412" y="46" width="16" height="12"/><rect x="364" y="64" width="16" height="12"/><rect x="388" y="64" width="16" height="12"/><rect x="412" y="64" width="16" height="12"/><rect x="364" y="82" width="16" height="12"/><rect x="388" y="82" width="16" height="12"/><rect x="412" y="82" width="16" height="12"/><rect x="364" y="100" width="16" height="12"/><rect x="388" y="100" width="16" height="12"/><rect x="412" y="100" width="16" height="12"/></g>
+              <g class="f"><rect x="364" y="46" width="16" height="12"/><rect x="412" y="46" width="16" height="12"/><rect x="388" y="64" width="16" height="12"/><rect x="412" y="64" width="16" height="12"/><rect x="364" y="82" width="16" height="12"/><rect x="388" y="82" width="16" height="12"/></g>
+              <g class="b"><circle cx="372" cy="106" r="3"/><circle cx="396" cy="106" r="3"/><circle cx="420" cy="106" r="3"/></g>
+              <path class="sig" pathLength="100" d="M26 30H124M140 62H178M196 108L264 40L292 16M308 62H346M364 106H428"/>
+            </svg>
             <div class="entry__head"><h3>Method robustness web application</h3><p class="entry__no mono"><a href="#az-01" aria-label="Link to Method robustness web application">AZ-01</a></p></div>
             <p>Replaced a family of spreadsheet workflows for analytical-method robustness and ruggedness studies with one web application: factor classification, risk assessment and automatic design-of-experiments generation.</p>
             <dl class="slots">
@@ -158,6 +176,23 @@
             </dl>
           </article>
           <article class="entry" id="az-02">
+            <svg class="fig" viewBox="0 0 480 120" aria-hidden="true">
+              <rect class="n" x="20" y="8" width="52" height="70"/><rect class="n" x="14" y="16" width="52" height="70"/><rect class="n" x="8" y="24" width="52" height="70"/>
+              <path class="h" d="M16 40H52M16 50H52M16 60H44M16 70H52M16 80H36"/>
+              <path class="s" d="M74 60H102M96 54l6 6-6 6"/>
+              <path class="h" d="M124 36L150 26L176 44L140 68L124 36M150 26L140 68L170 82L176 44L200 62L170 82L132 98L140 68M170 82L196 100L200 62"/>
+              <g class="n"><circle cx="124" cy="36" r="5"/><circle cx="150" cy="26" r="5"/><circle cx="140" cy="68" r="5"/><circle cx="132" cy="98" r="5"/><circle cx="196" cy="100" r="5"/></g>
+              <g class="f"><circle cx="176" cy="44" r="5.5"/><circle cx="200" cy="62" r="5.5"/><circle cx="170" cy="82" r="5.5"/></g>
+              <path class="s" d="M176 44L262 54M200 62H262M170 82L262 70"/>
+              <circle class="n" cx="286" cy="12" r="7"/><path class="s" d="M286 19V38"/>
+              <rect class="b" x="262" y="38" width="48" height="48"/>
+              <text class="tb" x="286" y="66" text-anchor="middle">LLM</text>
+              <path class="s" d="M310 62H352M346 56l6 6-6 6"/>
+              <path class="s" d="M366 40H438M366 62H430M366 84H420"/>
+              <path class="s" d="M450 40l5 5 9-10M450 62l5 5 9-10M450 84l5 5 9-10"/>
+              <g class="t"><text x="8" y="114">Site A</text><text x="472" y="114" text-anchor="end">Site B</text></g>
+              <path class="sig" pathLength="100" d="M16 50H52M74 60H102M140 68L200 62H262M310 62H352M366 62H430"/>
+            </svg>
             <div class="entry__head"><h3>Manufacturing knowledge foundation model</h3><p class="entry__no mono"><a href="#az-02" aria-label="Link to Manufacturing knowledge foundation model">AZ-02</a></p></div>
             <p>Language models that carry operating knowledge of a bespoke manufacturing platform between international sites: fine-tuned models and a retrieval-augmented generation system over technical documents, measured against purpose-built evaluation sets.</p>
             <dl class="slots">
@@ -166,6 +201,20 @@
             </dl>
           </article>
           <article class="entry" id="az-03">
+            <svg class="fig" viewBox="0 0 480 120" aria-hidden="true">
+              <path class="s" d="M8 98H26L30 64L34 98H52L55 26L58 98H68L71 76L74 98H92L95 48L98 98H116L119 84L122 98H138"/>
+              <path class="s" d="M148 62H180M174 56l6 6-6 6"/>
+              <rect class="b" x="190" y="38" width="48" height="48"/>
+              <path class="tbs" d="M202 52h24M202 62h24M202 72h14"/>
+              <path class="s" d="M238 62L262 24M238 62H262M238 62L262 100"/>
+              <rect class="n" x="262" y="15" width="48" height="18"/><rect class="n" x="262" y="53" width="48" height="18"/><rect class="n" x="262" y="91" width="48" height="18"/>
+              <g class="t"><text x="286" y="28" text-anchor="middle">NMR</text><text x="286" y="66" text-anchor="middle">MS</text><text x="286" y="104" text-anchor="middle">GNN</text></g>
+              <path class="s" d="M310 24L334 62M310 62H334M310 100L334 62H346"/>
+              <path class="s" d="M362 14l10.4 6v12L362 38l-10.4-6V20ZM362 50l10.4 6v12L362 74l-10.4-6V56ZM362 86l10.4 6v12L362 110l-10.4-6V92Z"/>
+              <path class="s" d="M372.4 20L380 15.6M351.6 68L344 72.4M351.6 92L344 87.6M372.4 104L380 108.4"/>
+              <rect class="b" x="384" y="22" width="84" height="8"/><rect class="f" x="384" y="58" width="58" height="8"/><rect class="f" x="384" y="94" width="30" height="8"/>
+              <path class="sig" pathLength="100" d="M8 98H138M148 62H180M238 62H262M310 62H346M384 26H468"/>
+            </svg>
             <div class="entry__head"><h3>Structure elucidation assistant</h3><p class="entry__no mono"><a href="#az-03" aria-label="Link to Structure elucidation assistant">AZ-03</a></p></div>
             <p>An AI agent that combines analytical-chemistry models across spectroscopic techniques to turn spectral signals into a ranked list of candidate molecules, using forward prediction to check each candidate.</p>
             <dl class="slots">
@@ -174,6 +223,20 @@
             </dl>
           </article>
           <article class="entry" id="az-04">
+            <svg class="fig" viewBox="0 0 480 120" aria-hidden="true">
+              <path class="s" d="M8 66H200M56 66C72 66 72 32 92 32H128C148 32 148 66 164 66"/>
+              <g class="n"><circle cx="24" cy="66" r="6"/><circle cx="56" cy="66" r="6"/><circle cx="96" cy="32" r="6"/><circle cx="126" cy="32" r="6"/><circle cx="110" cy="66" r="6"/></g>
+              <path class="s" d="M88 14l5 5 9-10M118 14l5 5 9-10"/>
+              <circle class="b" cx="164" cy="66" r="8"/>
+              <circle class="n" cx="196" cy="66" r="6"/>
+              <path class="s" d="M212 62H240M234 56l6 6-6 6"/>
+              <rect class="n" x="250" y="14" width="78" height="96"/><rect class="f" x="250" y="14" width="78" height="16"/>
+              <path class="h" d="M260 44H318M260 56H318M260 68H304M260 80H318M260 92H296"/>
+              <path class="s" d="M338 62H366M360 56l6 6-6 6"/>
+              <g class="t"><text x="380" y="34">1</text><text x="380" y="68">2</text><text x="380" y="102">3</text></g>
+              <rect class="h" x="394" y="22" width="78" height="16"/><rect class="b" x="394" y="56" width="54" height="16"/><rect class="h" x="394" y="90" width="30" height="16"/>
+              <path class="sig" pathLength="100" d="M8 66H56C72 66 72 32 92 32H128C148 32 148 66 164 66H200M212 62H240M338 62H366M394 64H448"/>
+            </svg>
             <div class="entry__head"><h3>ML standards and governance</h3><p class="entry__no mono"><a href="#az-04" aria-label="Link to ML standards and governance">AZ-04</a></p></div>
             <p>A living framework for model and code quality across a data science team: code-review policy, model cards, risk tiers and a shared definition of done, piloted with project teams.</p>
             <dl class="slots">
@@ -247,19 +310,45 @@
             <h3 class="lit__title">Papers</h3>
             <ol class="refs">
               <li>
-                <p class="refs__title">Predicting molecular structure from sparse NMR data: proof-of-concept using a graph neural network</p>
-                <p class="refs__by">B. Honoré, <b>C. Yiu</b>, J. Napolitano-Farina, D. Russell, I. M. L. Trist, R. Dooley, C. P. Butts</p>
-                <p class="refs__src"><i>Digital Discovery</i>, 2026, 5(11), 4809–4815 · <a class="ln mono" href="https://doi.org/10.1039/D6DD00189K" target="_blank" rel="noopener">10.1039/D6DD00189K</a></p>
+                <svg class="thumb" viewBox="0 0 96 96" aria-hidden="true">
+                  <path class="s" d="M48 14l15.6 9v18L48 50l-15.6-9V23Z"/>
+                  <path class="s" d="M63.6 23L78 15"/>
+                  <path class="d" d="M24 70L32.4 41M48 60V50M72 74L63.6 41"/>
+                  <path class="s" d="M10 84H86M24 84V70M48 84V60M72 84V74"/>
+                  <g class="b"><circle cx="32.4" cy="41" r="4"/><circle cx="48" cy="50" r="4"/><circle cx="63.6" cy="41" r="4"/></g>
+                </svg>
+                <div>
+                  <p class="refs__title">Predicting molecular structure from sparse NMR data: proof-of-concept using a graph neural network</p>
+                  <p class="refs__by">B. Honoré, <b>C. Yiu</b>, J. Napolitano-Farina, D. Russell, I. M. L. Trist, R. Dooley, C. P. Butts</p>
+                  <p class="refs__src"><i>Digital Discovery</i>, 2026, 5(11), 4809–4815 · <a class="ln mono" href="https://doi.org/10.1039/D6DD00189K" target="_blank" rel="noopener">10.1039/D6DD00189K</a></p>
+                </div>
               </li>
               <li>
-                <p class="refs__title">IMPRESSION Generation 2: accurate, fast and generalised neural network model for predicting NMR parameters in place of DFT</p>
-                <p class="refs__by"><b>C. Yiu</b>, B. Honoré, W. Gerrard, C. P. Butts</p>
-                <p class="refs__src"><i>Chemical Science</i>, 2025 · <a class="ln mono" href="https://doi.org/10.1039/D4SC07858F" target="_blank" rel="noopener">10.1039/D4SC07858F</a></p>
+                <svg class="thumb" viewBox="0 0 96 96" aria-hidden="true">
+                  <path class="d" d="M48 26L67 59M48 26L29 59M48 26L48 70M48 26L76 82"/>
+                  <path class="s" d="M48 26L67 37V59L48 70L29 59V37ZM67 59L76 82"/>
+                  <g class="n"><circle cx="67" cy="37" r="5"/><circle cx="67" cy="59" r="5"/><circle cx="48" cy="70" r="5"/><circle cx="29" cy="59" r="5"/><circle cx="29" cy="37" r="5"/><circle cx="76" cy="82" r="5"/></g>
+                  <circle class="b" cx="48" cy="26" r="7"/>
+                </svg>
+                <div>
+                  <p class="refs__title">IMPRESSION Generation 2: accurate, fast and generalised neural network model for predicting NMR parameters in place of DFT</p>
+                  <p class="refs__by"><b>C. Yiu</b>, B. Honoré, W. Gerrard, C. P. Butts</p>
+                  <p class="refs__src"><i>Chemical Science</i>, 2025 · <a class="ln mono" href="https://doi.org/10.1039/D4SC07858F" target="_blank" rel="noopener">10.1039/D4SC07858F</a></p>
+                </div>
               </li>
               <li>
-                <p class="refs__title">Prediction of <sup>15</sup>N chemical shifts by machine learning</p>
-                <p class="refs__by">W. Gerrard, <b>C. Yiu</b>, C. P. Butts</p>
-                <p class="refs__src"><i>Magnetic Resonance in Chemistry</i>, 2023 · <a class="ln mono" href="https://doi.org/10.1002/mrc.5208" target="_blank" rel="noopener">10.1002/mrc.5208</a></p>
+                <svg class="thumb" viewBox="0 0 96 96" aria-hidden="true">
+                  <path class="s" d="M57 34L67 40V62L48 73L29 62V40L39 34"/>
+                  <path class="s" d="M62 44V58M48 67L35 59.5M35 44.5L39.5 41.5"/>
+                  <circle class="b" cx="48" cy="28" r="11"/>
+                  <text class="tb" x="48" y="33" text-anchor="middle">N</text>
+                  <text class="tm" x="35" y="20" text-anchor="end">15</text>
+                </svg>
+                <div>
+                  <p class="refs__title">Prediction of <sup>15</sup>N chemical shifts by machine learning</p>
+                  <p class="refs__by">W. Gerrard, <b>C. Yiu</b>, C. P. Butts</p>
+                  <p class="refs__src"><i>Magnetic Resonance in Chemistry</i>, 2023 · <a class="ln mono" href="https://doi.org/10.1002/mrc.5208" target="_blank" rel="noopener">10.1002/mrc.5208</a></p>
+                </div>
               </li>
             </ol>
           </div>
@@ -284,8 +373,13 @@
     <!-- Contact -->
     <section class="screen contact" id="contact" aria-labelledby="contact-title">
       <div class="label contact__label">
-        <h2 id="contact-title" class="contact__title">Get in touch</h2>
-        <p class="contact__lede">Open to conversations about graph ML, AI for chemistry and drug development, and research collaborations.</p>
+        <div class="contact__top">
+          <div>
+            <h2 id="contact-title" class="contact__title">Get in touch</h2>
+            <p class="contact__lede">Open to conversations about graph ML, AI for chemistry and drug development, and research collaborations.</p>
+          </div>
+          <svg class="graph" viewBox="120 10 362 312" aria-hidden="true"></svg>
+        </div>
         <div class="contact__routes">
           <a class="route" href="https://www.linkedin.com/in/calvin-yiu/" target="_blank" rel="noopener">
             <img src="images/icons/linkedin.svg" alt="" width="40" height="40" loading="lazy">
@@ -309,6 +403,6 @@
     <p><a class="ln" href="#top">Back to top</a></p>
   </footer>
 
-  <script src="script.js?v=4" defer></script>
+  <script src="script.js?v=5" defer></script>
 </body>
 </html>
