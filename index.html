@@ -13,7 +13,7 @@
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=20">
+  <link rel="stylesheet" href="style.css?v=21">
   <script>if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("print");</script>
   <script type="application/ld+json">
   {
@@ -79,17 +79,17 @@
           <div class="actions">
             <a class="btn btn--solid" href="https://www.linkedin.com/in/calvin-yiu/" target="_blank" rel="noopener">
               <img src="images/icons/linkedin.svg" alt="" width="18" height="18">Contact on LinkedIn
-            </a>
+            <span class="sr"> (opens in a new tab)</span></a>
             <a class="btn btn--line" href="https://github.com/CalvinCYY" target="_blank" rel="noopener">
               <img src="images/icons/github.svg" alt="" width="18" height="18">See code on GitHub
-            </a>
+            <span class="sr"> (opens in a new tab)</span></a>
           </div>
         </div>
 
         <figure class="hero__structure" id="molecule" aria-label="Aspirin skeletal structure with illustrative predicted carbon-13 shifts">
-          <svg class="mol" viewBox="96 18 452 318" role="group" aria-label="Interactive aspirin structure"></svg>
+          <svg class="mol" viewBox="96 18 452 318" role="group" aria-label="Interactive aspirin structure: use the arrow keys to move between carbons"></svg>
           <svg class="nmr" viewBox="0 0 452 112" aria-hidden="true"></svg>
-          <p class="mol__hint"><span class="mol__hint--fine">Hover an atom or a peak, or tab to an atom</span><span class="mol__hint--touch">Tap an atom or a peak</span></p>
+          <p class="mol__hint"><span class="mol__hint--fine">Hover an atom or a peak, or tab in and use the arrow keys</span><span class="mol__hint--touch">Tap an atom or a peak</span></p>
           <noscript><p class="mol__fallback">Aspirin, C<sub>9</sub>H<sub>8</sub>O<sub>4</sub></p></noscript>
         </figure>
       </div>
@@ -123,7 +123,7 @@
               <g class="b"><circle cx="372" cy="106" r="3"/><circle cx="396" cy="106" r="3"/><circle cx="420" cy="106" r="3"/></g>
               <path class="sig" pathLength="100" d="M26 30H124M140 62H178M196 108L264 40L292 16M308 62H346M364 106H428"/>
             </svg>
-            <div class="entry__head"><h3>Method robustness web application</h3><p class="entry__no mono"><a href="#az-01" aria-label="Link to Method robustness web application">AZ-01</a></p><p class="entry__status"><span class="entry__role">Lead developer</span><span class="stock stock--live">In production</span></p></div>
+            <div class="entry__head"><h3>Method robustness web application</h3><p class="entry__no mono"><a href="#az-01" aria-label="Permalink AZ-01">AZ-01</a></p><p class="entry__status"><span class="entry__role">Lead developer</span><span class="stock stock--live">In production</span></p></div>
             <p>Replaced a family of spreadsheet workflows for analytical-method robustness and ruggedness studies with one web application: factor classification, risk assessment and automatic design-of-experiments generation.</p>
             <dl class="slots">
               <div><dt>Stack</dt><dd class="mono">Python · web app · DoE</dd></div>
@@ -147,7 +147,7 @@
               <g class="t"><text x="8" y="114">Site A</text><text x="472" y="114" text-anchor="end">Site B</text></g>
               <path class="sig" pathLength="100" d="M16 50H52M74 60H102M140 68L200 62H262M310 62H352M366 62H430"/>
             </svg>
-            <div class="entry__head"><h3>Manufacturing knowledge foundation model</h3><p class="entry__no mono"><a href="#az-02" aria-label="Link to Manufacturing knowledge foundation model">AZ-02</a></p><p class="entry__status"><span class="entry__role">Data scientist</span><span class="stock stock--dev">In development</span></p></div>
+            <div class="entry__head"><h3>Manufacturing knowledge foundation model</h3><p class="entry__no mono"><a href="#az-02" aria-label="Permalink AZ-02">AZ-02</a></p><p class="entry__status"><span class="entry__role">Data scientist</span><span class="stock stock--dev">In development</span></p></div>
             <p>Language models that carry operating knowledge of a bespoke manufacturing platform between international sites: fine-tuned models and a retrieval-augmented generation system over technical documents, measured against purpose-built evaluation sets.</p>
             <dl class="slots">
               <div><dt>Stack</dt><dd class="mono">Fine-tuning · RAG · LangSmith</dd></div>
@@ -168,7 +168,7 @@
               <rect class="b" x="384" y="22" width="84" height="8"/><rect class="f" x="384" y="58" width="58" height="8"/><rect class="f" x="384" y="94" width="30" height="8"/>
               <path class="sig" pathLength="100" d="M8 98H138M148 62H180M238 62H262M310 62H346M384 26H468"/>
             </svg>
-            <div class="entry__head"><h3>Structure elucidation assistant</h3><p class="entry__no mono"><a href="#az-03" aria-label="Link to Structure elucidation assistant">AZ-03</a></p><p class="entry__status"><span class="entry__role">Originator and developer</span><span class="stock stock--live">In use by analytical teams</span></p></div>
+            <div class="entry__head"><h3>Structure elucidation assistant</h3><p class="entry__no mono"><a href="#az-03" aria-label="Permalink AZ-03">AZ-03</a></p><p class="entry__status"><span class="entry__role">Originator and developer</span><span class="stock stock--live">In use by analytical teams</span></p></div>
             <p>An AI agent that combines analytical-chemistry models across spectroscopic techniques to turn spectral signals into a ranked list of candidate molecules, using forward prediction to check each candidate.</p>
             <dl class="slots">
               <div><dt>Stack</dt><dd class="mono">Agents · NMR · MS · GNNs</dd></div>
@@ -189,7 +189,7 @@
               <rect class="h" x="394" y="22" width="78" height="16"/><rect class="b" x="394" y="56" width="54" height="16"/><rect class="h" x="394" y="90" width="30" height="16"/>
               <path class="sig" pathLength="100" d="M8 66H56C72 66 72 32 92 32H128C148 32 148 66 164 66H200M212 62H240M338 62H366M394 64H448"/>
             </svg>
-            <div class="entry__head"><h3>ML standards and governance</h3><p class="entry__no mono"><a href="#az-04" aria-label="Link to ML standards and governance">AZ-04</a></p><p class="entry__status"><span class="entry__role">Author and lead</span><span class="stock stock--dev">Piloted with project teams</span></p></div>
+            <div class="entry__head"><h3>ML standards and governance</h3><p class="entry__no mono"><a href="#az-04" aria-label="Permalink AZ-04">AZ-04</a></p><p class="entry__status"><span class="entry__role">Author and lead</span><span class="stock stock--dev">Piloted with project teams</span></p></div>
             <p>A living framework for model and code quality across a data science team: code-review policy, model cards, risk tiers and a shared definition of done.</p>
             <dl class="slots">
               <div><dt>Stack</dt><dd class="mono">GitHub · CI · model cards</dd></div>
@@ -245,7 +245,7 @@
               </div>
             </figure>
             <div class="entry__body">
-              <div class="entry__head"><h3>IMPRESSION Generation 2</h3><p class="entry__no mono"><a href="#cy-01" aria-label="Link to IMPRESSION Generation 2">CY-01</a></p></div>
+              <div class="entry__head"><h3>IMPRESSION Generation 2</h3><p class="entry__no mono"><a href="#cy-01" aria-label="Permalink CY-01">CY-01</a></p></div>
               <p>A 3D graph transformer that predicts multiple NMR parameters at once, chemical shifts and coupling constants, as an accurate, fast and general replacement for DFT calculations in structure elucidation.</p>
               <dl class="slots">
                 <div><dt>Role</dt><dd>Lead researcher and developer</dd></div>
@@ -253,7 +253,7 @@
                 <div><dt>Stack</dt><dd class="mono">PyTorch · DGL · RDKit</dd></div>
               </dl>
               <p class="entry__links">
-                <a class="ln" href="https://doi.org/10.1039/D4SC07858F" target="_blank" rel="noopener">Read the paper</a>
+                <a class="ln" href="https://doi.org/10.1039/D4SC07858F" target="_blank" rel="noopener">Read the paper<span class="sr"> (opens in a new tab)</span></a>
               </p>
             </div>
           </article>
@@ -263,14 +263,14 @@
               <img src="images/impression-logo.webp?v=2" alt="IMPRESSION logo" width="343" height="360" loading="lazy">
             </div>
             <div class="entry__body">
-              <div class="entry__head"><h3>Web-IMPRESSION</h3><p class="entry__no mono"><a href="#cy-02" aria-label="Link to Web-IMPRESSION">CY-02</a></p></div>
+              <div class="entry__head"><h3>Web-IMPRESSION</h3><p class="entry__no mono"><a href="#cy-02" aria-label="Permalink CY-02">CY-02</a></p></div>
               <p>IMPRESSION as a hosted web application and API for academic and industrial users: the route from a published model to software people license and use.</p>
               <dl class="slots">
                 <div><dt>Role</dt><dd>Full-stack developer, commercialisation lead</dd></div>
                 <div><dt>Methods</dt><dd>Model serving, research translation</dd></div>
                 <div><dt>Stack</dt><dd class="mono">React · Django · Docker · REST API</dd></div>
               </dl>
-              <p class="entry__access">For access, contact the <a class="ln" href="https://research-information.bris.ac.uk/en/persons/craig-p-butts/" target="_blank" rel="noopener">Butts Group at the University of Bristol</a>.</p>
+              <p class="entry__access">For access, contact the <a class="ln" href="https://research-information.bris.ac.uk/en/persons/craig-p-butts/" target="_blank" rel="noopener">Butts Group at the University of Bristol<span class="sr"> (opens in a new tab)</span></a>.</p>
             </div>
           </article>
         </div>
@@ -348,7 +348,7 @@
                 <div>
                   <p class="refs__title">Predicting molecular structure from sparse NMR data: proof-of-concept using a graph neural network</p>
                   <p class="refs__by">B. Honoré, <b>C. Yiu</b>, J. Napolitano-Farina, D. Russell, I. M. L. Trist, R. Dooley, C. P. Butts</p>
-                  <p class="refs__src"><i>Digital Discovery</i>, 2026, 5(11), 4809–4815 · <a class="ln mono" href="https://doi.org/10.1039/D6DD00189K" target="_blank" rel="noopener">10.1039/D6DD00189K</a></p>
+                  <p class="refs__src"><i>Digital Discovery</i>, 2026, 5(11), 4809–4815 · <a class="ln mono" href="https://doi.org/10.1039/D6DD00189K" target="_blank" rel="noopener">10.1039/D6DD00189K<span class="sr"> (opens in a new tab)</span></a></p>
                 </div>
               </li>
               <li>
@@ -361,7 +361,7 @@
                 <div>
                   <p class="refs__title">IMPRESSION Generation 2: accurate, fast and generalised neural network model for predicting NMR parameters in place of DFT</p>
                   <p class="refs__by"><b>C. Yiu</b>, B. Honoré, W. Gerrard, C. P. Butts</p>
-                  <p class="refs__src"><i>Chemical Science</i>, 2025 · <a class="ln mono" href="https://doi.org/10.1039/D4SC07858F" target="_blank" rel="noopener">10.1039/D4SC07858F</a></p>
+                  <p class="refs__src"><i>Chemical Science</i>, 2025 · <a class="ln mono" href="https://doi.org/10.1039/D4SC07858F" target="_blank" rel="noopener">10.1039/D4SC07858F<span class="sr"> (opens in a new tab)</span></a></p>
                 </div>
               </li>
               <li>
@@ -375,7 +375,7 @@
                 <div>
                   <p class="refs__title">Prediction of <sup>15</sup>N chemical shifts by machine learning</p>
                   <p class="refs__by">W. Gerrard, <b>C. Yiu</b>, C. P. Butts</p>
-                  <p class="refs__src"><i>Magnetic Resonance in Chemistry</i>, 2023 · <a class="ln mono" href="https://doi.org/10.1002/mrc.5208" target="_blank" rel="noopener">10.1002/mrc.5208</a></p>
+                  <p class="refs__src"><i>Magnetic Resonance in Chemistry</i>, 2023 · <a class="ln mono" href="https://doi.org/10.1002/mrc.5208" target="_blank" rel="noopener">10.1002/mrc.5208<span class="sr"> (opens in a new tab)</span></a></p>
                 </div>
               </li>
             </ol>
@@ -385,7 +385,7 @@
             <table class="talks">
               <caption class="sr">Conference talks</caption>
               <tbody>
-                <tr class="talks__prize"><td class="mono">Jul 2025</td><td><a class="ln" href="https://www.mabc-cambridge.ai/8th-mabc" target="_blank" rel="noopener">8th MABC: ML and AI in (Bio)Chemical Engineering</a><span class="talks__topic">Web-IMPRESSION: graph transformer network for fast, accessible, DFT-accurate NMR predictions</span><span class="prize">Best talk prize</span></td><td>Cambridge, UK</td></tr>
+                <tr class="talks__prize"><td class="mono">Jul 2025</td><td><a class="ln" href="https://www.mabc-cambridge.ai/8th-mabc" target="_blank" rel="noopener">8th MABC: ML and AI in (Bio)Chemical Engineering<span class="sr"> (opens in a new tab)</span></a><span class="talks__topic">Web-IMPRESSION: graph transformer network for fast, accessible, DFT-accurate NMR predictions</span><span class="prize">Best talk prize</span></td><td>Cambridge, UK</td></tr>
                 <tr><td class="mono">Nov 2024</td><td>Bruker User Meeting</td><td>Bath, UK</td></tr>
                 <tr><td class="mono">Sep 2024</td><td>JEOL User Meeting</td><td>Burlington, USA</td></tr>
                 <tr><td class="mono">Sep 2023</td><td>AI in Chemistry</td><td>Oxford, UK</td></tr>
@@ -414,13 +414,13 @@
             <span class="route__name">LinkedIn</span>
             <span class="route__addr mono">linkedin.com/in/calvin-yiu</span>
             <span class="route__go">Send a message</span>
-          </a>
+          <span class="sr"> (opens in a new tab)</span></a>
           <a class="route" href="https://github.com/CalvinCYY" target="_blank" rel="noopener">
             <img src="images/icons/github.svg" alt="" width="40" height="40" loading="lazy">
             <span class="route__name">GitHub</span>
             <span class="route__addr mono">github.com/CalvinCYY</span>
             <span class="route__go">Browse the code</span>
-          </a>
+          <span class="sr"> (opens in a new tab)</span></a>
         </div>
       </div>
     </section>
@@ -431,6 +431,6 @@
     <p><a class="ln" href="#top">Back to top</a></p>
   </footer>
 
-  <script src="script.js?v=9" defer></script>
+  <script src="script.js?v=10" defer></script>
 </body>
 </html>

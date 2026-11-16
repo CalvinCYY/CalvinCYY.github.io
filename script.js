@@ -285,7 +285,7 @@
   carbons.forEach((id) => {
     const A = atoms[id];
     const g = el("g", {
-      class: "atom", tabindex: "0", role: "button",
+      class: "atom", tabindex: "-1", role: "button",
       "aria-label": `Carbon ${id.slice(1)}, illustrative shift ${A.shift.toFixed(1)} ppm`,
       "data-id": id,
     }, gAtoms);
@@ -381,6 +381,7 @@
     carbons.forEach((c) => {
       atomEls[c].classList.toggle("is-active", c === id);
       atomEls[c].setAttribute("aria-pressed", String(c === id));
+      atomEls[c].setAttribute("tabindex", c === id ? "0" : "-1"); // one tab stop: the active carbon
     });
     showPeak(id);
 
@@ -412,7 +413,15 @@
     g.addEventListener("focus", () => activate(id));
     g.addEventListener("click", () => activate(id));
     g.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(id); }
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(id); return; }
+      // arrow keys rove between carbons; Home and End jump to the ends
+      const i = carbons.indexOf(id), n = carbons.length;
+      const to = { ArrowRight: i + 1, ArrowDown: i + 1, ArrowLeft: i - 1, ArrowUp: i - 1, Home: 0, End: n - 1 }[e.key];
+      if (to === undefined) return;
+      e.preventDefault();
+      const next = carbons[(to + n) % n];
+      activate(next);
+      atomEls[next].focus();
     });
   });
 
