@@ -1,4 +1,4 @@
 {
-  "prompt": "origin: pre-existing client logo images/IMPRESSION_logo.png, WebP q85 conversion with alpha",
-  "createdAt": "2026-11-15T22:42:47.558Z"
+  "prompt": "origin: pre-existing client logo images/IMPRESSION_logo.png, cropped to its alpha bounds (45,35)-(388,395) with a 2px margin, WebP q85 with alpha",
+  "createdAt": "2026-11-16T01:40:48.187Z"
 }

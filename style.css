@@ -391,7 +391,7 @@ a.frame:hover img { transform: scale(1.03); }
 .frame--logo img { object-fit: contain; padding: 10%; }
 .frame--figure { border: 0; }
 .research .frame--logo { aspect-ratio: auto; height: 100%; min-height: 200px; position: relative; }
-.research .frame--logo img { position: absolute; inset: 0; padding: 18%; }
+.research .frame--logo img { position: absolute; inset: 0; padding: 9%; }
 .research .entry__body p:not(.entry__no):not(.entry__links) { max-width: 62ch; }
 
 /* IMPRESSION G2 figure: training data and workflow, printed as a catalogue insert */
@@ -543,11 +543,6 @@ a.frame:hover img { transform: scale(1.03); }
 .cert td:last-child span { margin-top: 4px; font-size: 0.875rem; }
 
 .cert__side { border-left: 2px solid var(--ink); padding-left: var(--gap); }
-.cert__photo {
-  width: 128px; height: 128px; object-fit: cover;
-  border: 1px solid var(--ink);
-  margin-bottom: 20px;
-}
 .cert__side h3, .lit__title {
   font-size: 1.5rem; font-weight: 800; font-stretch: 70%;
   text-transform: uppercase; letter-spacing: 0.01em;
@@ -729,14 +724,13 @@ a.frame:hover img { transform: scale(1.03); }
   .research .entry { grid-row: auto; grid-template-rows: auto; }
   .research .entry--side { grid-template-columns: clamp(160px, 24vw, 240px) minmax(0, 1fr); column-gap: var(--gap); align-items: start; }
   .research .frame--logo { height: auto; min-height: 0; aspect-ratio: 1; }
-  .research .frame--logo img { padding: 10%; }
+  .research .frame--logo img { padding: 7%; }
   .hero__label { grid-template-columns: 1fr; }
   .hero__text { border-right: 0; border-bottom: 2px solid var(--ink); }
   .hero__structure { padding-block: clamp(16px, 3vw, 32px); }
   .mol { max-width: 640px; }
   .cert { grid-template-columns: 1fr; }
-  .cert__side { border-left: 0; padding-left: 0; display: grid; grid-template-columns: 128px minmax(0, 1fr); column-gap: var(--gap); }
-  .cert__photo { grid-row: span 2; margin: 0; }
+  .cert__side { border-left: 0; padding-left: 0; }
 }
 
 @media (max-width: 860px) {
@@ -769,8 +763,6 @@ a.frame:hover img { transform: scale(1.03); }
   .cert td { border: 0; padding: 0; width: auto !important; }
   .cert td:first-child { padding-top: 0; margin-bottom: 4px; }
   .cert td:last-child { margin-top: 10px; }
-  .cert__side { grid-template-columns: 1fr; }
-  .cert__photo { grid-row: auto; margin-bottom: 20px; }
   .talks tr { display: grid; grid-template-columns: 5.5rem 1fr; border-bottom: 1px solid var(--ink); padding: 12px 0; }
   .talks td { border: 0; padding: 0; }
   .talks td:last-child { grid-column: 2; }
