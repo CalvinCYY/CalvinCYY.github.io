@@ -150,7 +150,8 @@ sup { font-size: 0.68em; line-height: 0; }
 
 /* ---------- Screens and labels ---------- */
 .screen {
-  padding: clamp(16px, 2.6vw, 40px) var(--edge);
+  --pt: clamp(16px, 2.6vw, 40px);
+  padding: var(--pt) var(--edge);
 }
 .label {
   position: relative;
@@ -182,7 +183,7 @@ sup { font-size: 0.68em; line-height: 0; }
 .label__lede { max-width: 68ch; color: var(--ink-2); margin: -8px 0 clamp(20px, 2.4vw, 32px); font-size: 1.0625rem; }
 
 /* ---------- Hero ---------- */
-.hero { min-height: calc(100svh - var(--bar-h)); display: flex; padding-block: var(--edge); }
+.hero { --pt: var(--edge); min-height: calc(100svh - var(--bar-h)); display: flex; padding-block: var(--edge); }
 .hero__label {
   flex: 1;
   display: grid;
@@ -587,6 +588,12 @@ a.frame:hover img { transform: scale(1.03); }
 .stack main > section {
   position: sticky;
   top: var(--stick, var(--bar-h));
+  isolation: isolate;
+}
+/* the bench is painted from the label's top edge down, so the cobalt band leads the sheet over the one beneath */
+.stack main > section::before {
+  content: "";
+  position: absolute; inset: var(--pt) 0 0 0; z-index: -1;
   background-color: var(--ground-1);
   background-image: linear-gradient(90deg,
     var(--ground-0) 0%, var(--ground-1) 20%, var(--ground-2) 44%, var(--ground-3) 51%,
