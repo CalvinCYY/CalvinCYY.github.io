@@ -219,11 +219,20 @@ sup { font-size: 0.68em; line-height: 0; }
   text-wrap: balance;
 }
 .hero__suffix { font-weight: 500; }
+.hero__tagline {
+  margin-top: clamp(16px, 2vw, 26px);
+  font-size: clamp(1.25rem, 1.9vw, 1.625rem);
+  line-height: 1.15;
+  font-weight: 750;
+  font-stretch: 80%;
+  color: var(--band-ink);
+  text-wrap: balance;
+}
 .hero__role {
   font-size: clamp(1.125rem, 1.55vw, 1.4rem);
   line-height: 1.4;
   max-width: 34ch;
-  margin: clamp(16px, 2vw, 26px) 0 clamp(20px, 2.4vw, 32px);
+  margin: 8px 0 clamp(20px, 2.4vw, 32px);
   text-wrap: pretty;
 }
 
@@ -672,7 +681,8 @@ a.frame:hover img { transform: scale(1.03); }
 .print .hero__strip span:nth-child(2) { animation-delay: 500ms; }
 .print .hero__strip span:nth-child(3) { animation-delay: 580ms; }
 .print .hero__name { animation: print-press 640ms var(--ease) 300ms both; }
-.print .hero__role { animation: print-set 480ms var(--ease) 520ms both; }
+.print .hero__tagline { animation: print-set 480ms var(--ease) 460ms both; }
+.print .hero__role { animation: print-set 480ms var(--ease) 540ms both; }
 .print .spec__row { animation: print-rule 520ms var(--ease) both; }
 .print .spec__row:nth-child(1) { animation-delay: 620ms; }
 .print .spec__row:nth-child(2) { animation-delay: 680ms; }

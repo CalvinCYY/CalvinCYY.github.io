@@ -340,7 +340,7 @@ Two materials and one printed colour: a pale warm-grey bench behind, near-white 
 
 ### Primary
 - **Label Cobalt** (band-cobalt): the printed house colour. Fills every label head slab (fused with the 18px top band), the hero lot strip, the molecule plate, catalogue number chips, the prize talk row, the prize tag, the whole contact label, the solid-button hover, the 6px catalogue hover rule, text selection and the global focus outline.
-- **Deep Cobalt Ink** (band-cobalt-ink): cobalt at text weight on white. The hover colour of inline links on label stock, nav and footer link hover, the current-section link in the nav, and the text of the inverted prize tag (about 9.8:1 on white).
+- **Deep Cobalt Ink** (band-cobalt-ink): cobalt at text weight on white. The hero tagline (role and employer), the hover colour of inline links on label stock, nav and footer link hover, the current-section link in the nav, and the text of the inverted prize tag (about 9.8:1 on white).
 
 ### Secondary
 - **On-Band White** (on-band): everything printed on cobalt: headlines in label heads, the lot strip, molecule bonds, dots and annotations, chip text, contact text, route outlines and icon plates. Also the white ground of image frames (about 6.8:1 on cobalt).
@@ -379,7 +379,8 @@ Two materials and one printed colour: a pale warm-grey bench behind, near-white 
 - **Route name** (800, 1.75rem, lh 1, 72% width, caps; 1.5rem under 560px): contact channel names.
 - **Subhead** (800, 1.5rem, 70% width, caps, ruled 2px beneath): column heads inside a label (Composition, Papers, Talks).
 - **Title** (750, clamp 1.375–1.75rem, lh 1.08, 78% width): entry names. **Role title** (750, 1.25rem, lh 1.15, 80% width): role names in the certificate table.
-- **Lead** (400, clamp 1.125–1.4rem, lh 1.4, to 34ch): the hero role line. The contact lede uses clamp 1.125–1.35rem to 48ch.
+- **Tagline** (750, clamp 1.25–1.625rem, lh 1.15, 80% width, deep cobalt ink): the hero's role and employer under the name, on its own line.
+- **Lead** (400, clamp 1.125–1.4rem, lh 1.4, to 34ch): the hero's "I build…" line under the tagline, 8px below it. The contact lede uses clamp 1.125–1.35rem to 48ch.
 - **Reference title** (650, clamp 1.125–1.3rem, lh 1.3, 88% width, to 52ch): paper titles.
 - **Wordmark** (800, 1.125rem, 75% width, caps, +0.02em): the name in the top bar.
 - **Lede** (400, 1.0625rem, to 68ch): the optional lede under a label head.
@@ -493,7 +494,7 @@ The hero's aspirin coordinates re-rendered as a graph in the contact label's top
 ### Motion
 One ease for everything: `cubic-bezier(0.16, 1, 0.3, 1)`. State durations: 160ms colour fills, 180–200ms lifts, 220ms molecule state, 260ms underlines, 420ms catalogue rule, 500ms image zoom.
 
-**The label prints itself (hero, once per load).** A class set in the head before paint (skipped under reduced motion, removed after 2.6s) plays: the hero label clip-reveals from the top (700ms); the lot strip band scales in from the left (620ms at 120ms) and its fields set in at 420 / 500 / 580ms; the name presses up through a clip (640ms at 300ms); the role sets at 520ms; spec rows draw left to right with 60ms stagger from 620ms; actions set at 880ms; the molecule plate reveals from the top at 200ms. The spectrum axis fades in at 700ms and its lines rise in from 200 ppm to 0 with 70ms stagger from 900ms. Bonds then draw by stroke-dashoffset outward from C2 in breadth-first order (700ms start, 120ms per hop, 380ms each), heteroatoms fade in behind them, the annotation pins at about 1.3s and C2 pulses.
+**The label prints itself (hero, once per load).** A class set in the head before paint (skipped under reduced motion, removed after 2.6s) plays: the hero label clip-reveals from the top (700ms); the lot strip band scales in from the left (620ms at 120ms) and its fields set in at 420 / 500 / 580ms; the name presses up through a clip (640ms at 300ms); the tagline sets at 460ms and the role line at 540ms; spec rows draw left to right with 60ms stagger from 620ms; actions set at 880ms; the molecule plate reveals from the top at 200ms. The spectrum axis fades in at 700ms and its lines rise in from 200 ppm to 0 with 70ms stagger from 900ms. Bonds then draw by stroke-dashoffset outward from C2 in breadth-first order (700ms start, 120ms per hop, 380ms each), heteroatoms fade in behind them, the annotation pins at about 1.3s and C2 pulses.
 
 **The paper stack (scroll-linked).** The class that enables it is added by script after measuring, never under reduced motion, and toggles live if the preference changes. Cover values update once per animation frame on scroll and are re-measured on resize and load. It moves only transform and filter on whole labels. **Spring catches:** each sheet boundary is a catch point (the sheet settled under the bar, and for a sheet taller than the screen, its bottom meeting the screen's bottom). When a scroll comes to rest within min(140px, 15% of the viewport) of a catch, the page settles onto it with a critically damped spring (ω 16 rad/s, about 350ms, no overshoot). Rest is detected with scrollend, or a 160ms idle fallback. Wheel, key, pointer or touch input cancels a settle at once; in-page links and deep links skip catching until the next input. No wheel events are intercepted, and there is no CSS scroll-snap: proximity snapping's zone of about a third of the viewport trapped readers.
 
