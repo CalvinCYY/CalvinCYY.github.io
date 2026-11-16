@@ -42,6 +42,8 @@ Write these as CV entries: the kind of problem, the approach and the outcome. Ne
 3. A structure-elucidation assistant: an AI agent that combines analytical-chemistry models to turn spectral signals into ranked candidate molecules.
 4. ML governance: a model and code-standards framework covering code review, model cards and risk tiers.
 
+Status of each (confirmed by Calvin, Nov 2026): 1 in production (lead developer); 2 in development (data scientist); 3 in use by analytical teams (originator and developer); 4 piloted with project teams (author and lead).
+
 Calvin has NOT worked on agentic document extraction, manufacturing knowledge graphs, knowledge-grounded retrieval over documents (beyond item 2), process digital-twin surrogates, or manufacturability prediction. Do not list them.
 
 ## Constraints

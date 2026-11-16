@@ -506,6 +506,18 @@ a.frame:hover img { transform: scale(1.03); }
 }
 
 /* industry catalogue */
+/* stock line: role, then availability as a supplier catalogue prints it */
+.catalogue .entry__head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; column-gap: 16px; row-gap: 6px; }
+.entry__status {
+  grid-column: 1 / -1;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px;
+  font-size: 0.8125rem; font-weight: 750; font-stretch: 72%; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.entry__role { color: var(--ink-2); }
+.stock { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); }
+.stock::before { content: ""; width: 9px; height: 9px; flex: none; box-sizing: border-box; }
+.stock--live::before { background: var(--band); }
+.stock--dev::before { border: 1.5px solid var(--ink); }
 .catalogue {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
