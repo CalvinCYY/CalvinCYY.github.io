@@ -13,7 +13,7 @@
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=17">
+  <link rel="stylesheet" href="style.css?v=18">
   <script>if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("print");</script>
   <script type="application/ld+json">
   {
@@ -45,8 +45,8 @@
         <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20"><path d="M2 6h16M2 14h16" stroke="currentColor" stroke-width="2"/></svg>
       </button>
       <nav id="site-nav" class="bar__nav" aria-label="Sections">
-        <a href="#research" class="ln">Research software</a>
         <a href="#industry" class="ln">Industry work</a>
+        <a href="#research" class="ln">Research software</a>
         <a href="#experience" class="ln">Experience</a>
         <a href="#literature" class="ln">Literature</a>
         <a href="#contact" class="ln">Contact</a>
@@ -91,84 +91,6 @@
           <svg class="nmr" viewBox="0 0 452 112" aria-hidden="true"></svg>
           <noscript><p class="mol__fallback">Aspirin, C<sub>9</sub>H<sub>8</sub>O<sub>4</sub></p></noscript>
         </figure>
-      </div>
-    </section>
-
-    <!-- Research software -->
-    <section class="screen" id="research" aria-labelledby="research-title">
-      <div class="label">
-        <div class="label__head">
-          <h2 id="research-title">Research software</h2>
-          <p class="label__meta mono">University of Bristol · 2020–2025</p>
-        </div>
-
-        <div class="research">
-          <article class="entry entry--feature" id="cy-01">
-            <figure class="entry__media impfig" aria-label="IMPRESSION Generation 2 training data and workflow">
-              <div class="impfig__grid">
-                <div class="impfig__count">
-                  <dl class="impfig__method">
-                    <div><dt>Geometry</dt><dd class="mono">mPW1PW91/6-311g(d,p)</dd></div>
-                    <div><dt>NMR parameters</dt><dd class="mono">ωB97XD/6-311g(d,p)</dd></div>
-                  </dl>
-                  <p class="impfig__head">Molecule count</p>
-                  <p class="impfig__total"><span class="mono">18,182</span> total</p>
-                  <dl class="impfig__bars">
-                    <div style="--v: 0.5145"><dt>Cambridge Structural Database</dt><dd class="mono">4,799</dd></div>
-                    <div style="--v: 0.4347"><dt>ChEMBL</dt><dd class="mono">4,055</dd></div>
-                    <div style="--v: 1"><dt>OTAVA</dt><dd class="mono">9,328</dd></div>
-                  </dl>
-                </div>
-                <ol class="impfig__flow">
-                  <li class="node">Database</li>
-                  <li class="edge"><span>FPS sampling</span></li>
-                  <li class="node">Sampled structures</li>
-                  <li class="edge"><span>3D conformer generation</span></li>
-                  <li class="node">3D MM structures</li>
-                  <li class="edge"><span>DFT geometry optimisation</span></li>
-                  <li class="node">3D DFT structures</li>
-                  <li class="edge edge--across"><span>DFT NMR calculation</span></li>
-                  <li class="node">DFT NMR parameters</li>
-                  <li class="edge edge--up"><span>Convert to DataFrame</span></li>
-                  <li class="node">IMPRESSION dataset</li>
-                  <li class="edge edge--up"><span>Model training</span></li>
-                  <li class="node node--model">
-                    <svg viewBox="0 0 64 40" aria-hidden="true"><path d="M8 30L22 10L40 18L56 8M22 10L28 32L40 18L50 32"/><circle cx="8" cy="30" r="4"/><circle cx="22" cy="10" r="4"/><circle cx="40" cy="18" r="4"/><circle cx="56" cy="8" r="4"/><circle cx="28" cy="32" r="4"/><circle cx="50" cy="32" r="4"/></svg>
-                    IMPRESSION Generation 2
-                  </li>
-                </ol>
-              </div>
-            </figure>
-            <div class="entry__body">
-              <div class="entry__head"><h3>IMPRESSION Generation 2</h3><p class="entry__no mono"><a href="#cy-01" aria-label="Link to IMPRESSION Generation 2">CY-01</a></p></div>
-              <p>A 3D graph transformer that predicts multiple NMR parameters at once, chemical shifts and coupling constants, as an accurate, fast and general replacement for DFT calculations in structure elucidation.</p>
-              <dl class="slots">
-                <div><dt>Role</dt><dd>Lead researcher and developer</dd></div>
-                <div><dt>Methods</dt><dd>Graph transformers, 3D molecular graphs, DFT-labelled training data</dd></div>
-                <div><dt>Stack</dt><dd class="mono">PyTorch · DGL · RDKit</dd></div>
-              </dl>
-              <p class="entry__links">
-                <a class="ln" href="https://doi.org/10.1039/D4SC07858F" target="_blank" rel="noopener">Read the paper</a>
-              </p>
-            </div>
-          </article>
-
-          <article class="entry entry--side" id="cy-02">
-            <div class="entry__media frame frame--logo frame--still">
-              <img src="images/impression-logo.webp?v=2" alt="IMPRESSION logo" width="343" height="360" loading="lazy">
-            </div>
-            <div class="entry__body">
-              <div class="entry__head"><h3>Web-IMPRESSION</h3><p class="entry__no mono"><a href="#cy-02" aria-label="Link to Web-IMPRESSION">CY-02</a></p></div>
-              <p>IMPRESSION as a hosted web application and API for academic and industrial users: the route from a published model to software people license and use.</p>
-              <dl class="slots">
-                <div><dt>Role</dt><dd>Full-stack developer, commercialisation lead</dd></div>
-                <div><dt>Methods</dt><dd>Model serving, research translation</dd></div>
-                <div><dt>Stack</dt><dd class="mono">React · Django · Docker · REST API</dd></div>
-              </dl>
-              <p class="entry__access">For access, contact the <a class="ln" href="https://research-information.bris.ac.uk/en/persons/craig-p-butts/" target="_blank" rel="noopener">Butts Group at the University of Bristol</a>.</p>
-            </div>
-          </article>
-        </div>
       </div>
     </section>
 
@@ -271,6 +193,84 @@
             <dl class="slots">
               <div><dt>Stack</dt><dd class="mono">GitHub · CI · model cards</dd></div>
             </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research software -->
+    <section class="screen" id="research" aria-labelledby="research-title">
+      <div class="label">
+        <div class="label__head">
+          <h2 id="research-title">Research software</h2>
+          <p class="label__meta mono">University of Bristol · 2020–2025</p>
+        </div>
+
+        <div class="research">
+          <article class="entry entry--feature" id="cy-01">
+            <figure class="entry__media impfig" aria-label="IMPRESSION Generation 2 training data and workflow">
+              <div class="impfig__grid">
+                <div class="impfig__count">
+                  <dl class="impfig__method">
+                    <div><dt>Geometry</dt><dd class="mono">mPW1PW91/6-311g(d,p)</dd></div>
+                    <div><dt>NMR parameters</dt><dd class="mono">ωB97XD/6-311g(d,p)</dd></div>
+                  </dl>
+                  <p class="impfig__head">Molecule count</p>
+                  <p class="impfig__total"><span class="mono">18,182</span> total</p>
+                  <dl class="impfig__bars">
+                    <div style="--v: 0.5145"><dt>Cambridge Structural Database</dt><dd class="mono">4,799</dd></div>
+                    <div style="--v: 0.4347"><dt>ChEMBL</dt><dd class="mono">4,055</dd></div>
+                    <div style="--v: 1"><dt>OTAVA</dt><dd class="mono">9,328</dd></div>
+                  </dl>
+                </div>
+                <ol class="impfig__flow">
+                  <li class="node">Database</li>
+                  <li class="edge"><span>FPS sampling</span></li>
+                  <li class="node">Sampled structures</li>
+                  <li class="edge"><span>3D conformer generation</span></li>
+                  <li class="node">3D MM structures</li>
+                  <li class="edge"><span>DFT geometry optimisation</span></li>
+                  <li class="node">3D DFT structures</li>
+                  <li class="edge edge--across"><span>DFT NMR calculation</span></li>
+                  <li class="node">DFT NMR parameters</li>
+                  <li class="edge edge--up"><span>Convert to DataFrame</span></li>
+                  <li class="node">IMPRESSION dataset</li>
+                  <li class="edge edge--up"><span>Model training</span></li>
+                  <li class="node node--model">
+                    <svg viewBox="0 0 64 40" aria-hidden="true"><path d="M8 30L22 10L40 18L56 8M22 10L28 32L40 18L50 32"/><circle cx="8" cy="30" r="4"/><circle cx="22" cy="10" r="4"/><circle cx="40" cy="18" r="4"/><circle cx="56" cy="8" r="4"/><circle cx="28" cy="32" r="4"/><circle cx="50" cy="32" r="4"/></svg>
+                    IMPRESSION Generation 2
+                  </li>
+                </ol>
+              </div>
+            </figure>
+            <div class="entry__body">
+              <div class="entry__head"><h3>IMPRESSION Generation 2</h3><p class="entry__no mono"><a href="#cy-01" aria-label="Link to IMPRESSION Generation 2">CY-01</a></p></div>
+              <p>A 3D graph transformer that predicts multiple NMR parameters at once, chemical shifts and coupling constants, as an accurate, fast and general replacement for DFT calculations in structure elucidation.</p>
+              <dl class="slots">
+                <div><dt>Role</dt><dd>Lead researcher and developer</dd></div>
+                <div><dt>Methods</dt><dd>Graph transformers, 3D molecular graphs, DFT-labelled training data</dd></div>
+                <div><dt>Stack</dt><dd class="mono">PyTorch · DGL · RDKit</dd></div>
+              </dl>
+              <p class="entry__links">
+                <a class="ln" href="https://doi.org/10.1039/D4SC07858F" target="_blank" rel="noopener">Read the paper</a>
+              </p>
+            </div>
+          </article>
+
+          <article class="entry entry--side" id="cy-02">
+            <div class="entry__media frame frame--logo frame--still">
+              <img src="images/impression-logo.webp?v=2" alt="IMPRESSION logo" width="343" height="360" loading="lazy">
+            </div>
+            <div class="entry__body">
+              <div class="entry__head"><h3>Web-IMPRESSION</h3><p class="entry__no mono"><a href="#cy-02" aria-label="Link to Web-IMPRESSION">CY-02</a></p></div>
+              <p>IMPRESSION as a hosted web application and API for academic and industrial users: the route from a published model to software people license and use.</p>
+              <dl class="slots">
+                <div><dt>Role</dt><dd>Full-stack developer, commercialisation lead</dd></div>
+                <div><dt>Methods</dt><dd>Model serving, research translation</dd></div>
+                <div><dt>Stack</dt><dd class="mono">React · Django · Docker · REST API</dd></div>
+              </dl>
+              <p class="entry__access">For access, contact the <a class="ln" href="https://research-information.bris.ac.uk/en/persons/craig-p-butts/" target="_blank" rel="noopener">Butts Group at the University of Bristol</a>.</p>
+            </div>
           </article>
         </div>
       </div>

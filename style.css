@@ -364,6 +364,7 @@ sup { font-size: 0.68em; line-height: 0; }
   text-wrap: balance;
 }
 .entry p { text-wrap: pretty; }
+.label__lede, .comp dd, .cert td span, .refs__by, .talks__topic, .talks__note, .slots dd, .contact__lede, .hero__role { text-wrap: pretty; }
 .slots { margin-top: 14px; border-bottom: 1px solid var(--hair); }
 .slots > div {
   display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: 12px;
@@ -742,6 +743,12 @@ a.frame:hover img { transform: scale(1.03); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
+  /* talks: the venue moves under the event so the title keeps the column */
+  .talks tr { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); column-gap: 12px; border-bottom: 1px solid var(--ink); padding: 14px 0; }
+  .talks td { border: 0; padding: 0; }
+  .talks td:last-child { grid-column: 2; text-align: left; margin-top: 4px; font-size: 0.875rem; white-space: normal; }
+  .talks tr.talks__prize { padding-inline: 14px; }
+  .talks tr.talks__prize td:first-child, .talks tr.talks__prize td:last-child { padding: 0; }
   .research { grid-template-columns: 1fr; }
   .research .entry { grid-row: auto; grid-template-rows: auto; }
   .research .entry--side { grid-template-columns: clamp(160px, 24vw, 240px) minmax(0, 1fr); column-gap: var(--gap); align-items: start; }
@@ -785,9 +792,6 @@ a.frame:hover img { transform: scale(1.03); }
   .cert td { border: 0; padding: 0; width: auto !important; }
   .cert td:first-child { padding-top: 0; margin-bottom: 4px; }
   .cert td:last-child { margin-top: 10px; }
-  .talks tr { display: grid; grid-template-columns: 5.5rem 1fr; border-bottom: 1px solid var(--ink); padding: 12px 0; }
-  .talks td { border: 0; padding: 0; }
-  .talks td:last-child { grid-column: 2; }
   .route__name { font-size: 1.5rem; }
   .research .entry--side { grid-template-columns: 1fr; }
   .research .frame--logo { width: 160px; }
