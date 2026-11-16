@@ -52,7 +52,56 @@
       const vh = window.innerHeight, top = barH();
       // a sheet taller than the screen scrolls through fully, then sticks by its bottom edge
       sheets.forEach((s) => s.style.setProperty("--stick", `${Math.min(top, vh - s.offsetHeight)}px`));
+      placeSnaps();
     };
+
+    // Spring catches: when a scroll comes to rest close to a sheet boundary, settle onto it with a
+    // critically damped spring. Only a small zone around each boundary catches, so reading inside a
+    // sheet is never pulled; any wheel, touch or key input cancels the settle immediately.
+    let catches = [];
+    const placeSnaps = () => {
+      catches = [];
+      if (!root.classList.contains("stack")) return;
+      const vh = window.innerHeight, top = barH();
+      const max = document.documentElement.scrollHeight - vh;
+      let y = sheets[0].parentElement.offsetTop;
+      sheets.forEach((s) => {
+        const h = s.offsetHeight;
+        catches.push(y - top); // settled: the sheet's top sits under the bar
+        if (h > vh - top + 1) catches.push(y + h - vh); // read through: a tall sheet's bottom meets the screen's
+        y += h;
+      });
+      catches = catches.map((c) => Math.round(Math.min(max, Math.max(0, c))));
+    };
+    let springing = 0, quietUntilInput = false, touching = false;
+    const stopSpring = () => { if (springing) { cancelAnimationFrame(springing); springing = 0; } };
+    const userInput = () => { stopSpring(); quietUntilInput = false; };
+    ["wheel", "keydown", "pointerdown"].forEach((t) => window.addEventListener(t, userInput, { passive: true }));
+    window.addEventListener("touchstart", () => { touching = true; userInput(); }, { passive: true });
+    window.addEventListener("touchend", () => { touching = false; }, { passive: true });
+    const settle = () => {
+      if (!root.classList.contains("stack") || springing || quietUntilInput || touching || !catches.length) return;
+      const y0 = window.scrollY;
+      const zone = Math.min(140, window.innerHeight * 0.15);
+      let target = null, best = zone;
+      catches.forEach((c) => { const d = Math.abs(c - y0); if (d < best) { best = d; target = c; } });
+      if (target === null || best < 2) return;
+      const w = 16, t0 = performance.now(); // ω in rad/s: settles in about 350ms, no overshoot
+      const step = (now) => {
+        const t = (now - t0) / 1000;
+        const x = target + (y0 - target) * (1 + w * t) * Math.exp(-w * t);
+        window.scrollTo({ top: x, behavior: "instant" });
+        if (Math.abs(x - target) < 0.5) { window.scrollTo({ top: target, behavior: "instant" }); springing = 0; return; }
+        springing = requestAnimationFrame(step);
+      };
+      springing = requestAnimationFrame(step);
+    };
+    if ("onscrollend" in window) window.addEventListener("scrollend", settle);
+    else {
+      let idle = 0;
+      window.addEventListener("scroll", () => { if (springing) return; clearTimeout(idle); idle = setTimeout(settle, 160); }, { passive: true });
+    }
+
     let queued = false;
     const paint = () => {
       queued = false;
@@ -68,9 +117,18 @@
     const enable = () => {
       const on = !stillMotion.matches;
       root.classList.toggle("stack", on);
-      if (on) { measure(); paint(); } else sheets.forEach((s) => s.style.removeProperty("--cover"));
+      if (on) { measure(); paint(); } else { sheets.forEach((s) => s.style.removeProperty("--cover")); placeSnaps(); }
     };
     enable();
+    // heights change as images and fonts arrive: keep sticks and snap markers on the real flow
+    if ("ResizeObserver" in window) {
+      let rq = false;
+      new ResizeObserver(() => {
+        if (rq || !root.classList.contains("stack")) return;
+        rq = true;
+        requestAnimationFrame(() => { rq = false; measure(); });
+      }).observe(sheets[0].parentElement);
+    }
     window.addEventListener("scroll", () => { if (root.classList.contains("stack")) queue(); }, { passive: true });
     window.addEventListener("resize", () => { if (root.classList.contains("stack")) { measure(); queue(); } });
     window.addEventListener("load", () => { if (root.classList.contains("stack")) { measure(); paint(); } });
@@ -98,6 +156,7 @@
       const target = id ? document.getElementById(id) : null;
       if (!target || target.closest(".bar")) return;
       e.preventDefault();
+      quietUntilInput = true;
       history.pushState(null, "", `#${id}`);
       window.scrollTo({ top: Math.max(0, flowTop(target)), behavior: stillMotion.matches ? "auto" : "smooth" });
     });
@@ -105,7 +164,7 @@
     window.addEventListener("load", () => {
       const id = location.hash.slice(1);
       const target = id ? document.getElementById(id) : null;
-      if (target && root.classList.contains("stack") && !target.closest(".bar")) window.scrollTo(0, Math.max(0, flowTop(target)));
+      if (target && root.classList.contains("stack") && !target.closest(".bar")) { quietUntilInput = true; window.scrollTo(0, Math.max(0, flowTop(target))); }
     });
   }
   const printing = root.classList.contains("print");
