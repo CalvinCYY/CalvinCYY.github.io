@@ -302,6 +302,24 @@ sup { font-size: 0.68em; line-height: 0; }
 .nmr .peak.on { stroke-opacity: 1; stroke-width: 3; }
 .nmr .mark { fill: var(--on-band); transition: transform 260ms var(--ease); }
 .nmr .hit { fill: transparent; cursor: crosshair; }
+.mol__hint {
+  align-self: stretch; margin: 0;
+  font-size: 0.8125rem; color: var(--on-band-2); text-align: right;
+}
+.mol__hint--touch { display: none; }
+@media (hover: none) {
+  .mol__hint--fine { display: none; }
+  .mol__hint--touch { display: inline; }
+}
+
+/* touch: invisible hit areas reach about 44px without changing what is drawn */
+@media (pointer: coarse) {
+  .mol .atom .hit { r: 34px; }
+  .bar__menu { min-height: 44px; }
+  .bar__name, .entry__no a, .entry__links .ln, .foot .ln { position: relative; }
+  .bar__name::after, .entry__links .ln::after, .foot .ln::after { content: ""; position: absolute; inset: -14px -6px; }
+  .entry__no a::after { content: ""; position: absolute; inset: -9px -4px; }
+}
 
 /* ---------- Structure drawings: catalogue figures, paper marks, contact graph ---------- */
 .fig, .thumb { overflow: visible; }

@@ -355,13 +355,15 @@
     mark = el("path", { d: "M0 0l-5 8h10z", class: "mark" }, nmr);
     // pointer over the trace picks the nearest carbon line
     const hit = el("rect", { x: X0 - 8, y: 0, width: X1 - X0 + 16, height: BASE + 10, class: "hit" }, nmr);
-    hit.addEventListener("pointermove", (e) => {
+    const pick = (e) => {
       const pt = new DOMPoint(e.clientX, e.clientY).matrixTransform(nmr.getScreenCTM().inverse());
       const d = 200 - ((pt.x - X0) / (X1 - X0)) * 200;
       let best = null, gap = 9;
       carbons.forEach((c) => { const g = Math.abs(atoms[c].shift - d); if (g < gap) { gap = g; best = c; } });
       if (best) activate(best);
-    });
+    };
+    hit.addEventListener("pointermove", pick);
+    hit.addEventListener("pointerdown", pick); // a tap on touch screens
   }
   const showPeak = (id) => {
     if (!nmr) return;
