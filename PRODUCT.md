@@ -31,7 +31,7 @@ Success: a visitor understands who Calvin is and what he builds within seconds, 
 - **Publications:** Predicting molecular structure from sparse NMR data: proof-of-concept using a graph neural network, *Digital Discovery* 5(11), 4809–4815 (2026), second author, DOI 10.1039/D6DD00189K. IMPRESSION Generation 2, *Chemical Science* (2025), DOI 10.1039/D4SC07858F. Prediction of 15N chemical shifts by machine learning, *Magnetic Resonance in Chemistry* (2023), DOI 10.1002/mrc.5208.
 - **Talks:** 8th MABC, Cambridge UK (1–2 Jul 2025), 'Web-IMPRESSION: Graph Transformer Network for Fast, Accessible, DFT Accurate NMR Predictions', best talk prize (per Calvin; the conference page doesn't list winners), https://www.mabc-cambridge.ai/8th-mabc; Bruker User Meeting, Bath (Nov 2024); JEOL User Meeting, Burlington USA (Sep 2024); AI in Chemistry, Oxford (Sep 2023); SMASH NMR, Baveno Italy (Sep 2023).
 - **Links:** GitHub github.com/CalvinCYY; LinkedIn linkedin.com/in/calvin-yiu. Publication DOIs and the MABC page are live. The IMPRESSION and web-impression GitHub repos (not public) and the impression / web-impression bristol.ac.uk apps and Butts group page (dead as of Nov 2026) are not linked.
-- **Assets:** IMPRESSION header image, IMPRESSION logo. No headshot: Calvin asked for it to be removed from the site (Nov 2026).
+- **Assets:** IMPRESSION logo (`images/IMPRESSION_logo.png`, the master for the cropped WebP the page uses). The IMPRESSION G2 dataset and workflow figure is rebuilt as HTML on the page; its old raster header was removed. No headshot: Calvin asked for it to be removed from the site (Nov 2026).
 
 ## AstraZeneca work (general descriptions only)
 

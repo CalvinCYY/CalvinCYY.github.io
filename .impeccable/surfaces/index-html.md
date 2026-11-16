@@ -9,7 +9,7 @@ related_targets: []
 
 Scope: the single-page portfolio/CV at the repo root. Mode: Persuade. The visitor (a hiring manager or a scientific peer) decides whether Calvin is worth contacting and does so via LinkedIn, with GitHub as the second route.
 
-Proof on the page: IMPRESSION (paper, code, web app), two publications, four talks, four generalised AstraZeneca work entries, a Bristol PhD and postdoc with a promotion. No invented metrics beyond PRODUCT.md.
+Proof on the page: IMPRESSION (paper, code, web app), three papers, five talks, four generalised AstraZeneca work entries, a Bristol PhD and postdoc with a promotion. No invented metrics beyond PRODUCT.md.
 
 ## Direction contract
 

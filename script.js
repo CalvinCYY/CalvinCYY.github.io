@@ -200,7 +200,7 @@
     O3: { x: 270.8, y: 150, el: "O" },
     C8: { x: 210.2, y: 185, el: "C", shift: 169.7, note: [-44, 40, "end"] },
     O4: { x: 210.2, y: 255, el: "O" },
-    C9: { x: 149.6, y: 150, el: "C", shift: 21.0, note: [-20, -44, "end"] },
+    C9: { x: 149.6, y: 150, el: "C", shift: 21.0, note: [12, -44, "start"] },
   };
 
   // [a, b, order, inner?] inner = draw the second line inside the ring

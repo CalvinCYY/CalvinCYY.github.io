@@ -211,7 +211,7 @@ components:
     textColor: "{colors.ink}"
     typography: "{typography.headline}"
     rounded: "{rounded.none}"
-    padding: "clamp(14px, 1.6vw, 22px) clamp(20px, 3.3vw, 48px) clamp(18px, 2vw, 28px)"
+    padding: "clamp(18px, 2vw, 28px) clamp(20px, 3.3vw, 48px) clamp(14px, 1.6vw, 20px)"
   lot-strip:
     backgroundColor: "{colors.band-cobalt}"
     textColor: "{colors.on-band}"
@@ -408,7 +408,7 @@ The page is a vertical stack of screens, each holding one label inset from the v
 - **Literature:** papers and talks at 1.25 : 1.
 - **Contact:** a fully cobalt label with two equal route blocks.
 
-Responsive steps: at 1100px the hero and certificate stack to one column (the vertical divider becomes horizontal; the molecule caps at 640px). At 860px the nav collapses to a menu button and every two-column grid becomes one column; subgrid alignment is dropped. At 600px the lot strip drops to 0.75rem and loses its last field. From 1100px down the talks table re-flows as grid rows: date beside the event, the venue under the event in soft ink, the prize row inset 14px. Running text (ledes, slots, composition, certificate prose, authors, talk topics) uses text-wrap: pretty so no line ends on a lone word. At 560px spec rows stack term over value, action buttons go full width, and the certificate table re-flows as stacked grid rows.
+Responsive steps: at 1100px the hero and certificate stack to one column (the vertical divider becomes horizontal; the molecule, spectrum and hint cap at 640px). At 860px the nav collapses to a menu button and every two-column grid becomes one column; subgrid alignment is dropped. At 600px the lot strip drops to 0.75rem and loses its last field. From 1100px down the talks table re-flows as grid rows: date beside the event, the venue under the event in soft ink, the prize row inset 14px. Running text (ledes, slots, composition, certificate prose, authors, talk topics) uses text-wrap: pretty so no line ends on a lone word. At 560px spec rows stack term over value, action buttons go full width, and the certificate table re-flows as stacked grid rows.
 
 **Paper stack.** When motion is allowed, every section is sticky. Its stick offset is the smaller of the bar height and (viewport height − section height), so a sheet shorter than the screen sticks under the bar, while a taller sheet scrolls through in full and then sticks by its bottom edge. Each section paints the fixed bench gradient from its label's top edge down (a pseudo-element inset by the section's top padding), so it hides the sheet beneath while the incoming label's cobalt band, not a strip of bench, is the leading edge that slides over it. The section's top padding stays transparent, so a settled sheet can show the sunken label's top edge above it. In-page anchor clicks and deep links scroll to a sheet's flow position (the summed heights of the sheets before it, minus the bar), not its stuck position. The nav marks as current the last section whose top has passed mid-viewport, computed on scroll. Under reduced motion the sections flow normally.
 
