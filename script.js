@@ -25,20 +25,89 @@
 
   /* ---------- Nav: mark the section being read ---------- */
   const navLinks = [...document.querySelectorAll('.bar__nav a[href^="#"]')];
-  if (navLinks.length && "IntersectionObserver" in window) {
+  if (navLinks.length) {
     const byId = new Map(navLinks.map((a) => [a.getAttribute("href").slice(1), a]));
-    const spy = new IntersectionObserver((entries) => {
-      entries.forEach((en) => {
-        if (!en.isIntersecting) return;
-        navLinks.forEach((a) => a.removeAttribute("aria-current"));
-        const link = byId.get(en.target.id);
-        if (link) link.setAttribute("aria-current", "true");
-      });
-    }, { rootMargin: "-45% 0px -50% 0px" });
-    document.querySelectorAll("main > section").forEach((sec) => spy.observe(sec));
+    const secs = [...document.querySelectorAll("main > section")];
+    let spyQueued = false;
+    const spy = () => {
+      spyQueued = false;
+      const mid = window.innerHeight * 0.5;
+      let current = null;
+      for (const sec of secs) if (sec.getBoundingClientRect().top <= mid) current = sec;
+      const link = current ? byId.get(current.id) : null;
+      navLinks.forEach((a) => (a === link ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current")));
+    };
+    window.addEventListener("scroll", () => { if (!spyQueued) { spyQueued = true; requestAnimationFrame(spy); } }, { passive: true });
+    spy();
   }
 
   const root = document.documentElement;
+
+  /* ---------- Paper stack: sheets stick, the next one slides over and the last one sinks ---------- */
+  const sheets = [...document.querySelectorAll("main > section")];
+  const stillMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (sheets.length > 1) {
+    const barH = () => (bar ? bar.offsetHeight : 0);
+    const measure = () => {
+      const vh = window.innerHeight, top = barH();
+      // a sheet taller than the screen scrolls through fully, then sticks by its bottom edge
+      sheets.forEach((s) => s.style.setProperty("--stick", `${Math.min(top, vh - s.offsetHeight)}px`));
+    };
+    let queued = false;
+    const paint = () => {
+      queued = false;
+      const vh = window.innerHeight, span = vh - barH();
+      sheets.forEach((s, i) => {
+        const next = sheets[i + 1];
+        let cover = 0;
+        if (next) cover = Math.min(1, Math.max(0, (vh - next.getBoundingClientRect().top) / span));
+        s.style.setProperty("--cover", cover.toFixed(3));
+      });
+    };
+    const queue = () => { if (!queued) { queued = true; requestAnimationFrame(paint); } };
+    const enable = () => {
+      const on = !stillMotion.matches;
+      root.classList.toggle("stack", on);
+      if (on) { measure(); paint(); } else sheets.forEach((s) => s.style.removeProperty("--cover"));
+    };
+    enable();
+    window.addEventListener("scroll", () => { if (root.classList.contains("stack")) queue(); }, { passive: true });
+    window.addEventListener("resize", () => { if (root.classList.contains("stack")) { measure(); queue(); } });
+    window.addEventListener("load", () => { if (root.classList.contains("stack")) { measure(); paint(); } });
+    stillMotion.addEventListener("change", enable);
+
+    // Anchor jumps: sticky sheets report their stuck position, so scroll to the flow position instead
+    const flowTop = (el) => {
+      let y = 0, n = el;
+      const sheet = el.closest("main > section");
+      if (sheet && root.classList.contains("stack")) {
+        // sum of the heights of all sheets before this one is its untouched flow position
+        const main = sheet.parentElement;
+        y = main.offsetTop;
+        for (const s of sheets) { if (s === sheet) break; y += s.offsetHeight; }
+        if (el !== sheet) { y += el.getBoundingClientRect().top - sheet.getBoundingClientRect().top; }
+        return y - barH();
+      }
+      for (; n; n = n.offsetParent) y += n.offsetTop;
+      return y - barH();
+    };
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a || !root.classList.contains("stack")) return;
+      const id = a.getAttribute("href").slice(1);
+      const target = id ? document.getElementById(id) : null;
+      if (!target || target.closest(".bar")) return;
+      e.preventDefault();
+      history.pushState(null, "", `#${id}`);
+      window.scrollTo({ top: Math.max(0, flowTop(target)), behavior: stillMotion.matches ? "auto" : "smooth" });
+    });
+    // deep link on arrival (e.g. /#az-02)
+    window.addEventListener("load", () => {
+      const id = location.hash.slice(1);
+      const target = id ? document.getElementById(id) : null;
+      if (target && root.classList.contains("stack") && !target.closest(".bar")) window.scrollTo(0, Math.max(0, flowTop(target)));
+    });
+  }
   const printing = root.classList.contains("print");
   if (printing) setTimeout(() => root.classList.remove("print"), 2600);
   const calm = window.matchMedia("(prefers-reduced-motion: reduce)");

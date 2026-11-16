@@ -1,6 +1,6 @@
 ---
 name: Calvin Yiu, PhD
-description: Portfolio and public CV set as a labelled laboratory reagent on amber glass, printed in one bold cobalt.
+description: Portfolio and public CV set as a stack of laboratory reagent labels on a pale lab bench, printed in one bold cobalt.
 colors:
   band-cobalt: "#1f4fd1"
   band-cobalt-ink: "#163a9e"
@@ -11,11 +11,16 @@ colors:
   ink: "#121211"
   ink-soft: "#45443f"
   hairline: "#c9c7bd"
-  glass-deep: "#241105"
-  glass-body: "#4a230a"
-  glass-warm: "#6e3810"
-  glass-highlight: "#82461a"
-  on-glass: "#f4dcbc"
+  ground-0: "#c9c7bf"
+  ground-1: "#d6d4cd"
+  ground-2: "#e1dfd9"
+  ground-3: "#e9e8e3"
+  on-ground: "#121211"
+  on-ground-2: "#45443f"
+  rule-soft: "rgba(0,0,0,0.12)"
+  rule-control: "rgba(0,0,0,0.3)"
+  shadow-drop: "rgba(0,0,0,0.35)"
+  shadow-hover: "rgba(0,0,0,0.55)"
 typography:
   display:
     fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
@@ -261,11 +266,29 @@ components:
     backgroundColor: "{colors.on-band}"
     textColor: "{colors.ink}"
   nav-bar:
-    backgroundColor: "{colors.glass-deep}"
-    textColor: "{colors.on-glass}"
+    backgroundColor: "{colors.label-stock}"
+    textColor: "{colors.on-ground}"
     height: "{spacing.bar}"
+  nav-link-hover:
+    textColor: "{colors.band-cobalt-ink}"
   nav-link-current:
-    textColor: "{colors.on-band}"
+    textColor: "{colors.band-cobalt-ink}"
+  nav-sheet:
+    backgroundColor: "{colors.label-stock}"
+    textColor: "{colors.on-ground}"
+    typography: "{typography.nav-sheet}"
+    padding: "24px clamp(16px, 5vw, 72px)"
+  menu-button:
+    textColor: "{colors.on-ground}"
+    rounded: "{rounded.none}"
+    padding: "8px 12px"
+  stack-sheet:
+    backgroundColor: "{colors.ground-1}"
+    padding: "clamp(16px, 2.6vw, 40px) clamp(16px, 5vw, 72px)"
+  footer:
+    textColor: "{colors.on-ground-2}"
+    typography: "{typography.meta}"
+    padding: "20px 0 32px"
 ---
 
 # Design System: Calvin Yiu, PhD
@@ -274,43 +297,48 @@ components:
 
 **Creative North Star: "The Reagent Label"**
 
-Every section of the CV is a paper label stuck to a bottle of amber glass. The page ground is the glass: a deep amber-brown with one soft vertical highlight down the middle of the viewport, fixed while the labels scroll past. On it sit near-white label panels divided by black rules into the grids a supplier catalogue uses: specification rows, slotted entries, a certificate-of-analysis table, a reference list.
+Every section of the CV is a paper label laid on a lab bench. The page ground is the bench: a pale warm grey with one soft vertical highlight down the middle of the viewport, fixed while the labels scroll past. The labels stack like sheets of paper: each section sticks in place and the next slides up over it, the covered label sinking slightly and dimming as it is buried. On the bench sit near-white label panels divided by black rules into the grids a supplier catalogue uses: specification rows, slotted entries, a certificate-of-analysis table, a reference list.
 
-Cobalt is printed boldly, as a supplier prints its house colour. Each label opens with a solid cobalt slab, the 18px band fused with the head, carrying the section headline in white. The hero lot strip, the molecule plate, catalogue numbers, the prize-winning talk and the whole contact label are cobalt; everything else on the label stays ink on stock. The type is industrial and compressed: names and section titles in a heavy condensed grotesk in capitals, running text in the same family at normal width, mono only where a catalogue would print a number, value or date. Corners are square everywhere. Depth is a single soft drop under each label, as if lifted a millimetre off the glass.
+Cobalt is printed boldly, as a supplier prints its house colour. Each label opens with a solid cobalt slab, the 18px band fused with the head, carrying the section headline in white. The hero lot strip, the molecule plate, catalogue numbers, the prize-winning talk and the whole contact label are cobalt; everything else on the label stays ink on stock. The type is industrial and compressed: names and section titles in a heavy condensed grotesk in capitals, running text in the same family at normal width, mono only where a catalogue would print a number, value or date. Corners are square everywhere. Depth is a single soft drop under each label, as if lifted a millimetre off the bench, plus a short upward shadow where an incoming sheet overlaps the one beneath.
 
-The live element is the molecule on the hero's cobalt plate: a white skeletal aspirin whose carbons, on hover or focus, pin a leader-line annotation with an illustrative shift, while bonds one and two hops away brighten and pulse outward like message passing. On first load the hero label prints itself once; nothing else animates on arrival or on scroll.
+The live element is the molecule on the hero's cobalt plate: a white skeletal aspirin whose carbons, on hover or focus, pin a leader-line annotation with an illustrative shift, while bonds one and two hops away brighten and pulse outward like message passing. On first load the hero label prints itself once. The paper stack is the one deliberate scroll-linked motion; nothing else animates on arrival or on scroll.
 
 **Key Characteristics:**
-- Amber-glass ground, white label stock, black rules, one bold cobalt printed as solid slabs and chips.
+- Pale lab-bench ground, white label stock, black rules, one bold cobalt printed as solid slabs and chips.
 - Condensed heavy capitals for names; mono only for numbers, values and dates.
 - Fixed-slot entries with right-aligned, deep-linkable cobalt catalogue chips.
 - Square corners and a 2px / 1px / hairline rule hierarchy instead of cards.
-- One signature interaction (atom annotation with message-passing pulse) and one once-per-load print sequence on the hero.
+- One signature interaction (atom annotation with message-passing pulse), one once-per-load print sequence on the hero, and one scroll-linked paper stack.
 
 ## Colors
 
-Two materials and one printed colour: warm amber glass behind, cool white paper in front, cobalt as the only ink with a hue.
+Two materials and one printed colour: a pale warm-grey bench behind, near-white paper in front, cobalt as the only ink with a hue. Everything that is not cobalt is a neutral, and every translucent value is plain black at a fixed alpha.
 
 ### Primary
 - **Label Cobalt** (band-cobalt): the printed house colour. Fills every label head slab (fused with the 18px top band), the hero lot strip, the molecule plate, catalogue number chips, the prize talk row, the prize tag, the whole contact label, the solid-button hover, the 6px catalogue hover rule, text selection and the global focus outline.
-- **Deep Cobalt Ink** (band-cobalt-ink): cobalt at text weight on white. The hover colour of inline links on label stock, and the text of the inverted prize tag (about 9.8:1 on white).
+- **Deep Cobalt Ink** (band-cobalt-ink): cobalt at text weight on white. The hover colour of inline links on label stock, nav and footer link hover, the current-section link in the nav, and the text of the inverted prize tag (about 9.8:1 on white).
 
 ### Secondary
-- **On-Band White** (on-band): everything printed on cobalt: headlines in label heads, the lot strip, molecule bonds, dots and annotations, chip text, contact text, route outlines and icon plates. Also the white ground of image frames and the current-section colour in the nav (about 6.8:1 on cobalt).
+- **On-Band White** (on-band): everything printed on cobalt: headlines in label heads, the lot strip, molecule bonds, dots and annotations, chip text, contact text, route outlines and icon plates. Also the white ground of image frames (about 6.8:1 on cobalt).
 - **On-Band Mist** (on-band-2): secondary text on cobalt: label-head metadata, talk topic in the prize row, contact route addresses, the molecule formula (about 5.3:1 on cobalt).
 
 ### Neutral
-- **Label Stock** (label-stock): the ground of every label panel and the solid-button text.
+- **Label Stock** (label-stock): the ground of every label panel, the top bar, the mobile menu sheet, and the solid-button text.
 - **Shaded Stock** (label-shade): the highlight behind a deep-linked catalogue entry, bled 12px either side.
 - **Ink** (ink): all primary text on stock, every structural rule (including the 2px rule closing each cobalt slab), the solid button fill, the line-button hover fill and the catalogue chip hover.
 - **Soft Ink** (ink-soft): secondary text on stock: ledes, slot terms, organisation sublines, talk venues, hint rows (9.4:1 on label stock).
 - **Hairline** (hairline): 1px row rules inside entry slots and the composition list. A rule colour only, never text.
-- **Glass Deep / Body / Warm / Highlight** (glass-deep, glass-body, glass-warm, glass-highlight): the page ground, a horizontal gradient deep → body → warm → highlight (51%) → warm → body → deep, fixed to the viewport. Glass Deep alone fills the top bar and the mobile menu sheet.
-- **On-Glass Amber** (on-glass): text directly on glass: wordmark, nav, menu button, footer.
+- **Bench Shadow / Bench / Bench Light / Bench Highlight** (ground-0, ground-1, ground-2, ground-3): the page ground, a horizontal gradient 0 → 1 (20%) → 2 (44%) → 3 (51%) → 2 (58%) → 1 (80%) → 0, fixed to the viewport. In the paper stack every section repaints the same fixed gradient so it covers the sheet beneath without a seam. Bench 1 is the flat fallback; ground-3 over ground-0 also colours the scrollbar.
+- **On-Bench Ink / On-Bench Soft** (on-ground, on-ground-2): text on the bench and in the bar: the wordmark and nav (ink), the footer (soft ink, about 5.8:1 on the darkest bench edge). Same values as ink and soft ink; the separate names mark the substrate.
+- **Soft Rule** (rule-soft): black at 12%. The 1px bottom rule of the top bar, the rules between mobile menu sheet links, and the 1px lip of every label's shadow.
+- **Control Rule** (rule-control): black at 30%. The 1px outline of the menu button.
+- **Drop Shadow / Hover Shadow** (shadow-drop, shadow-hover): black at 35% for the label drop and the stack's upward overlap shadow; black at 55% for button and contact-route hover. Shadow colours only, never fills or text.
 
 **The One Printed Colour Rule.** Cobalt is the only chromatic colour on a label. Use it boldly as solid slabs, plates, chips and rows with white on top, never as a second tint, gradient or outline-only accent. Everything else on stock is ink, soft ink or hairline.
 
-**The Three Substrates Rule.** Text sits on label stock (ink family), on cobalt (on-band family) or on glass (on-glass amber). Never set ink on glass, amber on a label, or ink on cobalt at rest.
+**The Three Substrates Rule.** Text sits on label stock or the bench (ink family, with deep cobalt ink for hover and current state), or on cobalt (on-band family). Never set ink on cobalt at rest, or cobalt-coloured text on cobalt.
+
+**The Black Alpha Rule.** Translucent rules and shadows are pure black at one of four fixed alphas (12%, 30%, 35%, 55%). No tinted shadows, no warm or cobalt alpha.
 
 ## Typography
 
@@ -355,18 +383,21 @@ The page is a vertical stack of screens, each holding one label inset from the v
 
 Responsive steps: at 1100px the hero and certificate stack to one column (the vertical divider becomes horizontal; the molecule caps at 640px; the headshot sits beside the composition list). At 860px the nav collapses to a menu button and every two-column grid becomes one column; subgrid alignment is dropped. At 600px the lot strip drops to 0.75rem and loses its last field. At 560px spec rows stack term over value, action buttons go full width, and the certificate and talks tables re-flow as stacked grid rows.
 
-**The Equal Edge Rule.** Every label sits inside the same edge on left and right at every width; nothing bleeds to the viewport edge except the glass and the bar.
+**Paper stack.** When motion is allowed, every section is sticky. Its stick offset is the smaller of the bar height and (viewport height − section height), so a sheet shorter than the screen sticks under the bar, while a taller sheet scrolls through in full and then sticks by its bottom edge. Each section paints the fixed bench gradient so it hides the sheet beneath. In-page anchor clicks and deep links scroll to a sheet's flow position (the summed heights of the sheets before it, minus the bar), not its stuck position. The nav marks as current the last section whose top has passed mid-viewport, computed on scroll. Under reduced motion the sections flow normally.
+
+**The Equal Edge Rule.** Every label sits inside the same edge on left and right at every width; nothing bleeds to the viewport edge except the bench and the bar.
 
 ## Elevation & Depth
 
-Depth is physical and singular: each label carries one soft shadow, a 1px dark lip plus a long diffuse drop, as if paper were lifted off glass. Interactive blocks (buttons, contact routes, catalogue chips) lift on hover; buttons and routes gain a short soft shadow; on press they drop back with no shadow. Cobalt slabs, plates and rows are printed flat on the label, never raised.
+Depth is physical and singular: each label carries one soft shadow, a 1px dark lip plus a long diffuse drop, as if paper were lifted off the bench. In the paper stack every label after the hero also casts a short shadow upward onto the sheet it covers, and the covered label sinks: it scales to 1 − 0.05 × cover from its top edge, moves up 14px × cover and dims to brightness 1 − 0.3 × cover, where cover (0 to 1) is how far the next sheet has risen over the space below the bar. Interactive blocks (buttons, contact routes, catalogue chips) lift on hover; buttons and routes gain a short soft shadow; on press they drop back with no shadow. Cobalt slabs, plates and rows are printed flat on the label, never raised.
 
 ### Shadow Vocabulary
-- **Label lift** (`box-shadow: 0 1px 0 rgba(0,0,0,0.25), 0 28px 56px -24px rgba(0,0,0,0.6)`): every label panel, always.
+- **Label lift** (`box-shadow: 0 1px 0 rgba(0,0,0,0.12), 0 24px 48px -24px rgba(0,0,0,0.35)`): every label panel, always.
+- **Stack overlap** (`box-shadow: 0 -16px 36px -18px rgba(0,0,0,0.35)`, layered before the label lift): every label after the first while the paper stack is on.
 - **Button hover** (`box-shadow: 0 8px 18px -10px rgba(0,0,0,0.55)`): buttons on hover, with translateY(-2px).
 - **Route hover** (`box-shadow: 0 16px 30px -16px rgba(0,0,0,0.55)`): contact routes on hover, with translateY(-2px).
 
-**The Paper On Glass Rule.** The label is the only thing that floats at rest. Everything inside it, cobalt included, is printed flat; lift appears only as a response to pointer hover.
+**The Paper On Bench Rule.** The label is the only thing that floats at rest. Everything inside it, cobalt included, is printed flat; lift appears only as a response to pointer hover. The stack's sinking and dimming act on the whole label, never on parts of it.
 
 ## Shapes
 
@@ -409,7 +440,10 @@ Solid label blocks, not pills.
 Large blocks on the cobalt contact label, one per channel: a 2px white outline, a 30px icon on a white 5px plate spanning two rows beside the route name and the mono address in mist; a call to action across the bottom whose 2px underline draws in on hover. Hover fills the block white with ink text and soft-ink address, lifts 2px and applies the route-hover shadow.
 
 ### Navigation
-A 56px sticky strip of glass deep with a faint amber 1px bottom rule. Wordmark at left; section links at right in 500 weight, on-glass amber, no underline at rest; hover draws a 1px underline and brightens to white. The section being read is marked (aria-current) in white with a 2px underline. At 860px links collapse behind a bordered Menu button (label switches to Close) into a full-screen glass-deep sheet of nav-sheet links separated by faint amber rules, fading in over 200ms. Escape closes it and returns focus; body scroll locks while open.
+A 56px sticky strip of label stock with a 1px soft rule beneath. Wordmark at left in ink; section links at right in 500 weight, ink, no underline at rest; hover draws a 1px underline and turns deep cobalt ink. The section being read is marked (aria-current) in deep cobalt ink with a 2px underline. At 860px links collapse behind a Menu button with a 1px control-rule outline (label switches to Close) into a full-screen label-stock sheet of nav-sheet links separated by soft rules, fading in over 200ms. Escape closes it and returns focus; body scroll locks while open.
+
+### Footer
+A row inside the page edge on the bench: meta-size text in on-bench soft ink, links with no underline at rest that draw a 1px underline and turn deep cobalt ink on hover.
 
 ### Inline Links
 On label stock, a 1px currentColor underline drawn as a background, thickening to 2px and turning deep cobalt ink on hover over 260ms. On cobalt surfaces the hover keeps white.
@@ -422,9 +456,13 @@ One ease for everything: `cubic-bezier(0.16, 1, 0.3, 1)`. State durations: 160ms
 
 **The label prints itself (hero, once per load).** A class set in the head before paint (skipped under reduced motion, removed after 2.6s) plays: the hero label clip-reveals from the top (700ms); the lot strip band scales in from the left (620ms at 120ms) and its fields set in at 420 / 500 / 580ms; the name presses up through a clip (640ms at 300ms); the role sets at 520ms; spec rows draw left to right with 60ms stagger from 620ms; actions set at 880ms; the molecule plate reveals from the top at 200ms. Bonds then draw by stroke-dashoffset outward from C2 in breadth-first order (700ms start, 120ms per hop, 380ms each), heteroatoms fade in behind them, the annotation pins at about 1.3s and C2 pulses.
 
-**The Once Rule.** Arrival motion happens once, on the hero, on load. Nothing animates on scroll; every other motion is a response to the visitor.
+**The paper stack (scroll-linked).** The class that enables it is added by script after measuring, never under reduced motion, and toggles live if the preference changes. Cover values update once per animation frame on scroll and are re-measured on resize and load. It moves only transform and filter on whole labels.
 
-Reduced motion: no print sequence, no pulse, transitions collapse to near zero, smooth scrolling off.
+**The Once Rule.** Arrival motion happens once, on the hero, on load; it never replays on other sections.
+
+**The One Scroll Rule.** The paper stack is the only scroll-linked motion. No reveal-on-scroll, parallax or scroll-triggered entrances anywhere else; every other motion is a response to the visitor.
+
+Reduced motion: no print sequence, no pulse, no paper stack (sections flow normally), transitions collapse to near zero, smooth scrolling off.
 
 ## Do's and Don'ts
 
@@ -435,11 +473,13 @@ Reduced motion: no print sequence, no pulse, transitions collapse to near zero, 
 - **Do** print cobalt boldly as slabs, plates, chips and rows with white (on-band) text and mist (on-band-2) secondary text.
 - **Do** keep corners square (0px) on every element, including images, chips and buttons.
 - **Do** use the single house ease, keep hover lifts at 1–2px with a soft shadow, and keep arrival motion to the hero's one print sequence.
+- **Do** give any new section the paper-stack behaviour by making it a direct child section of main, with the bench gradient behind its label.
+- **Do** draw translucent rules and shadows in black at the four recorded alphas.
 
 ### Don't:
 - **Don't** round corners or turn entries into floating cards with their own shadows; only the label floats.
-- **Don't** add a second accent colour, tint cobalt into gradients, or set ink on glass.
+- **Don't** add a second accent colour, tint cobalt into gradients, or use tinted (warm or cobalt) shadows and rules.
 - **Don't** set headings or descriptive sentences in mono.
 - **Don't** add hard offset shadows or glows.
 - **Don't** put a small caps line above a section headline; the label head's metadata sits beside the headline, on its baseline.
-- **Don't** animate on scroll or replay the print sequence on other sections.
+- **Don't** add scroll-linked motion beyond the paper stack, or replay the print sequence on other sections.

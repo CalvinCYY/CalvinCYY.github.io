@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T23:36:56+00:00",
+  "generatedAt": "2026-11-16T00:15:02+00:00",
   "title": "Design System: Calvin Yiu, PhD",
   "extensions": {
     "colorMeta": {
@@ -139,80 +139,115 @@
           "#f3f3f2"
         ]
       },
-      "glass-deep": {
+      "ground-0": {
         "role": "neutral",
-        "displayName": "Glass Deep",
-        "canonical": "#241105",
+        "displayName": "Bench Shadow",
+        "canonical": "#c9c7bf",
         "tonalRamp": [
-          "#372215",
-          "#61381e",
-          "#914d22",
-          "#d56620",
-          "#dd8a55",
-          "#dfaf90",
-          "#e8d2c4",
-          "#f7f1ee"
+          "#21201c",
+          "#3d3b33",
+          "#59564b",
+          "#7c7969",
+          "#9d998b",
+          "#bebbb2",
+          "#deddd8",
+          "#f3f3f1"
         ]
       },
-      "glass-body": {
+      "ground-1": {
         "role": "neutral",
-        "displayName": "Glass Body",
-        "canonical": "#4a230a",
+        "displayName": "Bench",
+        "canonical": "#d6d4cd",
         "tonalRamp": [
-          "#372315",
-          "#62381e",
-          "#914d21",
-          "#d5661f",
-          "#dd8a55",
-          "#e0af90",
-          "#e9d2c4",
-          "#f7f1ee"
+          "#22201c",
+          "#3e3b33",
+          "#5a564a",
+          "#7e7967",
+          "#9e9a89",
+          "#bfbcb1",
+          "#dfddd8",
+          "#f4f3f1"
         ]
       },
-      "glass-warm": {
+      "ground-2": {
         "role": "neutral",
-        "displayName": "Glass Warm",
-        "canonical": "#6e3810",
+        "displayName": "Bench Light",
+        "canonical": "#e1dfd9",
         "tonalRamp": [
-          "#372416",
-          "#613b1e",
-          "#905123",
-          "#d46d21",
-          "#dc8f56",
-          "#dfb290",
-          "#e8d4c4",
-          "#f7f2ee"
+          "#22201b",
+          "#3f3b32",
+          "#5b5648",
+          "#807a65",
+          "#a09a87",
+          "#c0bcaf",
+          "#dfddd7",
+          "#f4f3f1"
         ]
       },
-      "glass-highlight": {
+      "ground-3": {
         "role": "neutral",
-        "displayName": "Glass Highlight",
-        "canonical": "#82461a",
+        "displayName": "Bench Highlight",
+        "canonical": "#e9e8e3",
         "tonalRamp": [
-          "#352417",
-          "#5e3b22",
-          "#8a5228",
-          "#ca6e2b",
-          "#d5905d",
-          "#dbb295",
-          "#e6d4c6",
-          "#f6f2ee"
+          "#22211b",
+          "#3f3d31",
+          "#5b5848",
+          "#817c65",
+          "#a19c87",
+          "#c0bdaf",
+          "#e0ded7",
+          "#f4f3f1"
         ]
       },
-      "on-glass": {
+      "on-ground": {
         "role": "neutral",
-        "displayName": "On-Glass Amber",
-        "canonical": "#f4dcbc",
+        "displayName": "On-Bench Ink",
+        "canonical": "#121211",
         "tonalRamp": [
-          "#362916",
-          "#604420",
-          "#8e6125",
-          "#d08725",
-          "#d9a259",
-          "#ddbd92",
-          "#e8d9c5",
-          "#f6f3ee"
+          "#272726",
+          "#41413e",
+          "#5b5b57",
+          "#7e7e77",
+          "#9c9c96",
+          "#b9b9b6",
+          "#d7d7d6",
+          "#f2f2f2"
         ]
+      },
+      "on-ground-2": {
+        "role": "neutral",
+        "displayName": "On-Bench Soft",
+        "canonical": "#45443f",
+        "tonalRamp": [
+          "#272725",
+          "#42413e",
+          "#5d5b56",
+          "#807e75",
+          "#9d9c95",
+          "#bab9b5",
+          "#d7d7d5",
+          "#f3f2f2"
+        ]
+      },
+      "rule-soft": {
+        "role": "neutral",
+        "displayName": "Soft Rule",
+        "canonical": "rgba(0,0,0,0.12)"
+      },
+      "rule-control": {
+        "role": "neutral",
+        "displayName": "Control Rule",
+        "canonical": "rgba(0,0,0,0.3)"
+      },
+      "shadow-drop": {
+        "role": "neutral",
+        "displayName": "Drop Shadow",
+        "canonical": "rgba(0,0,0,0.35)"
+      },
+      "shadow-hover": {
+        "role": "neutral",
+        "displayName": "Hover Shadow",
+        "canonical": "rgba(0,0,0,0.55)"
       }
     },
     "typographyMeta": {
@@ -328,8 +363,13 @@
     "shadows": [
       {
         "name": "label-lift",
-        "value": "0 1px 0 rgba(0,0,0,0.25), 0 28px 56px -24px rgba(0,0,0,0.6)",
-        "purpose": "Every label panel at rest: paper lifted off glass."
+        "value": "0 1px 0 rgba(0,0,0,0.12), 0 24px 48px -24px rgba(0,0,0,0.35)",
+        "purpose": "Every label panel at rest: paper lifted off the bench."
+      },
+      {
+        "name": "stack-overlap",
+        "value": "0 -16px 36px -18px rgba(0,0,0,0.35)",
+        "purpose": "Layered before label-lift on every label after the first while the paper stack is on: the incoming sheet shading the one it covers."
       },
       {
         "name": "button-hover",
@@ -396,7 +436,12 @@
       {
         "name": "print-sequence",
         "value": "html.print set in head unless reduced motion, removed after 2600ms",
-        "purpose": "Hero only, once per load: label clip-reveal 700ms; strip scaleX 620ms@120ms, fields 420/500/580ms; name clip press-up 640ms@300ms; role 480ms@520ms; spec rows clip-draw 520ms from 620ms, 60ms stagger; actions 480ms@880ms; molecule plate reveal 760ms@200ms; bonds stroke-dashoffset from C2 in BFS order (700ms start, 120ms per hop, 380ms each); heteroatoms fade 300ms; annotation pins ~1.3s; then C2 pulses. Nothing animates on scroll."
+        "purpose": "Hero only, once per load: label clip-reveal 700ms; strip scaleX 620ms@120ms, fields 420/500/580ms; name clip press-up 640ms@300ms; role 480ms@520ms; spec rows clip-draw 520ms from 620ms, 60ms stagger; actions 480ms@880ms; molecule plate reveal 760ms@200ms; bonds stroke-dashoffset from C2 in BFS order (700ms start, 120ms per hop, 380ms each); heteroatoms fade 300ms; annotation pins ~1.3s; then C2 pulses. Never replays on other sections."
+      },
+      {
+        "name": "paper-stack",
+        "value": "html.stack added by script after measuring, never under reduced motion; main>section sticky at --stick = min(bar height, viewport - section height); --cover (0..1) = (viewport - next sheet top) / (viewport - bar), rAF-throttled on scroll; covered label transform: scale(1 - 0.05*cover) translateY(-14px*cover) from its top edge, filter: brightness(1 - 0.3*cover)",
+        "purpose": "The one scroll-linked motion: each section sticks and the next slides over it while the covered label sinks and dims. Anchor clicks and deep links scroll to flow position. The nav current marker is the last section whose top has passed mid-viewport."
       }
     ],
     "breakpoints": [
@@ -422,8 +467,12 @@
       "purpose": "Global focus-visible ring; turns white inside cobalt rows and the contact label; atoms use a 2px white ring at 15px radius."
     },
     "groundGradient": {
-      "value": "linear-gradient(90deg, #241105 0%, #4a230a 20%, #6e3810 44%, #82461a 51%, #6e3810 58%, #4a230a 80%, #241105 100%) fixed",
-      "purpose": "Amber-glass page ground with one soft vertical highlight."
+      "value": "linear-gradient(90deg, #c9c7bf 0%, #d6d4cd 20%, #e1dfd9 44%, #e9e8e3 51%, #e1dfd9 58%, #d6d4cd 80%, #c9c7bf 100%) fixed",
+      "purpose": "Pale lab-bench page ground with one soft vertical highlight; repainted by every section in the paper stack so it covers the sheet beneath. Flat fallback #d6d4cd."
+    },
+    "themeColor": {
+      "value": "#fbfbf7",
+      "purpose": "Browser chrome matches the label-stock top bar."
     }
   },
   "components": [
@@ -433,7 +482,7 @@
       "refersTo": "label-panel",
       "description": "The unit of every section: label stock, cobalt head slab fused with the 18px band, white headline, mist mono metadata, 2px ink rule, label-lift shadow.",
       "html": "<section class=\"ds-label\"><div class=\"ds-label__head\"><h2>Industry work</h2><p class=\"ds-mono ds-meta\">AstraZeneca · 2025–present</p></div><p class=\"ds-lede\">Data science for pharmaceutical development and manufacturing.</p></section>",
-      "css": ":host{--glass-0:#241105;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-label{background:var(--label);color:var(--ink);border-top:18px solid var(--band);padding:32px;font-family:var(--sans);box-shadow:0 1px 0 rgba(0,0,0,.25),0 28px 56px -24px rgba(0,0,0,.6);}.ds-label__head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;margin:-32px -32px 28px;padding:16px 32px 20px;background:var(--band);color:var(--on-band);border-bottom:2px solid var(--ink);}.ds-label__head h2{margin:0;font-size:clamp(2.75rem,6vw,5.25rem);line-height:.92;font-weight:800;font-stretch:68%;text-transform:uppercase;letter-spacing:-.005em;}.ds-meta{margin:0;font-size:.875rem;color:var(--on-band-2);}.ds-lede{margin:0;max-width:68ch;color:var(--ink-2);font-size:1.0625rem;line-height:1.55;}"
+      "css": ":host{--ground-1:#d6d4cd;--on-ground:#121211;--on-ground-2:#45443f;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-label{background:var(--label);color:var(--ink);border-top:18px solid var(--band);padding:32px;font-family:var(--sans);box-shadow:0 1px 0 rgba(0,0,0,.12),0 24px 48px -24px rgba(0,0,0,.35);}.ds-label__head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;margin:-32px -32px 28px;padding:16px 32px 20px;background:var(--band);color:var(--on-band);border-bottom:2px solid var(--ink);}.ds-label__head h2{margin:0;font-size:clamp(2.75rem,6vw,5.25rem);line-height:.92;font-weight:800;font-stretch:68%;text-transform:uppercase;letter-spacing:-.005em;}.ds-meta{margin:0;font-size:.875rem;color:var(--on-band-2);}.ds-lede{margin:0;max-width:68ch;color:var(--ink-2);font-size:1.0625rem;line-height:1.55;}"
     },
     {
       "name": "Hero Lot Strip",
@@ -441,7 +490,7 @@
       "refersTo": "lot-strip",
       "description": "Cobalt strip under the hero band: catalogue number, grade, lot in mono caps, closed by 2px ink.",
       "html": "<div class=\"ds-strip ds-mono\"><span>Cat. no. CY-2020</span><span>Grade: graph ML for chemistry</span><span>Lot: Bristol 2020–2025</span></div>",
-      "css": ":host{--glass-0:#241105;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-strip{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;padding:4px 32px 14px;background:var(--band);color:var(--on-band);border-top:18px solid var(--band);border-bottom:2px solid var(--ink);font-size:.8125rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}.ds-strip span{white-space:nowrap;}"
+      "css": ":host{--ground-1:#d6d4cd;--on-ground:#121211;--on-ground-2:#45443f;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-strip{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;padding:4px 32px 14px;background:var(--band);color:var(--on-band);border-top:18px solid var(--band);border-bottom:2px solid var(--ink);font-size:.8125rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}.ds-strip span{white-space:nowrap;}"
     },
     {
       "name": "Catalogue Entry",
@@ -449,7 +498,7 @@
       "refersTo": "catalogue-number",
       "description": "Fixed-slot entry: title with a right-aligned cobalt catalogue chip, prose, hairline slots; a 6px cobalt rule draws across on hover or focus.",
       "html": "<article class=\"ds-entry\"><div class=\"ds-entry__head\"><h3>Process modelling</h3><p class=\"ds-no ds-mono\"><a href=\"#az-01\">AZ-01</a></p></div><p>Models for pharmaceutical manufacturing.</p><dl class=\"ds-slots\"><div><dt>Role</dt><dd>Data scientist</dd></div><div><dt>Stack</dt><dd class=\"ds-mono\">Python · PyTorch</dd></div></dl></article>",
-      "css": ":host{--glass-0:#241105;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-entry{position:relative;background:var(--label);color:var(--ink);font-family:var(--sans);border-top:2px solid var(--ink);padding:14px 0 18px;max-width:520px;}.ds-entry::before{content:'';position:absolute;left:0;right:0;top:-2px;height:6px;background:var(--band);transform:scaleX(0);transform-origin:0 50%;transition:transform 420ms var(--ease);}.ds-entry:hover::before,.ds-entry:focus-within::before{transform:scaleX(1);}.ds-entry__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:6px 0 10px;}.ds-entry h3{margin:0;font-size:clamp(1.375rem,1.9vw,1.75rem);line-height:1.08;font-weight:750;font-stretch:78%;}.ds-entry p{margin:0;line-height:1.55;}.ds-no{font-size:.8125rem;font-weight:700;letter-spacing:.04em;flex:none;}.ds-no a{display:inline-block;text-decoration:none;background:var(--band);color:var(--on-band);padding:4px 8px 3px;transition:background-color 160ms var(--ease),transform 180ms var(--ease);}.ds-no a:hover{background:var(--ink);transform:translateY(-1px);}.ds-no a:active{transform:translateY(1px);}.ds-slots{margin:14px 0 0;border-bottom:1px solid var(--hair);}.ds-slots>div{display:grid;grid-template-columns:5.5rem 1fr;gap:12px;border-top:1px solid var(--hair);padding:7px 0;font-size:.875rem;}.ds-slots dt{font-size:.8125rem;font-weight:750;font-stretch:72%;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-2);}.ds-slots dd{margin:0;}"
+      "css": ":host{--ground-1:#d6d4cd;--on-ground:#121211;--on-ground-2:#45443f;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-entry{position:relative;background:var(--label);color:var(--ink);font-family:var(--sans);border-top:2px solid var(--ink);padding:14px 0 18px;max-width:520px;}.ds-entry::before{content:'';position:absolute;left:0;right:0;top:-2px;height:6px;background:var(--band);transform:scaleX(0);transform-origin:0 50%;transition:transform 420ms var(--ease);}.ds-entry:hover::before,.ds-entry:focus-within::before{transform:scaleX(1);}.ds-entry__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:6px 0 10px;}.ds-entry h3{margin:0;font-size:clamp(1.375rem,1.9vw,1.75rem);line-height:1.08;font-weight:750;font-stretch:78%;}.ds-entry p{margin:0;line-height:1.55;}.ds-no{font-size:.8125rem;font-weight:700;letter-spacing:.04em;flex:none;}.ds-no a{display:inline-block;text-decoration:none;background:var(--band);color:var(--on-band);padding:4px 8px 3px;transition:background-color 160ms var(--ease),transform 180ms var(--ease);}.ds-no a:hover{background:var(--ink);transform:translateY(-1px);}.ds-no a:active{transform:translateY(1px);}.ds-slots{margin:14px 0 0;border-bottom:1px solid var(--hair);}.ds-slots>div{display:grid;grid-template-columns:5.5rem 1fr;gap:12px;border-top:1px solid var(--hair);padding:7px 0;font-size:.875rem;}.ds-slots dt{font-size:.8125rem;font-weight:750;font-stretch:72%;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-2);}.ds-slots dd{margin:0;}"
     },
     {
       "name": "Spec Table",
@@ -457,7 +506,7 @@
       "refersTo": "spec-row",
       "description": "Term/value rows with 1px ink rules; terms in the condensed caps spec voice.",
       "html": "<dl class=\"ds-spec\"><div><dt>Composition</dt><dd>Graph neural networks · LLM agents</dd></div><div><dt>Origin</dt><dd>PhD and postdoc, University of Bristol</dd></div></dl>",
-      "css": ":host{--glass-0:#241105;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-spec{margin:0;font-family:var(--sans);color:var(--ink);background:var(--label);border-bottom:1px solid var(--ink);}.ds-spec>div{display:grid;grid-template-columns:9.5rem 1fr;gap:16px;border-top:1px solid var(--ink);padding:10px 0;font-size:.9375rem;}.ds-spec dt{font-size:.875rem;font-weight:750;font-stretch:72%;text-transform:uppercase;letter-spacing:.04em;}.ds-spec dd{margin:0;}"
+      "css": ":host{--ground-1:#d6d4cd;--on-ground:#121211;--on-ground-2:#45443f;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-spec{margin:0;font-family:var(--sans);color:var(--ink);background:var(--label);border-bottom:1px solid var(--ink);}.ds-spec>div{display:grid;grid-template-columns:9.5rem 1fr;gap:16px;border-top:1px solid var(--ink);padding:10px 0;font-size:.9375rem;}.ds-spec dt{font-size:.875rem;font-weight:750;font-stretch:72%;text-transform:uppercase;letter-spacing:.04em;}.ds-spec dd{margin:0;}"
     },
     {
       "name": "Solid Button",
@@ -465,7 +514,7 @@
       "refersTo": "button-solid",
       "description": "Ink label block; hover fills cobalt and lifts 2px.",
       "html": "<a class=\"ds-btn ds-btn--solid\" href=\"#\">Contact on LinkedIn</a>",
-      "css": ":host{--glass-0:#241105;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 20px;font-family:var(--sans);font-weight:650;font-stretch:90%;font-size:1rem;text-decoration:none;border:2px solid var(--ink);border-radius:0;transition:transform 180ms var(--ease),box-shadow 180ms var(--ease),background-color 160ms;}.ds-btn--solid{background:var(--ink);color:var(--label);}.ds-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px -10px rgba(0,0,0,.55);}.ds-btn--solid:hover{background:var(--band);border-color:var(--band);}.ds-btn:active{transform:translateY(1px);box-shadow:none;transition-duration:60ms;}"
+      "css": ":host{--ground-1:#d6d4cd;--on-ground:#121211;--on-ground-2:#45443f;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 20px;font-family:var(--sans);font-weight:650;font-stretch:90%;font-size:1rem;text-decoration:none;border:2px solid var(--ink);border-radius:0;transition:transform 180ms var(--ease),box-shadow 180ms var(--ease),background-color 160ms;}.ds-btn--solid{background:var(--ink);color:var(--label);}.ds-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px -10px rgba(0,0,0,.55);}.ds-btn--solid:hover{background:var(--band);border-color:var(--band);}.ds-btn:active{transform:translateY(1px);box-shadow:none;transition-duration:60ms;}"
     },
     {
       "name": "Line Button",
@@ -473,7 +522,7 @@
       "refersTo": "button-line",
       "description": "Ink-outlined block on stock; hover fills ink with stock text.",
       "html": "<a class=\"ds-btn ds-btn--line\" href=\"#\">See code on GitHub</a>",
-      "css": ":host{--glass-0:#241105;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 20px;font-family:var(--sans);font-weight:650;font-stretch:90%;font-size:1rem;text-decoration:none;border:2px solid var(--ink);border-radius:0;transition:transform 180ms var(--ease),box-shadow 180ms var(--ease),background-color 160ms;}.ds-btn--line{background:transparent;color:var(--ink);}.ds-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px -10px rgba(0,0,0,.55);}.ds-btn--line:hover{background:var(--ink);color:var(--label);}.ds-btn:active{transform:translateY(1px);box-shadow:none;transition-duration:60ms;}"
+      "css": ":host{--ground-1:#d6d4cd;--on-ground:#121211;--on-ground-2:#45443f;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 20px;font-family:var(--sans);font-weight:650;font-stretch:90%;font-size:1rem;text-decoration:none;border:2px solid var(--ink);border-radius:0;transition:transform 180ms var(--ease),box-shadow 180ms var(--ease),background-color 160ms;}.ds-btn--line{background:transparent;color:var(--ink);}.ds-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px -10px rgba(0,0,0,.55);}.ds-btn--line:hover{background:var(--ink);color:var(--label);}.ds-btn:active{transform:translateY(1px);box-shadow:none;transition-duration:60ms;}"
     },
     {
       "name": "Prize Talk Row",
@@ -481,7 +530,7 @@
       "refersTo": "prize-row",
       "description": "The prize-winning talk as a cobalt row with mist topic and an inverted white prize tag.",
       "html": "<table class=\"ds-talks\"><tr class=\"ds-prize-row\"><td class=\"ds-mono\">Jul 2025</td><td><a class=\"ds-ln\" href=\"#\">8th MABC</a><span class=\"ds-topic\">Web-IMPRESSION</span><span class=\"ds-prize\">Best talk prize</span></td><td>Cambridge, UK</td></tr></table>",
-      "css": ":host{--glass-0:#241105;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-talks{border-collapse:collapse;font-family:var(--sans);width:100%;}.ds-talks td{border-bottom:1px solid var(--ink);padding:14px 12px 14px 0;font-size:.9375rem;vertical-align:baseline;}.ds-prize-row{background:var(--band);color:var(--on-band);}.ds-prize-row td:first-child{padding-left:14px;font-size:.8125rem;}.ds-prize-row td:last-child{padding-right:14px;text-align:right;}.ds-prize-row td:nth-child(2){font-weight:650;}.ds-ln{color:inherit;text-decoration:none;background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/100% 1px;transition:background-size 260ms var(--ease);}.ds-ln:hover{background-size:100% 2px;}.ds-topic{display:block;font-weight:400;color:var(--on-band-2);margin-top:4px;font-size:.875rem;}.ds-prize{display:block;width:fit-content;margin-top:6px;font-size:.8125rem;font-weight:750;font-stretch:72%;text-transform:uppercase;letter-spacing:.04em;background:var(--on-band);color:var(--band-ink);padding:3px 7px 2px;}.ds-prize-row :focus-visible{outline-color:var(--on-band);}"
+      "css": ":host{--ground-1:#d6d4cd;--on-ground:#121211;--on-ground-2:#45443f;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-talks{border-collapse:collapse;font-family:var(--sans);width:100%;}.ds-talks td{border-bottom:1px solid var(--ink);padding:14px 12px 14px 0;font-size:.9375rem;vertical-align:baseline;}.ds-prize-row{background:var(--band);color:var(--on-band);}.ds-prize-row td:first-child{padding-left:14px;font-size:.8125rem;}.ds-prize-row td:last-child{padding-right:14px;text-align:right;}.ds-prize-row td:nth-child(2){font-weight:650;}.ds-ln{color:inherit;text-decoration:none;background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/100% 1px;transition:background-size 260ms var(--ease);}.ds-ln:hover{background-size:100% 2px;}.ds-topic{display:block;font-weight:400;color:var(--on-band-2);margin-top:4px;font-size:.875rem;}.ds-prize{display:block;width:fit-content;margin-top:6px;font-size:.8125rem;font-weight:750;font-stretch:72%;text-transform:uppercase;letter-spacing:.04em;background:var(--on-band);color:var(--band-ink);padding:3px 7px 2px;}.ds-prize-row :focus-visible{outline-color:var(--on-band);}"
     },
     {
       "name": "Contact Route",
@@ -489,15 +538,15 @@
       "refersTo": "contact-route",
       "description": "White-outlined route on the cobalt contact label; hover fills white with ink text and lifts.",
       "html": "<div class=\"ds-contact\"><a class=\"ds-route\" href=\"#\"><span class=\"ds-route__name\">LinkedIn</span><span class=\"ds-route__addr ds-mono\">linkedin.com/in/calvin-yiu</span><span class=\"ds-route__go\">Send a message</span></a></div>",
-      "css": ":host{--glass-0:#241105;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-contact{background:var(--band);padding:32px;font-family:var(--sans);}.ds-contact :focus-visible{outline-color:var(--on-band);}.ds-route{display:grid;row-gap:4px;padding:24px;border:2px solid var(--on-band);color:var(--on-band);text-decoration:none;max-width:420px;transition:transform 200ms var(--ease),box-shadow 200ms var(--ease),background-color 160ms;}.ds-route__name{font-size:1.75rem;font-weight:800;font-stretch:72%;text-transform:uppercase;line-height:1;}.ds-route__addr{font-size:.875rem;color:var(--on-band-2);}.ds-route__go{margin-top:16px;font-weight:650;justify-self:start;background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 2px;transition:background-size 260ms var(--ease);}.ds-route:hover{background:var(--on-band);color:var(--ink);transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(0,0,0,.55);}.ds-route:hover .ds-route__addr{color:var(--ink-2);}.ds-route:hover .ds-route__go{background-size:100% 2px;}.ds-route:active{transform:none;box-shadow:none;}"
+      "css": ":host{--ground-1:#d6d4cd;--on-ground:#121211;--on-ground-2:#45443f;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-contact{background:var(--band);padding:32px;font-family:var(--sans);}.ds-contact :focus-visible{outline-color:var(--on-band);}.ds-route{display:grid;row-gap:4px;padding:24px;border:2px solid var(--on-band);color:var(--on-band);text-decoration:none;max-width:420px;transition:transform 200ms var(--ease),box-shadow 200ms var(--ease),background-color 160ms;}.ds-route__name{font-size:1.75rem;font-weight:800;font-stretch:72%;text-transform:uppercase;line-height:1;}.ds-route__addr{font-size:.875rem;color:var(--on-band-2);}.ds-route__go{margin-top:16px;font-weight:650;justify-self:start;background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 2px;transition:background-size 260ms var(--ease);}.ds-route:hover{background:var(--on-band);color:var(--ink);transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(0,0,0,.55);}.ds-route:hover .ds-route__addr{color:var(--ink-2);}.ds-route:hover .ds-route__go{background-size:100% 2px;}.ds-route:active{transform:none;box-shadow:none;}"
     },
     {
       "name": "Top Bar",
       "kind": "nav",
       "refersTo": "nav-bar",
-      "description": "56px glass-deep strip; amber links draw a 1px underline on hover; the section being read is white with a 2px underline.",
-      "html": "<header class=\"ds-bar\"><a class=\"ds-bar__name\" href=\"#\">Calvin Yiu</a><nav class=\"ds-bar__nav\"><a class=\"ds-ln\" href=\"#\">Research software</a><a class=\"ds-ln\" href=\"#\" aria-current=\"true\">Industry work</a><a class=\"ds-ln\" href=\"#\">Contact</a></nav></header>",
-      "css": ":host{--glass-0:#241105;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-bar{display:flex;align-items:center;justify-content:space-between;gap:24px;height:56px;padding:0 24px;background:var(--glass-0);color:var(--on-glass);border-bottom:1px solid rgba(244,220,188,.12);font-family:var(--sans);}.ds-bar__name{color:inherit;font-weight:800;font-stretch:75%;text-transform:uppercase;letter-spacing:.02em;font-size:1.125rem;text-decoration:none;}.ds-bar__nav{display:flex;gap:24px;font-size:.9375rem;font-weight:500;}.ds-ln{color:inherit;text-decoration:none;background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 1px;padding-bottom:1px;transition:background-size 260ms var(--ease),color 160ms;}.ds-ln:hover{background-size:100% 1px;color:#fff;}.ds-ln[aria-current='true']{color:#fff;background-size:100% 2px;}"
+      "description": "56px label-stock strip with a 1px black-12% rule; ink links draw a 1px underline and turn deep cobalt ink on hover; the section being read is deep cobalt ink with a 2px underline.",
+      "html": "<header class=\"ds-bar\"><a class=\"ds-bar__name\" href=\"#\">Calvin Yiu</a><nav class=\"ds-bar__nav\"><a class=\"ds-ln\" href=\"#\">Research software</a><a class=\"ds-ln\" href=\"#\" aria-current=\"true\">Industry work</a><a class=\"ds-ln\" href=\"#\">Contact</a></nav><button class=\"ds-menu\" type=\"button\">Menu</button></header>",
+      "css": ":host{--ground-1:#d6d4cd;--on-ground:#121211;--on-ground-2:#45443f;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-bar{display:flex;align-items:center;justify-content:space-between;gap:24px;height:56px;padding:0 24px;background:var(--label);color:var(--on-ground);border-bottom:1px solid rgba(0,0,0,.12);font-family:var(--sans);}.ds-bar__name{color:inherit;font-weight:800;font-stretch:75%;text-transform:uppercase;letter-spacing:.02em;font-size:1.125rem;text-decoration:none;}.ds-bar__nav{display:flex;gap:24px;font-size:.9375rem;font-weight:500;}.ds-ln{color:inherit;text-decoration:none;background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 1px;padding-bottom:1px;transition:background-size 260ms var(--ease),color 160ms;}.ds-ln:hover{background-size:100% 1px;color:var(--band-ink);}.ds-ln[aria-current='true']{color:var(--band-ink);background-size:100% 2px;}.ds-menu{display:inline-flex;align-items:center;background:none;border:1px solid rgba(0,0,0,.3);border-radius:0;padding:8px 12px;font:inherit;font-weight:600;color:inherit;}"
     },
     {
       "name": "Molecule Annotation",
@@ -505,18 +554,26 @@
       "refersTo": null,
       "description": "Signature: white bonds on the cobalt plate; activating a carbon pins a white leader and mono shift; touching bonds go full white, next-hop bonds 85%.",
       "html": "<svg class=\"ds-mol\" viewBox=\"0 0 260 150\" role=\"group\" aria-label=\"Annotated atom\"><line class=\"ds-bond ds-hop1\" x1=\"60\" y1=\"110\" x2=\"110\" y2=\"80\"/><line class=\"ds-bond ds-hop1\" x1=\"110\" y1=\"80\" x2=\"160\" y2=\"110\"/><line class=\"ds-bond ds-hop2\" x1=\"160\" y1=\"110\" x2=\"210\" y2=\"80\"/><line class=\"ds-bond\" x1=\"210\" y1=\"80\" x2=\"240\" y2=\"98\"/><g class=\"ds-atom\" tabindex=\"0\" role=\"button\" aria-pressed=\"true\"><circle class=\"ds-ring\" cx=\"110\" cy=\"80\" r=\"15\"/><circle class=\"ds-dot\" cx=\"110\" cy=\"80\" r=\"9\"/></g><path class=\"ds-leader\" d=\"M110 80 L146 36\"/><text class=\"ds-id\" x=\"152\" y=\"40\">C2</text><text class=\"ds-val\" x=\"152\" y=\"59\">δ 151.2</text></svg>",
-      "css": ":host{--glass-0:#241105;--on-glass:#f4dcbc;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-mol{width:100%;max-width:360px;background:var(--band);padding:24px;overflow:visible;}.ds-bond{stroke:var(--on-band);stroke-opacity:.5;stroke-width:3.2;stroke-linecap:round;transition:stroke-opacity 220ms var(--ease),stroke-width 220ms var(--ease);}.ds-hop1{stroke-opacity:1;stroke-width:5;}.ds-hop2{stroke-opacity:.85;stroke-width:3.8;transition-delay:110ms;}.ds-atom{cursor:pointer;outline:none;}.ds-dot{fill:var(--on-band);}.ds-ring{fill:none;stroke:var(--on-band);stroke-width:2;opacity:0;}.ds-atom:focus-visible .ds-ring{opacity:1;}.ds-leader{stroke:var(--on-band);stroke-width:1.5;fill:none;}.ds-id{font-family:var(--mono);font-size:16px;font-weight:700;fill:var(--on-band);}.ds-val{font-family:var(--mono);font-size:18px;font-weight:700;fill:var(--on-band);}"
+      "css": ":host{--ground-1:#d6d4cd;--on-ground:#121211;--on-ground-2:#45443f;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} :focus-visible{outline:3px solid var(--band);outline-offset:3px;} .ds-mono{font-family:var(--mono);font-feature-settings:'zero' 0,'tnum' 1;} .ds-mol{width:100%;max-width:360px;background:var(--band);padding:24px;overflow:visible;}.ds-bond{stroke:var(--on-band);stroke-opacity:.5;stroke-width:3.2;stroke-linecap:round;transition:stroke-opacity 220ms var(--ease),stroke-width 220ms var(--ease);}.ds-hop1{stroke-opacity:1;stroke-width:5;}.ds-hop2{stroke-opacity:.85;stroke-width:3.8;transition-delay:110ms;}.ds-atom{cursor:pointer;outline:none;}.ds-dot{fill:var(--on-band);}.ds-ring{fill:none;stroke:var(--on-band);stroke-width:2;opacity:0;}.ds-atom:focus-visible .ds-ring{opacity:1;}.ds-leader{stroke:var(--on-band);stroke-width:1.5;fill:none;}.ds-id{font-family:var(--mono);font-size:16px;font-weight:700;fill:var(--on-band);}.ds-val{font-family:var(--mono);font-size:18px;font-weight:700;fill:var(--on-band);}"
+    },
+    {
+      "name": "Paper Stack",
+      "kind": "custom",
+      "refersTo": "stack-sheet",
+      "description": "Two sheets frozen mid-transition at cover 0.6: the covered label sinks and dims while the incoming label casts its upward overlap shadow.",
+      "html": "<div class=\"ds-bench\"><div class=\"ds-sheet ds-sheet--under\" style=\"--cover:.6\"><div class=\"ds-band\"></div><p>Covered sheet</p></div><div class=\"ds-sheet ds-sheet--over\"><div class=\"ds-band\"></div><p>Incoming sheet</p></div></div>",
+      "css": ":host{--ground-1:#d6d4cd;--on-ground:#121211;--on-ground-2:#45443f;--label:#fbfbf7;--label-2:#f1f0ea;--ink:#121211;--ink-2:#45443f;--hair:#c9c7bd;--band:#1f4fd1;--band-ink:#163a9e;--on-band:#fff;--on-band-2:#dbe4fb;--sans:'Archivo','Helvetica Neue',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(0.16,1,0.3,1);} .ds-bench{padding:24px 24px 0;background:linear-gradient(90deg,#c9c7bf 0%,#d6d4cd 20%,#e1dfd9 44%,#e9e8e3 51%,#e1dfd9 58%,#d6d4cd 80%,#c9c7bf 100%);font-family:var(--sans);}.ds-sheet{background:var(--label);color:var(--ink);padding:0 0 40px;box-shadow:0 1px 0 rgba(0,0,0,.12),0 24px 48px -24px rgba(0,0,0,.35);}.ds-sheet p{margin:16px 24px 0;font-weight:800;font-stretch:68%;text-transform:uppercase;font-size:1.5rem;}.ds-band{height:18px;background:var(--band);border-bottom:2px solid var(--ink);}.ds-sheet--under{transform-origin:50% 0;transform:scale(calc(1 - .05*var(--cover))) translateY(calc(-14px*var(--cover)));filter:brightness(calc(1 - .3*var(--cover)));}.ds-sheet--over{position:relative;margin-top:-28px;box-shadow:0 -16px 36px -18px rgba(0,0,0,.35),0 1px 0 rgba(0,0,0,.12),0 24px 48px -24px rgba(0,0,0,.35);}"
     }
   ],
   "narrative": {
     "northStar": "The Reagent Label",
-    "overview": "Every section of the CV is a paper label stuck to a bottle of amber glass. The page ground is the glass: a deep amber-brown with one soft vertical highlight down the middle of the viewport, fixed while the labels scroll past. On it sit near-white label panels divided by black rules into the grids a supplier catalogue uses: specification rows, slotted entries, a certificate-of-analysis table, a reference list.\n\nCobalt is printed boldly, as a supplier prints its house colour. Each label opens with a solid cobalt slab, the 18px band fused with the head, carrying the section headline in white. The hero lot strip, the molecule plate, catalogue numbers, the prize-winning talk and the whole contact label are cobalt; everything else on the label stays ink on stock. The type is industrial and compressed: names and section titles in a heavy condensed grotesk in capitals, running text in the same family at normal width, mono only where a catalogue would print a number, value or date. Corners are square everywhere. Depth is a single soft drop under each label, as if lifted a millimetre off the glass.\n\nThe live element is the molecule on the hero's cobalt plate: a white skeletal aspirin whose carbons, on hover or focus, pin a leader-line annotation with an illustrative shift, while bonds one and two hops away brighten and pulse outward like message passing. On first load the hero label prints itself once; nothing else animates on arrival or on scroll.",
+    "overview": "Every section of the CV is a paper label laid on a lab bench. The page ground is the bench: a pale warm grey with one soft vertical highlight down the middle of the viewport, fixed while the labels scroll past. The labels stack like sheets of paper: each section sticks in place and the next slides up over it, the covered label sinking slightly and dimming as it is buried. On the bench sit near-white label panels divided by black rules into the grids a supplier catalogue uses: specification rows, slotted entries, a certificate-of-analysis table, a reference list.\n\nCobalt is printed boldly, as a supplier prints its house colour. Each label opens with a solid cobalt slab, the 18px band fused with the head, carrying the section headline in white. The hero lot strip, the molecule plate, catalogue numbers, the prize-winning talk and the whole contact label are cobalt; everything else on the label stays ink on stock. The type is industrial and compressed: names and section titles in a heavy condensed grotesk in capitals, running text in the same family at normal width, mono only where a catalogue would print a number, value or date. Corners are square everywhere. Depth is a single soft drop under each label, as if lifted a millimetre off the bench, plus a short upward shadow where an incoming sheet overlaps the one beneath.\n\nThe live element is the molecule on the hero's cobalt plate: a white skeletal aspirin whose carbons, on hover or focus, pin a leader-line annotation with an illustrative shift, while bonds one and two hops away brighten and pulse outward like message passing. On first load the hero label prints itself once. The paper stack is the one deliberate scroll-linked motion; nothing else animates on arrival or on scroll.",
     "keyCharacteristics": [
-      "Amber-glass ground, white label stock, black rules, one bold cobalt printed as solid slabs and chips.",
+      "Pale lab-bench ground, white label stock, black rules, one bold cobalt printed as solid slabs and chips.",
       "Condensed heavy capitals for names; mono only for numbers, values and dates.",
       "Fixed-slot entries with right-aligned, deep-linkable cobalt catalogue chips.",
       "Square corners and a 2px / 1px / hairline rule hierarchy instead of cards.",
-      "One signature interaction (atom annotation with message-passing pulse) and one once-per-load print sequence on the hero."
+      "One signature interaction (atom annotation with message-passing pulse), one once-per-load print sequence on the hero, and one scroll-linked paper stack."
     ],
     "rules": [
       {
@@ -526,7 +583,12 @@
       },
       {
         "name": "The Three Substrates Rule",
-        "body": "Text sits on label stock (ink family), on cobalt (on-band family) or on glass (on-glass amber). Never set ink on glass, amber on a label, or ink on cobalt at rest.",
+        "body": "Text sits on label stock or the bench (ink family, with deep cobalt ink for hover and current state), or on cobalt (on-band family). Never set ink on cobalt at rest, or cobalt-coloured text on cobalt.",
+        "section": "colors"
+      },
+      {
+        "name": "The Black Alpha Rule",
+        "body": "Translucent rules and shadows are pure black at one of four fixed alphas (12%, 30%, 35%, 55%). No tinted shadows, no warm or cobalt alpha.",
         "section": "colors"
       },
       {
@@ -541,12 +603,12 @@
       },
       {
         "name": "The Equal Edge Rule",
-        "body": "Every label sits inside the same edge on left and right at every width; nothing bleeds to the viewport edge except the glass and the bar.",
+        "body": "Every label sits inside the same edge on left and right at every width; nothing bleeds to the viewport edge except the bench and the bar.",
         "section": "layout"
       },
       {
-        "name": "The Paper On Glass Rule",
-        "body": "The label is the only thing that floats at rest. Everything inside it, cobalt included, is printed flat; lift appears only as a response to pointer hover.",
+        "name": "The Paper On Bench Rule",
+        "body": "The label is the only thing that floats at rest. Everything inside it, cobalt included, is printed flat; lift appears only as a response to pointer hover. The stack's sinking and dimming act on the whole label, never on parts of it.",
         "section": "elevation"
       },
       {
@@ -561,7 +623,12 @@
       },
       {
         "name": "The Once Rule",
-        "body": "Arrival motion happens once, on the hero, on load. Nothing animates on scroll; every other motion is a response to the visitor.",
+        "body": "Arrival motion happens once, on the hero, on load; it never replays on other sections.",
+        "section": "components"
+      },
+      {
+        "name": "The One Scroll Rule",
+        "body": "The paper stack is the only scroll-linked motion. No reveal-on-scroll, parallax or scroll-triggered entrances anywhere else; every other motion is a response to the visitor.",
         "section": "components"
       }
     ],
@@ -571,15 +638,17 @@
       "**Do** separate content with the 2px / 1px / hairline rule hierarchy rather than boxes or tinted fills.",
       "**Do** print cobalt boldly as slabs, plates, chips and rows with white (on-band) text and mist (on-band-2) secondary text.",
       "**Do** keep corners square (0px) on every element, including images, chips and buttons.",
-      "**Do** use the single house ease, keep hover lifts at 1–2px with a soft shadow, and keep arrival motion to the hero's one print sequence."
+      "**Do** use the single house ease, keep hover lifts at 1–2px with a soft shadow, and keep arrival motion to the hero's one print sequence.",
+      "**Do** give any new section the paper-stack behaviour by making it a direct child section of main, with the bench gradient behind its label.",
+      "**Do** draw translucent rules and shadows in black at the four recorded alphas."
     ],
     "donts": [
       "**Don't** round corners or turn entries into floating cards with their own shadows; only the label floats.",
-      "**Don't** add a second accent colour, tint cobalt into gradients, or set ink on glass.",
+      "**Don't** add a second accent colour, tint cobalt into gradients, or use tinted (warm or cobalt) shadows and rules.",
       "**Don't** set headings or descriptive sentences in mono.",
       "**Don't** add hard offset shadows or glows.",
       "**Don't** put a small caps line above a section headline; the label head's metadata sits beside the headline, on its baseline.",
-      "**Don't** animate on scroll or replay the print sequence on other sections."
+      "**Don't** add scroll-linked motion beyond the paper stack, or replay the print sequence on other sections."
     ]
   }
 }
